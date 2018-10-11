@@ -15,7 +15,7 @@ def informatie():
 
 def informatieEigenaar():
     gegevens = open('Gegevens', 'r')
-    print('1: Ik heb mijn stalling nummer vergeten.')
+    print('1: Ik heb mijn stalling nummer vergeten.') # heb geen idee wat mensen nog meer zou willen weten..
 
     while True:
         keuze2 = int(input('Kies een optie: '))
@@ -36,7 +36,7 @@ def informatieEigenaar():
                     i = True
 
             if i:
-                print('Je stalling nummer is: ', nummer)
+                print('Je stalling nummer is: ', nummer) # het probleem hier is dat het programma altijd de laatste stallingnummer print. :(
                 break
             else:
                 print('Er is een fout in je gegevens.')
@@ -45,8 +45,8 @@ def informatieEigenaar():
 
 def informatieIedereen():
     print('1: Zijn er stallingen vrij?')
-    print('2: Wat heb ik nodig om te registreren?')
-    print('3: Meer informatie over OV fiets.')
+    print('2: Wat heb ik nodig om te registreren?') #moet code nog schrijven hiervoor
+    print('3: Meer informatie over OV fiets.') # ook hiervoor
 
     bezet = 0
 
