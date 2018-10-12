@@ -37,13 +37,23 @@ def fiets_registreren():
         print('OV nummer moet 4 cijfers bevatten')
         ov = input('Geef de laatse 4 nummers van uw OV-chipkaart: ')
 
+    ww = input('Geef een wachtwoord (minimaal 6 karakters): ')
+    while len(ww) < 6:
+        print('Het nieuwe wachtwoord moet minstens 6 karakters zijn')
+        ww = input('Geef een wachtwoord (minimaal 6 karakters): ')
+
     with open('Gegevens', 'a') as f:
-             f.write('\n')
+
              f.write(vnaam)
              f.write(';')
              f.write(anaam)
              f.write(';')
              f.write(telefoon)
+             f.write(';')
+             f.write(ov)
+             f.write(';')
+             f.write(ww)
+             f.write('\n')
     return 'Uw gegevens zijn geregistreerd'
 
 
