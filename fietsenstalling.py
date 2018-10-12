@@ -27,7 +27,7 @@ def fiets_registreren():
         nummer = 'niks'
     while ov is not nummer:
         print('OV nummer mag alleen cijfers bevatten')
-        telefoon = input('Geef de laatste 4 nummers van uw OV-chipkaart: ')
+        ov = input('Geef de laatste 4 nummers van uw OV-chipkaart: ')
         if ov.isdigit():
             nummer = ov
         else:
