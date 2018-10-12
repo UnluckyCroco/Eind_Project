@@ -54,7 +54,7 @@ def informatieIedereen():
         regel = open('Gegevens', 'r')
         keuze3 = int(input('Kies een optie: '))
 
-        if keuze3 == 1:
+        if keuze3 == 1:   # als je voor optie 1 kiest.
             for line in regel.readlines():
                 bezet += 1
 
@@ -65,6 +65,11 @@ def informatieIedereen():
             else:
                 print('Er zijn geen stallingen beschikbaar.')
             break
+
+        elif keuze3 == 2:  #als je voor optie 2 kiest.
+            print('1. Een geldig OV kaart.')
+            print('2. Je naam geven.')
+            print('3. ')
 informatie()
 
 

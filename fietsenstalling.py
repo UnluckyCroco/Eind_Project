@@ -48,11 +48,12 @@ def fiets_registreren():
              f.write(';')
              f.write(anaam)
              f.write(';')
+             f.write(ww)               # ik heb ww hier moeten verplaatsen zodat mijn code kan functioneren.
+             f.write(';')
              f.write(telefoon)
              f.write(';')
              f.write(ov)
-             f.write(';')
-             f.write(ww)
+
              f.write('\n')
     return 'Uw gegevens zijn geregistreerd'
 
