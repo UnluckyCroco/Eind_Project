@@ -31,9 +31,7 @@ def fiets_registreren():
          f.write(';')
          f.write(telefoon)
 
-
-
-print(fiets_registreren())
+fiets_registreren()
 
 
 #def fiets_stallen():
