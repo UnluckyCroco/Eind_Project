@@ -35,35 +35,23 @@ def fiets_registreren():
 
     while len(ov) is not 4: #checkt of het ov 4 tekens lang is
         print('OV nummer moet 4 cijfers bevatten')
-        telefoon = input('Geef de laatse 4 nummers van uw OV-chipkaart: ')
+        ov = input('Geef de laatse 4 nummers van uw OV-chipkaart: ')
 
-    for x in range(1):
-         rnummer = random.randint(1,701)  #maakt een random nummer aan
-         infile = open('Gegevens', 'r')
-         regels = infile.readlines()
-         for regel in regels:
-          zin = regel.split(';')
-          nummer = zin[0]
-          if rnummer == nummer :  #checkt als het random nummer niet al bezet is
-            Random = True
-          else:
-            Random = False
-          while Random:
-            fiets_registreren()
-          with open('Gegevens', 'a') as f:
+    with open('Gegevens', 'a') as f:
              f.write('\n')
-             f.write(str(rnummer))
-             f.write(';')
              f.write(vnaam)
              f.write(';')
              f.write(anaam)
              f.write(';')
              f.write(telefoon)
-         return rnummer
+    return 'Uw gegevens zijn geregistreerd'
 
 
 
-print('Uw nummer is:', fiets_registreren())
+
+print(fiets_registreren())
+
+
 
 
 #def fiets_stallen():
