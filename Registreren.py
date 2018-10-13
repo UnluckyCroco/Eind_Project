@@ -6,14 +6,14 @@ def fiets_registreren():
     if telefoon.isdigit():  #checkt als telefoon wel uit nummers bestaat
         digit = telefoon
     else:
-        digit = 'niks'
+        digit = ' '
     while telefoon is not digit:
         print('Telefoon nummer mag alleen cijfers bevatten')
         telefoon = input('Geef uw telefoonnummer: 06-')
         if telefoon.isdigit():
             digit = telefoon
         else:
-            digit = 'niks'
+            digit = ' '
 
     while len(telefoon) is not 8: #checkt of het tefeloonnummer 8 tekens lang is
         print('Telefoon nummer moet 8 cijfers bevatten')
@@ -23,14 +23,14 @@ def fiets_registreren():
     if ov.isdigit():  #checkt als ov wel uit nummers bestaat
         nummer = ov
     else:
-        nummer = 'niks'
+        nummer = ' '
     while ov is not nummer:
         print('OV nummer mag alleen cijfers bevatten')
         ov = input('Geef de laatste 4 nummers van uw OV-chipkaart: ')
         if ov.isdigit():
             nummer = ov
         else:
-            nummer = 'nikskhk'
+            nummer = ' '
 
     while len(ov) is not 4: #checkt of het ov 4 tekens lang is
         print('OV nummer moet 4 cijfers bevatten')
