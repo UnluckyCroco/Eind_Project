@@ -1,4 +1,4 @@
-def fietsOphalen():
+def fiets_ophalen():
     readfile = open('Gegevens', 'r')
 
     while True:
@@ -22,4 +22,4 @@ def fietsOphalen():
         else:
             print('Er is een fout in je gegevens.')
 
-fietsOphalen()
+fiets_ophalen()
