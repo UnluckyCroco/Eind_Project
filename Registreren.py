@@ -1,4 +1,3 @@
-import random
 def fiets_registreren():
     vnaam = input('Geef uw voornaam: ')
     anaam = input('Geef uw tussenvoegsels en achternaam: ')
@@ -53,7 +52,6 @@ def fiets_registreren():
              f.write(telefoon)
              f.write(';')
              f.write(ov)
-
              f.write('\n')
     return 'Uw gegevens zijn geregistreerd'
 
