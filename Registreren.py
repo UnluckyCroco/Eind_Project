@@ -57,16 +57,4 @@ def fiets_registreren():
              f.write('\n')
     return 'Uw gegevens zijn geregistreerd'
 
-
-
-
 print(fiets_registreren())
-
-
-
-
-#def fiets_stallen():
-
-#def fiets_ophalen():
-
-#def informatie():
