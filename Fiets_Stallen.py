@@ -2,7 +2,7 @@ naam = input("Wat is uw fietsnummer(zie de sticker op uw fiets)?: ")
 
 def fiets_stallen():
     read = open('Gegevens', 'r')
-    write = open('stalling_text.txt', 'a')
+    write = open('Stallen.txt', 'a')
     infile = read.readlines()
     outfile = write.write
 
