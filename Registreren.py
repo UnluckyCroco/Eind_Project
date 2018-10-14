@@ -55,4 +55,10 @@ def fiets_registreren():
              f.write('\n')
     return 'Uw gegevens zijn geregistreerd'
 
+
 print(fiets_registreren())
+
+print('\n')
+from NS_Fietsen_Stalling import inlog_menu
+print('\n')     #werkt niet
+print(inlog_menu())
