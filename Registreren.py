@@ -58,7 +58,5 @@ def fiets_registreren():
 
 print(fiets_registreren())
 
-print('\n')
 from NS_Fietsen_Stalling import inlog_menu
-print('\n')     #werkt niet
 print(inlog_menu())
