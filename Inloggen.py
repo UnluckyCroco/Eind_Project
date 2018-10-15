@@ -15,11 +15,11 @@ def inloggen():
                         f1 = open('Ingelogd','a')
                         f1.write(line)
                         f1.close()
-                        return'\033[1;32;0mInlog Succesvol\033[1;0;0m'
+                        return'\033[32mInlog Succesvol\033[0m'
 
-        print('\033[1;31;0mDeze combinatie is incorrect. Ga terug naar menu om te registeren of probeer opnieuw.\033[1;0;0m')
+        print('\033[31mDeze combinatie is incorrect. Ga terug naar menu om te registeren of probeer opnieuw.\033[0m')
         while True:
-            reg = input('\033[1;34;0mTyp Menu of Opnieuw: \033[1;0;0m')
+            reg = input('\033[34mTyp Menu of Opnieuw: \033[0m')
             if reg == 'Menu':
                 reg = ' '
                 from NS_Fietsen_Stalling import inlog_menu
