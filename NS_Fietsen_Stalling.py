@@ -10,7 +10,7 @@ def inlog_menu():
         optie = input('\033[36mKies een optie: \033[0m')
         if optie == str(1):
             from Registreren import fiets_registreren
-            return fiets_registreren
+            print(fiets_registreren())
         elif optie == str(2):
             from Inloggen import inloggen
             return inloggen
@@ -41,6 +41,8 @@ def keuze_menu():
             return fiets_stallen()
         elif optie == str(2):
             print('ok')
+            # from huren import huren
+            # return huren()
         elif optie == str(3):
             from Fiets_Ophalen import fiets_ophalen
             return fiets_ophalen()
@@ -50,10 +52,10 @@ def keuze_menu():
             from Informatie_Opvragen import informatieEigenaar
             return informatieEigenaar()
         elif optie == str(6):
-            break
+            print('\033[1;32;0mInlog Succesvol\033[1;0;0m')
+            inlog_menu()
         elif optie == 'STOP':
             continue
         else:
             print('\033[31mOngeldige invoer\033[0m')
-    #terug naar inlog_menu
 keuze_menu()
