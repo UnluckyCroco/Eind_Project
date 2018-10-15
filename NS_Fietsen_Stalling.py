@@ -1,5 +1,7 @@
 def inlog_menu():
-    print('\033[33mWelkom bij de NS fietsenstalling!\033[0m')
+    print('\033[33m - Welkom bij de NS fietsenstalling!\033[0m')
+    print('\033[35m - Registreer u bij de fietsenstallig of log in met een bestaand account.\033[0m')
+    print('\033[31m - Mocht u een typ fout maken, typ dan STOP.\033[0m')
     while True:
         print('\033[34m1: Registreren')
         print('2: Inloggen')
@@ -18,6 +20,8 @@ def inlog_menu():
         elif optie == str(4):
             print('\033[31mProgramma sluit af.\033[0m')
             exit()
+        elif optie == 'STOP':
+            continue
         else:
             print('\033[31mOngeldige invoer\033[0m')
 
@@ -33,11 +37,10 @@ def keuze_menu():
         print('6: Uitloggen\033[0m')
         optie = input('Kies een optie: ')
         if optie == str(1):
-            from Registreren import fiets_registreren
-            return fiets_registreren
+            from Fiets_Stallen import fiets_stallen
+            return fiets_stallen()
         elif optie == str(2):
-            from Inloggen import inloggen
-            return inloggen
+            print('ok')
         elif optie == str(3):
             from Fiets_Ophalen import fiets_ophalen
             return fiets_ophalen()
@@ -48,6 +51,8 @@ def keuze_menu():
             return informatieEigenaar()
         elif optie == str(6):
             break
+        elif optie == 'STOP':
+            continue
         else:
             print('\033[31mOngeldige invoer\033[0m')
     #terug naar inlog_menu
