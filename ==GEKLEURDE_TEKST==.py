@@ -35,5 +35,5 @@ print('\033[4mHello world\033[0m')
 print('\033[1mHello world\033[0m')
 print('\033[31;4mHello world\033[0m')
 print('\033[1;31;7mHello world\033[0m')
-
+print('\033[31mH\033[32mA\033[34mL\033[35mL\033[33mO\033[0m')
 #Je typt dus 'print(\033[(kleurcodes gescheiden door ; en gevolt door m)TEKST(geen spaties tussen de m en je tekst)\033[0m(hier zorg je ervoor dat het niet verder gaat in je code door de kleuren af te sluiten, of je moet dit willen verwijder dan gewoon de \033[0m.')
