@@ -1,6 +1,6 @@
 def inlog_menu():
     print('\033[33m - Welkom bij de NS fietsenstalling!\033[0m')
-    print('\033[35m - Registreer u bij de fietsenstallig of log in met een bestaand account.\033[0m')
+    print('\033[35m - Registreer u bij de fietsenstalling of log in met een bestaand account.\033[0m')
     print('\033[31m - Mocht u een typ fout maken, typ dan STOP.\033[0m')
     while True:
         print('\033[34m1: Registreren')

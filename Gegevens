@@ -1,2 +1,7 @@
 Iwan;van der Wal;123456;12345678;1234
+<<<<<<< HEAD
 Henk;Kaas;123456;12345678;1234
+=======
+Stephen;a nedd;hellow;12345678;1234
+>>>>>>> origin/master
+Iwan;Kaas;123456;12345678;1234
