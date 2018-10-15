@@ -20,7 +20,7 @@ def regel_verwijderen():
 
 
 
-def terugbrengen():
+def fiets_terugbrengen():
     gelukt = 0
     dag = 86400
     jaar = 31536000
@@ -99,4 +99,4 @@ def terugbrengen():
         print('U heeft geen fiets gehuurd')
     terugfile.close()
 
-terugbrengen()
+fiets_terugbrengen()

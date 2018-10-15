@@ -1,5 +1,5 @@
 import time
-def huren():
+def fiets_huren():
     vnaam = input('d')
     checkhuur = 0
     file = open('Huurgegevens', 'r')
@@ -25,4 +25,4 @@ def huren():
     huurfile.close()
 
 
-huren()
+fiets_huren()
