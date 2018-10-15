@@ -1,5 +1,6 @@
 import time
-def huren(vnaam):
+def huren():
+    vnaam = input('d')
     checkhuur = 0
     file = open('Huurgegevens', 'r')
     lines = file.readlines()
@@ -23,4 +24,5 @@ def huren(vnaam):
         huurfile.write(vnaam + ';' + str(tijdH) + ';' + str(tijdM) + ';' + str(tijdS) + ';' + str(datumd) + ';' + str(datumm) + ';' + str(datumY) + '\n')
     huurfile.close()
 
-huren(vnaam)
+
+huren()

@@ -1,5 +1,26 @@
 import time
-def terugbrengen(vnaam):
+
+
+def regel_verwijderen():
+    lijst = []
+    naam = input('naam\n')
+    file = open('Huurgegevens', 'r')
+    regels = file.readlines()
+    file.close()
+    for regel in regels:
+        x = regel.split(';')
+        if not naam == x[0]:
+            lijst.append(regel)
+    print(lijst)
+    print(len(lijst))
+    file.close()
+    wfile = open('Huurgegevens','w')
+    for q in range(len(lijst)):
+        wfile.write(lijst[q])
+
+
+
+def terugbrengen():
     gelukt = 0
     dag = 86400
     jaar = 31536000
@@ -70,20 +91,12 @@ def terugbrengen(vnaam):
 
             prijs = gehuurdtijdtotal//(60*15)*0.2 + 1           # elke 15 minuten + 20 cent en standaard 1 euro
             print('U heeft de fiets voor',int(totalY),jaren,int(totalm),maanden,int(totald),dagen,int(totalH),uren,int(totalM),minuten,int(totalS),seconden,'gehuurd, dat kost u',str(prijs),'euro.')
-            # insert delete gegevens
 
-            # writefile = open('Huurgegevens','w')
-            # linesw = writefile.readlines()
-            # for linew in linesw:
-            #     naam = linew.split(';')
-            #     if vnaam == naam[0]:
-            #         writefile.writelines('end')
-            #         print(naam)
-            # writefile.close()
+            regel_verwijderen()
 
             gelukt = 1                          # voor de "geen fiets gehuurd" dinges
     if gelukt != 1:
         print('U heeft geen fiets gehuurd')
     terugfile.close()
 
-terugbrengen(vnaam)
+terugbrengen()
