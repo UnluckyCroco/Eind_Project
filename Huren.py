@@ -1,14 +1,19 @@
 import time
 def fiets_huren():
-    vnaam = input('d')
+    infile = open('Ingelogd','r')
+    ilines = infile.readlines()
+    for iline in ilines:
+        naam = iline.split(';')
+
     checkhuur = 0
+
     file = open('Huurgegevens', 'r')
     lines = file.readlines()
 
     for line in lines:
         x = line.split(';')
         if checkhuur == 0:
-            if vnaam in x:
+            if naam[0] in x:
                 print('U heeft al een fiets gehuurd')
                 checkhuur = 1
     if checkhuur == 0:
@@ -21,8 +26,8 @@ def fiets_huren():
         tijddatum = tijdH + ':' + tijdM + ':' + tijdS + ' ' + datumd + '/' + datumm + '/' + datumY
         print('De fiets is gehuurd vanaf', tijddatum)
         huurfile = open('Huurgegevens', 'a')
-        huurfile.write(vnaam + ';' + str(tijdH) + ';' + str(tijdM) + ';' + str(tijdS) + ';' + str(datumd) + ';' + str(datumm) + ';' + str(datumY) + '\n')
-    huurfile.close()
+        huurfile.write(naam[0] + ';' + str(tijdH) + ';' + str(tijdM) + ';' + str(tijdS) + ';' + str(datumd) + ';' + str(datumm) + ';' + str(datumY) + '\n')
+        huurfile.close()
 
 
 fiets_huren()

@@ -1,18 +1,15 @@
 import time
 
 
-def regel_verwijderen():
+def regel_verwijderen(naam):
     lijst = []
-    naam = input('naam\n')
     file = open('Huurgegevens', 'r')
     regels = file.readlines()
     file.close()
     for regel in regels:
         x = regel.split(';')
-        if not naam == x[0]:
+        if not naam[0] == x[0]:
             lijst.append(regel)
-    print(lijst)
-    print(len(lijst))
     file.close()
     wfile = open('Huurgegevens','w')
     for q in range(len(lijst)):
@@ -28,10 +25,15 @@ def fiets_terugbrengen():
     terugfile = open('Huurgegevens', 'r')
     linest = terugfile.readlines()
 
+    infile = open('Ingelogd', 'r')
+    ilines = infile.readlines()
+    for iline in ilines:
+        naam = iline.split(';')
+
     for linet in linest:
         y = linet.split(';')
 
-        if vnaam in y:
+        if naam[0] in y:
             datumstartH = y[1]
             datumstartM = y[2]
             datumstartS = y[3]
@@ -92,7 +94,7 @@ def fiets_terugbrengen():
             prijs = gehuurdtijdtotal//(60*15)*0.2 + 1           # elke 15 minuten + 20 cent en standaard 1 euro
             print('U heeft de fiets voor',int(totalY),jaren,int(totalm),maanden,int(totald),dagen,int(totalH),uren,int(totalM),minuten,int(totalS),seconden,'gehuurd, dat kost u',str(prijs),'euro.')
 
-            regel_verwijderen()
+            regel_verwijderen(naam)
 
             gelukt = 1                          # voor de "geen fiets gehuurd" dinges
     if gelukt != 1:
