@@ -11,17 +11,17 @@ def regel_verwijderen():
     ilines = infile.readlines()
     for iline in ilines:
         inlog = iline.split(';')
-        inlogz = inlog[4].strip('\n')
+        inlogov = inlog[4].strip('\n')
     infile.close()
 
-    for regel in regels:
+    for regel in regels:                        # voegt elke regel toe die niet gelijk is aan de teruggebrachde fiets aan een lijst, die hij later terug het bestand in zet
         x = regel.split(';')
         counter = 0
         if not inlog[0] == x[0]:
             counter += 1
         if not inlog[1] == x[1]:
             counter += 1
-        if not inlogz == x[2]:
+        if not inlogov == x[2]:
             counter += 1
         if counter > 0:
             lijst.append(regel)
@@ -34,7 +34,7 @@ def regel_verwijderen():
 
 def fiets_terugbrengen():
     gelukt = 0
-    dag = 86400
+    dag = 86400                             # in seconden
     jaar = 31536000
 
     terugfile = open('Huurgegevens', 'r')
@@ -44,7 +44,7 @@ def fiets_terugbrengen():
     ilines = infile.readlines()
     for iline in ilines:
         inlog = iline.split(';')
-        inlogz = inlog[4].strip('\n')
+        inlogov = inlog[4].strip('\n')
     infile.close()
 
     for linet in linest:
@@ -52,7 +52,7 @@ def fiets_terugbrengen():
 
         if inlog[0] in y:
             if inlog[1] in y:
-                if inlogz in y:
+                if inlogov in y:
                     datumstartH = y[3]
                     datumstartM = y[4]
                     datumstartS = y[5]
@@ -68,6 +68,7 @@ def fiets_terugbrengen():
                     datumYt = time.strftime('%Y')  # jaar
 
                     tijddatum = tijdHt + ':' + tijdMt + ':' + tijdSt + ' ' + datumdt + '/' + datummt + '/' + datumYt
+
                     print('U heeft de fiets gehuurd sinds','{}:{}:{} {}/{}/{}'.format(datumstartH,datumstartM,datumstartS,datumstartd,datumstartm,datumstartY),'en de fiets terug gebracht op', tijddatum)
                     total = int(datumstartH)*3600 + int(datumstartM)*60 + int(datumstartS) + int(datumstartd)*dag + int(datumstartm)/12*jaar + int(datumstartY)*jaar
                     totalt = int(tijdHt)*3600 + int(tijdMt)*60 + int(tijdSt) + int(datumdt)*dag + int(datummt)/12*jaar + int(datumYt)*jaar

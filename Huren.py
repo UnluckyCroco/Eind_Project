@@ -4,7 +4,7 @@ def fiets_huren():
     ilines = infile.readlines()
     for iline in ilines:
         inlog = iline.split(';')
-        inlogz = inlog[4].strip('\n')
+        inlogov = inlog[4].strip('\n')
     checkhuur = 0
 
     file = open('Huurgegevens', 'r')
@@ -16,7 +16,7 @@ def fiets_huren():
         if checkhuur == 0:
             if inlog[0] in x:
                 if inlog[1] in x:
-                    if inlogz in x:
+                    if inlogov in x:
                         print('U heeft al een fiets gehuurd')
                         checkhuur = 1
     if checkhuur == 0:
