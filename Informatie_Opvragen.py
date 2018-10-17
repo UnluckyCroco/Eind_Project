@@ -21,10 +21,10 @@ def informatieEigenaar():
 
     gegevens.close()
 
-def informatieAlgemeen():
-    print('1: Zijn er stallingen vrij?')
+def informatieIedereen():
+    print('\033[32m1: Zijn er stallingen vrij?')
     print('2: Wat heb ik nodig om te registreren?') #moet code nog schrijven hiervoor
-    print('3: Meer informatie over OV fiets.') # ook hiervoor
+    print('3: Meer informatie over OV fiets.\033[0m') # ook hiervoor
 
     bezet = 0
 
@@ -45,11 +45,10 @@ def informatieAlgemeen():
             break
 
         elif keuze3 == 2:  #als je voor optie 2 kiest.
-            print('1. Een geldig OV kaart.')
+            print('1. De laatste 4 nummers van je OV kaart.')
             print('2. Je naam geven.')
             print('3. ')
 
-informatieEigenaar()
 
 
 
