@@ -1,4 +1,11 @@
-naam = input("Wat is uw fietsnummer(zie de sticker op uw fiets)?: ")
+from time import*
+def times():
+    ''
+    localtime(time())
+    ''
+    return(asctime(localtime(time())))
+
+naam = input("Wat zijn de laatste 4 cijfers van uw OV kaart?: ")
 
 def fiets_stallen():
     read = open('Gegevens', 'r')
@@ -10,9 +17,8 @@ def fiets_stallen():
         zin = infiles.split(';')
         info = zin[0]
         if info == naam:
-            dag = input('Hoeveelste is het vandaag (dd/mm/yy)?: ')
-            klok = input('Hoe laat is het (uur:minuut)?: ')
-            outfile('\n' + dag + ';' + klok)
+
+            outfile('\n'+ naam + '; ' + str(times())+ ';' + str(times()))
             return 'Alstublieft, u kunt uw fiets nu veilig stallen'
     return 'Dit nummer is niet geregistreerd'
 
