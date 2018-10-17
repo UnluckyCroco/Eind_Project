@@ -1,24 +1,23 @@
+import csv
 def informatieEigenaar():
     gegevens = open('Gegevens', 'r')
+    gegeven = gegevens.readlines()
+    name = input('Vul naam in: ')
 
-    vnaam = input('Geef je naam: ')
-    anaam = input('Geef je tussenvoegsels en je achternaam: ')
-    tele = input('Geef uw telefoonnummer: 06-: ')
+    for item in gegeven:
+        regel = item.split(';')
+        naam = regel[0]
+        achternaam = regel[1]
+        ww = regel[2]
+        tel = regel[3]
+        ov = regel[4]
+        if naam == name:
+            print('\033[32mGeregistreerde naam: \033[0m', naam, achternaam)
+            print('\033[32mGeregistreerde wachtwoord: \033[0m', ww)
+            print('\033[32mGeregistreerde telefoon nummer: \033[0m', tel)
+            print('\033[32mGeregistreerde OV: \033[0m', ov)
 
-    i = False
 
-    for gegeven in gegevens.readlines():
-        gegevens_split = gegeven.split(";")
-        telefoon = gegevens_split[3]
-        voornaam = gegevens_split[0]
-        achternaam = gegevens_split[1]
-        if vnaam == voornaam and anaam == achternaam and tele == telefoon:
-            i = True
-
-    if i:
-        print('Je  ', )
-    else:
-        print('Er is een fout in je gegevens.')
 
     gegevens.close()
 
