@@ -39,5 +39,3 @@ def fiets_stallen():
 
             return 'Alstublieft, u kunt uw fiets nu veilig stallen'
     return 'Dit nummer is niet geregistreerd'
-
-print(fiets_stallen())
