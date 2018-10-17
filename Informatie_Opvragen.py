@@ -1,52 +1,30 @@
-def informatie():
-    print('1: Ik heb een fiets in de fietsenstalling.')
-    print('2: Ik wil informatie over de fietsenstalling.')
-
-    while True:
-        keuze1 = int(input('Kies een optie: '))
-        if keuze1 == 1:
-            informatieEigenaar()
-            break
-        elif keuze1 == 2:
-            informatieIedereen()
-            break
-        else:
-            print('Foutmelding! Kies optie 1 of 2 alsjeblieft:')
-
+import csv
 def informatieEigenaar():
     gegevens = open('Gegevens', 'r')
-    print('1: Ik heb mijn stalling nummer vergeten.') # heb geen idee wat mensen nog meer zou willen weten..
+    gegeven = gegevens.readlines()
+    name = input('Vul naam in: ')
 
-    while True:
-        keuze2 = int(input('Kies een optie: '))
+    for item in gegeven:
+        regel = item.split(';')
+        naam = regel[0]
+        achternaam = regel[1]
+        ww = regel[2]
+        tel = regel[3]
+        ov = regel[4]
+        if naam == name:
+            print('\033[32mGeregistreerde naam: \033[0m', naam, achternaam)
+            print('\033[32mGeregistreerde wachtwoord: \033[0m', ww)
+            print('\033[32mGeregistreerde telefoon nummer: \033[0m', tel)
+            print('\033[32mGeregistreerde OV: \033[0m', ov)
 
-        if keuze2 == 1:
 
-            vnaam = input('Geef je naam: ')
-            anaam = input('Geef je tussenvoegsels en je achternaam: ')
 
-            i = False
-
-            for gegeven in gegevens.readlines():
-                gegevens_split = gegeven.split(";")
-                nummer = gegevens_split[0]
-                voornaam = gegevens_split[1]
-                achternaam = gegevens_split[2]
-                if vnaam == voornaam and anaam == achternaam:
-                    i = True
-
-            if i:
-                print('Je stalling nummer is: ', nummer) # het probleem hier is dat het programma altijd de laatste stallingnummer print. :(
-                break
-            else:
-                print('Er is een fout in je gegevens.')
-
-            gegevens.close()
+    gegevens.close()
 
 def informatieIedereen():
-    print('1: Zijn er stallingen vrij?')
+    print('\033[32m1: Zijn er stallingen vrij?')
     print('2: Wat heb ik nodig om te registreren?') #moet code nog schrijven hiervoor
-    print('3: Meer informatie over OV fiets.') # ook hiervoor
+    print('3: Meer informatie over OV fiets.\033[0m') # ook hiervoor
 
     bezet = 0
 
@@ -67,10 +45,9 @@ def informatieIedereen():
             break
 
         elif keuze3 == 2:  #als je voor optie 2 kiest.
-            print('1. Een geldig OV kaart.')
+            print('1. De laatste 4 nummers van je OV kaart.')
             print('2. Je naam geven.')
             print('3. ')
-informatie()
 
 
 
