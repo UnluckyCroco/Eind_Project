@@ -74,6 +74,7 @@ def fiets_registreren():
                  f.write(telefoon)
                  f.write(';')
                  f.write(ov)
+                 f.write(';')
                  f.write('\n')
         return 'Uw gegevens zijn geregistreerd'
 
