@@ -16,7 +16,6 @@ def fiets_stallen():
     for infiles in infile:
         zin = infiles.split(';')
         info = zin[4]
-        print(info, naam)
         if info == naam:
 
             outfile('\n'+ naam + '; ' + str(times())+ ';' + str(times()))

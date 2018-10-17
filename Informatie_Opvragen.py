@@ -29,7 +29,7 @@ def informatieIedereen():
     bezet = 0
 
     while True:
-        regel = open('Gegevens', 'r')
+        regel = open('Stallen.txt', 'r')
         keuze3 = int(input('Kies een optie: '))
 
         if keuze3 == 1:   # als je voor optie 1 kiest.
