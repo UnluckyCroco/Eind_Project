@@ -22,9 +22,10 @@ def inloggen():
             reg = input('\033[34mTyp Menu of Opnieuw: \033[0m')
             if reg == 'Menu':
                 reg = ' '
-                from NS_Fietsen_Stalling import inlog_menu
-                print(inlog_menu())
             if reg == 'Opnieuw':
                 break
             else:
                 print('Foute input.')
+
+# from NS_Fietsen_Stalling import keuze_menu
+# print(keuze_menu())
