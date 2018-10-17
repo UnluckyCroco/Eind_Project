@@ -34,6 +34,7 @@ def fiets_terugbrengen():
 
     terugfile = open('Huurgegevens', 'r')
     linest = terugfile.readlines()
+    terugfile.close()
 
     infile = open('Ingelogd', 'r')
     ilines = infile.readlines()
@@ -69,33 +70,33 @@ def fiets_terugbrengen():
             gehuurdtijd = gehuurdtijdtotal
             totalY = gehuurdtijd // (jaar)                       # hier en onder berekent hij per tijd hoelang de fiets gehuurd is
             if totalY == 1:
-                jaren = 'jaar,'
+                jaren = 'jaar'
             else:
-                jaren = 'jaren,'
+                jaren = 'jaren'
             gehuurdtijd = gehuurdtijd - totalY * jaar
             totalm = gehuurdtijd // (jaar / 12)
             if totalm == 1:
-                maanden = 'maand,'
+                maanden = 'maand'
             else:
-                maanden = 'maanden,'
+                maanden = 'maanden'
             gehuurdtijd = gehuurdtijd - totalm * jaar / 12
             totald = gehuurdtijd // (dag)
             if totald == 1:
-                dagen = 'dag,'
+                dagen = 'dag'
             else:
-                dagen = 'dagen,'
+                dagen = 'dagen'
             gehuurdtijd = gehuurdtijd - totald * dag
             totalH = gehuurdtijd // (3600)
             if totalH == 1:
-                uren = 'uur,'
+                uren = 'uur'
             else:
-                uren = 'uren,'
+                uren = 'uren'
             gehuurdtijd = gehuurdtijd - totalH * 3600
             totalM = gehuurdtijd // (60)
             if totalM == 1:
-                minuten = 'minuut,'
+                minuten = 'minuut'
             else:
-                minuten = 'minuten,'
+                minuten = 'minuten'
             gehuurdtijd = gehuurdtijd - totalM * 60
             totalS = gehuurdtijd
             if totalS == 1:
@@ -104,13 +105,14 @@ def fiets_terugbrengen():
                 seconden = 'seconden'
 
             prijs = gehuurdtijdtotal//(60*15)*0.2 + 1           # elke 15 minuten + 20 cent en standaard 1 euro
-            print('U heeft de fiets voor',int(totalY),jaren,int(totalm),maanden,int(totald),dagen,int(totalH),uren,int(totalM),minuten,int(totalS),seconden,'gehuurd, dat kost u',str(prijs),'euro.')
 
             regel_verwijderen()
 
-            gelukt = 1                          # voor de "geen fiets gehuurd" dinges
-    if gelukt != 1:
-        print('U heeft geen fiets gehuurd')
-    terugfile.close()
+            # return 'U heeft de fiets voor', int(totalY), jaren, int(totalm), maanden, int(totald), dagen, int(totalH), uren, int(totalM), minuten, int(totalS), seconden, 'gehuurd, dat kost u', str(prijs), 'euro.'
+            return 'U heeft de fiets voor {} {}, {} {}, {} {}, {} {}, {} {} en {} {} gehuurd, dat kost u {} euro'.format(int(totalY), jaren, int(totalm), maanden, int(totald), dagen, int(totalH), uren, int(totalM), minuten, int(totalS), seconden, str(prijs))
 
-fiets_terugbrengen()
+    if gelukt != 1:
+        return 'U heeft geen fiets gehuurd'
+
+
+# fiets_terugbrengen()
