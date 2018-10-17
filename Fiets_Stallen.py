@@ -21,6 +21,3 @@ def fiets_stallen():
             outfile('\n'+ naam + '; ' + str(times()))
             return 'Alstublieft, u kunt uw fiets nu veilig stallen'
     return 'Dit nummer is niet geregistreerd'
-
-print(fiets_stallen())
-
