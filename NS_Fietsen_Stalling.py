@@ -13,7 +13,7 @@ def inlog_menu():
             print(fiets_registreren())
         elif optie == str(2):
             from Inloggen import inloggen
-            return inloggen
+            print(inloggen())
         elif optie == str(3):
             from Informatie_Opvragen import informatieIedereen
             print(informatieIedereen())
