@@ -23,3 +23,4 @@ def fiets_stallen():
     return 'Dit nummer is niet geregistreerd'
 
 print(fiets_stallen())
+
