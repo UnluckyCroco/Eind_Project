@@ -30,24 +30,31 @@ def informatieIedereen():
 
     while True:
         regel = open('Stallen.txt', 'r')
-        keuze3 = int(input('Kies een optie: '))
+        keuze3 = int(input('\033[36mKies een optie: \033[0m'))
 
         if keuze3 == 1:   # als je voor optie 1 kiest.
             for line in regel.readlines():
                 bezet += 1
 
             if bezet < 701:
-                print('Ja, er zijn ', 701 - bezet, ' stallingen vrij.\n')
+                print('\033[32mJa, er zijn', 701 - bezet, 'stallingen vrij.\033[0m\n')
                 regel.close()
 
             else:
-                print('Er zijn geen stallingen beschikbaar.')
+                print('\033[31mEr zijn geen stallingen beschikbaar.\033[0m')
             break
 
         elif keuze3 == 2:  #als je voor optie 2 kiest.
-            print('1. De laatste 4 nummers van je OV kaart.')
-            print('2. Je naam geven.')
-            print('3. ')
+            print('\033[32m- De laatste 4 nummers van je OV kaart.')
+            print('- Je naam geven.')
+            print('- Geldige telefoon nummer\033[0m')
+
+        elif keuze3 == 3:
+            print('\033[32m- Uw kunt een fiets huren als je in bezit ben van een geldige OV kaart.')
+            print('- Het kost uw €240,- per uur.\033[0m')
+
+
+
 
 
 
