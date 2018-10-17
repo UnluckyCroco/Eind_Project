@@ -23,13 +23,13 @@ def fiets_stallen():
 
 
             for x in range(1):
-                rnummer = random.randint(1,701)  #maakt een random nummer aan
+                rnummer = random.randint(1,701)
                 infile = open('Stallen.txt', 'r')
                 regels = infile.readlines()
                 for regel in regels:
                     zin = regel.split(';')
                     nummer = zin[0]
-                    if nummer == nummer :  #checkt als het random nummer niet al bezet is
+                    if nummer == nummer :
                      Random = True
                     else:
                      Random = False
