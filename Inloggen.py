@@ -28,5 +28,3 @@ def inloggen():
                 break
             else:
                 print('Foute input.')
-
-print(inloggen())

@@ -13,7 +13,7 @@ def inlog_menu():
             print(fiets_registreren())
         elif optie == str(2):
             from Inloggen import inloggen
-            print(inloggen())
+            return inloggen()
         elif optie == str(3):
             from Informatie_Opvragen import informatieIedereen
             print(informatieIedereen())
@@ -52,6 +52,9 @@ def keuze_menu():
             from Informatie_Opvragen import informatieEigenaar
             print(informatieEigenaar())
         elif optie == str(6):
+            f1 = open('Ingelogd', 'w')
+            f1.write('')
+            f1.close()
             print('\033[1;32;0mU bent nu uitgelogd.\033[1;0;0m')
             inlog_menu()
         elif optie == 'STOP':
