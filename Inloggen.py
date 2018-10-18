@@ -16,7 +16,7 @@ def inloggen():
                         f1.write(line)
                         f1.close()
                         print('\033[32mInlog Succesvol\033[0m')
-                        return '\033[32mInlog Succesvol\033[0m'
+                        return'\033[32mInlog Succesvol\033[0m'
 
 
         print('\033[31mDeze combinatie is incorrect. Ga terug naar menu om te registeren of probeer opnieuw.\033[0m')
