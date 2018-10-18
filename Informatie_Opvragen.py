@@ -1,4 +1,3 @@
-import csv
 
 def informatieEigenaar():
     gegevens = open('Gegevens', 'r')
@@ -25,8 +24,8 @@ def informatieEigenaar():
 def informatieIedereen():
     print('\033[32m1: Zijn er stallingen vrij?')
     print('2: Wat heb ik nodig om te registreren?')
-    print('3: Meer informatie over OV fiets.')
-    print('4: Terug naar vorige scherm.\033[0m')
+    print('3: Meer informatie over OV fiets.\033[0m')
+    print('\033[31m4: Terug naar vorige scherm.\033[0m')
 
     bezet = 0
 
@@ -58,8 +57,9 @@ def informatieIedereen():
 
 
         elif keuze3 == 4:
-            from NS_Fietsen_Stalling.py import inlog_menu
-
+            print('')
+            from NS_Fietsen_Stalling import inlog_menu
+            inlog_menu()
 
 
 
