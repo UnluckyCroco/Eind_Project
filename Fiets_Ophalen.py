@@ -15,4 +15,4 @@ def fiets_ophalen():
 
 
     from NS_Fietsen_Stalling import inlog_menu
-    print(inlog_menu())
+    inlog_menu()
