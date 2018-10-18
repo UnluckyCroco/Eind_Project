@@ -19,7 +19,7 @@ def fiets_stallen():
     for infiles in infile:
         zin = infiles.split(';')
         info = zin[4]
-        print(info)
+
         if info == naam:
 
 
@@ -41,4 +41,3 @@ def fiets_stallen():
             return 'Alstublieft, u kunt uw fiets nu veilig stallen op stallingplek: ' + str(rnummer)
     return 'Dit nummer is niet geregistreerd'
 
-print(fiets_stallen())
