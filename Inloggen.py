@@ -15,16 +15,19 @@ def inloggen():
                         f1 = open('Ingelogd','a')
                         f1.write(line)
                         f1.close()
+                        print('\033[32mInlog Succesvol\033[0m')
                         return'\033[32mInlog Succesvol\033[0m'
+
 
         print('\033[31mDeze combinatie is incorrect. Ga terug naar menu om te registeren of probeer opnieuw.\033[0m')
         while True:
             reg = input('\033[34mTyp Menu of Opnieuw: \033[0m')
             if reg == 'Menu':
                 reg = ' '
-                from NS_Fietsen_Stalling import inlog_menu
-                print(inlog_menu())
             if reg == 'Opnieuw':
                 break
             else:
                 print('Foute input.')
+
+# from NS_Fietsen_Stalling import keuze_menu
+# print(keuze_menu())
