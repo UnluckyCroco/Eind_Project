@@ -3,13 +3,11 @@ from Inloggen import inloggen
 from Informatie_Opvragen import informatieIedereen, informatieEigenaar
 from Terugbrengen import fiets_terugbrengen
 from Fiets_Ophalen import fiets_ophalen
-from Fiets_Stallen import fiets_stallen
 from Huren import fiets_huren
 
 print('\033[33m - Welkom bij de NS fietsenstalling!\033[0m')
 print('\033[35m - Registreer u bij de fietsenstalling of log in met een bestaand account.\033[0m')
-print('\033[31m - Mocht u een typ fout maken, typ dan STOP.\033[0m')
-
+print('\033[31m - Mocht u een typ fout maken, typ dan STOP.\033[0m\n')
 def inlog_menu():
     while True:
         print('\033[34m1: Registreren')
@@ -43,6 +41,7 @@ def keuze_menu():
         print('6: Uitloggen\033[0m')
         optie = input('Kies een optie: ')
         if optie == str(1):
+            from Fiets_Stallen import fiets_stallen
             print(fiets_stallen())
         elif optie == str(2):
             print(fiets_huren())
