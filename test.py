@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter.messagebox import showwarning
+from tkinter.messagebox import showwarning, showinfo
 
 
 class Window(Tk):
@@ -21,7 +21,7 @@ class Window(Tk):
                                width=40)
         self.logingobutton.place(relx=0.5, rely=0.5, anchor=SW)
 
-        self.infobutton = Button(master=self, text='Informatie',
+        self.infobutton = Button(master=self, text='Informatie', command=self.zien,
                             bg='lightgreen', relief=SOLID, font='Calibri',
                             width=40)
         self.infobutton.place(relx=0.5, rely=0.5, anchor=NE)
@@ -153,6 +153,28 @@ class Window(Tk):
                                  bg='red', relief=SOLID, font='Calibri',
                                  width=40)
         self.quitbutton.place(relx=0.5, rely=0.5, anchor=SW)
+
+
+
+    def informatieIedereen(self):
+        bezet = 0
+        regel = open('Stallen.txt', 'r')
+        for line in regel.readlines():
+            bezet += 1
+        regel.close()
+        if bezet < 701:
+            vrij = 701 - bezet
+
+        else:
+            vrij = 0
+        return vrij
+
+    def zien(self):
+        vrij = 'Om OV-fietsenstalling te gebruiken heeft u een geldige OV-chipkaart en telefoonnummer nodig. Er zijn geen stallingskosten, een fiets huren kost €240 per uur. Plaatsen vrij: '
+        vrij2 = self.informatieIedereen()
+        vrij3 = str(vrij)+ str(vrij2)
+        print(vrij3)
+        showinfo(title='Informatie Algemeen', message=vrij3)
 
 
 
