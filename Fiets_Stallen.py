@@ -19,6 +19,7 @@ def fiets_stallen():
     for infiles in infile:
         zin = infiles.split(';')
         info = zin[4]
+
         if info == naam:
 
 
@@ -29,13 +30,14 @@ def fiets_stallen():
                 for regel in regels:
                     zin = regel.split(';')
                     nummer = zin[0]
-                    if nummer == nummer :
+                    if nummer == rnummer :
                      Random = True
                     else:
                      Random = False
                     if Random:
                      fiets_stallen()
-            outfile('\n' + naam + '; ' + str(times()) + '; ' + str(nummer))
+            outfile('\n' + naam + '; ' + str(times()) + '; ' + str(rnummer))
 
             return 'Alstublieft, u kunt uw fiets nu veilig stallen op stallingplek: ' + str(rnummer)
     return 'Dit nummer is niet geregistreerd'
+
