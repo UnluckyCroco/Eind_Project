@@ -7,11 +7,16 @@ class Window(Tk):
         Tk.__init__(self, parent)
         self.parent = parent
         self.initialize()
+    def exit(self):
+        self.top.destroy()
+        if __name__ == "__main__":
+            window = Window(None)
+            window.geometry('1920x1080')
+            window.title('Home')
+            window.mainloop()
 
     def initialize(self):
-        self.geometry("1920x1080")
-
-        self.regibutton = Button(master=self.parent, text='Registreren', command=self.Regi,
+        self.regibutton = Button(master=self, text='Registreren', command=self.Regi,
                                  bg='lightgreen', relief=SOLID, font='Calibri',
                                  width=40)
         self.regibutton.place(relx=0.5, rely=0.5, anchor=SE)
@@ -130,12 +135,17 @@ class Window(Tk):
         self.registrerenbutton = Button(self.top, text='Registreren', command=self.regi,
                                    bg='lightgreen', relief=SOLID, font='Calibri',
                                    width=40)
-        self.registrerenbutton.place(relx=0.5, rely=0.5, anchor=SE)
+        self.registrerenbutton.grid(row=6, column=20, sticky=E)
+
+        self.terugbutton = Button(self.top, text='Terug', command=self.exit,
+                                   bg='lightgreen', relief=SOLID, font='Calibri',
+                                   width=40)
+        self.terugbutton.grid(row=6, column=21, sticky=E)
 
         self.quitbutton = Button(master=self.top, text='Afsluiten', command=quit,
                                  bg='red', relief=SOLID, font='Calibri',
                                  width=40)
-        self.quitbutton.place(relx=0.5, rely=0.5, anchor=SW)
+        self.quitbutton.grid(row=6, column=22)
 
 
 
@@ -163,8 +173,12 @@ class Window(Tk):
         showwarning(title='popup', message=bericht)
 
     def login(self):
-        #if self.naamfield.get() or self.ovfield.get() or self.wwfield.get() == '':
-           #return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
+        if self.naamfield.get()  == '':
+           return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
+        if self.ovfield.get() == '':
+           return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
+        if self.wwfield.get() == '':
+           return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
         file = open('Gegevens', 'r')
         lines = file.readlines()
         for line in lines:
@@ -213,18 +227,22 @@ class Window(Tk):
         self.loginbutton = Button(master=self.top, text='Inloggen', command=self.login,
                              bg='lightgreen', relief=SOLID, font='Calibri',
                              width=40)
-        self.loginbutton.place(relx=0.5, rely=0.5, anchor=SE)
+        self.loginbutton.grid(row=6, column=20, sticky=E)
+
+        self.terugbutton = Button(self.top, text='Terug', command=self.exit,
+                                  bg='lightgreen', relief=SOLID, font='Calibri',
+                                  width=40)
+        self.terugbutton.grid(row=6, column=21, sticky=E)
 
         self.quitbutton = Button(master=self.top, text='Afsluiten', command=quit,
                             bg='red', relief=SOLID, font='Calibri',
                             width=30)
-        self.quitbutton.place(relx=0.5, rely=0.5, anchor=SW)
-
+        self.quitbutton.grid(row=6, column=22, sticky=E)
 
 
 if __name__ == "__main__":
     window = Window(None)
-
-    window.title("Home")
-
+    window.geometry('1920x1080')
+    window.title('Home')
     window.mainloop()
+
