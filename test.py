@@ -191,8 +191,7 @@ class Window(Tk):
                         f1 = open('Ingelogd', 'a')
                         f1.write(line)
                         f1.close()
-                        return print('yes')
-
+                        return print('\033[34m1: Fiets stallen 2: Fiets huren 3: Fiets ophalen 4: Fiets terugbrenge 5: Informatie 6: Uitloggen\033[0m')
         self.clicked()
 
 
