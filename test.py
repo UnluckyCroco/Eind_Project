@@ -91,7 +91,7 @@ class Window(Tk):
             f.write(';')
             f.write('\n')
             f.close()
-        return self.top.destroy(), self.initialize()
+        return self.exit()
 
     def Regi(self):
         self.destroy()
