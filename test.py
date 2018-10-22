@@ -274,7 +274,7 @@ class Window(Tk):
                                          width=40)
         self.terugbrengenbutton.place(relx=0.34, rely=0.5, anchor=NE)
 
-        self.informatiebutton = Button(master=self.top, text='Informatie', command=self.login,
+        self.informatiebutton = Button(master=self.top, text='Informatie', command=self.InfoEigenaar,
                                        bg='lightgreen', relief=SOLID, font='Calibri',
                                        width=40)
         self.informatiebutton.place(relx=0.34, rely=0.5, anchor=NW)
@@ -299,33 +299,40 @@ class Window(Tk):
         stallenbericht = 'U heeft u fiets al veilig gestald op plek: ' + str(self.rnummer)
         showinfo(title='Stallen', message=stallenbericht)
 
-
-
     def fiets_stallen(self):
-        read = open('Gegevens', 'r')
+        read = open('Ingelogd', 'r')
+        read1 = open('Stallen.txt', 'r')
         write = open('Stallen.txt', 'a')
         infile = read.readlines()
+        infile1 = read1.readlines()
         outfile = write.write
+
+        for infiles1 in infile1:
+            zin1 = infiles1.split(';')
+            self.info1 = zin1[1]
 
         for infiles in infile:
             zin = infiles.split(';')
             self.info = zin[4]
 
-            #if info == naam:
+            if self.info == self.info1:
+                return self.warning()
+
+            # if info == naam:
             for x in range(1):
-                    self.rnummer = random.randint(1, 701)
-                    infile = open('Stallen.txt', 'r')
-                    regels = infile.readlines()
-                    for regel in regels:
-                        zin = regel.split(';')
-                        nummer = zin[2]
-                        ov = zin[1]
-                        if nummer == self.rnummer:
-                            self.fiets_stallen()
-                        if ov == self.info:
-                            self.warning()
-                    self.stallen = (str(self.times()) + '; ' + self.info + '; ' + str(self.rnummer) + '\n')
-                    outfile(self.stallen)
+                self.rnummer = random.randint(1, 701)
+                infile = open('Stallen.txt', 'r')
+                regels = infile.readlines()
+                for regel in regels:
+                    zin = regel.split(';')
+                    nummer = zin[2]
+                    ov = zin[1]
+                    if nummer == self.rnummer:
+                        self.fiets_stallen()
+                    if ov == self.info:
+                        self.warning()
+                self.stallen = (str(self.times()) + '; ' + self.info + '; ' + str(self.rnummer) + '\n')
+                outfile(self.stallen)
         return self.toonStallen()
 
     def regel_verwijderen(self):
@@ -444,6 +451,29 @@ class Window(Tk):
 
         if gelukt != 1:
             return 'U heeft geen fiets gehuurd'
+
+    def infopopup(self):
+        self.infotext = ('Geregistreerde naam: ' + self.naam + self.achternaam + '\n' + 'Geregisteerde wachtwoord: ' + self.ww + '\n' + 'Geregisteerde teleefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV:' + self.ov)
+        showinfo(title='Stallen', message=self.infotext)
+
+    def InfoEigenaar(self):
+        gegevens = open('Gegevens', 'r')
+        gegeven = gegevens.readlines()
+        inlogen = open('Ingelogd.txt')
+        inlog = inlogen.readlines()
+        for item in inlog:
+            zin = item.split(';')
+            voorinfonaam = zin[0]
+
+            for item in gegeven:
+                regel = item.split(';')
+                self.naam = regel[0]
+                self.achternaam = regel[1]
+                self.ww = regel[2]
+                self.tel = regel[3]
+                self.ov = regel[4]
+                if self.naam == voorinfonaam:
+                    self.infopopup()
 
 
 if __name__ == "__main__":
