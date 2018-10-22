@@ -279,6 +279,11 @@ class Window(Tk):
                                        width=40)
         self.informatiebutton.place(relx=0.34, rely=0.5, anchor=NW)
 
+        self.hulpqrbutton = Button(master=self.top, text='Hulp QR', command=self.qrhulppopup,
+                                       bg='lightgreen', relief=SOLID, font='Calibri',
+                                       width=40)
+        self.hulpqrbutton.place(relx=0.34, rely=0.5, anchor=S)
+
         self.uitloggenbutton = Button(self.top, text='Uitloggen', command=self.exit,
                                       bg='red', relief=SOLID, font='Calibri',
                                       width=40)
@@ -454,27 +459,25 @@ class Window(Tk):
 
     def infopopup(self):
         self.infotext = (
-                    'Geregistreerde naam: ' + self.naam + self.achternaam + '\n' + 'Geregisteerde wachtwoord: ' + self.ww + '\n' + 'Geregisteerde teleefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV:' + self.ov)
+                    'Geregistreerde naam: ' + self.naam + self.achternaam + '\n' + 'Geregisteerd wachtwoord: ' + self.ww + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV:' + self.ov)
         showinfo(title='Stallen', message=self.infotext)
 
     def InfoEigenaar(self):
-            gegevens = open('Gegevens', 'r')
+            gegevens = open('Ingelogd', 'r')
             gegeven = gegevens.readlines()
-            inlogen = open('Ingelogd.txt', 'r')
-            inlog = inlogen.readlines()
-            for line in inlog:
-                zin = line.split(';')
-                voorinfonaam = zin[0]
+            for item in gegeven:
+                regel = item.split(';')
+                self.naam = regel[0]
+                self.achternaam = regel[1]
+                self.ww = regel[2]
+                self.tel = regel[3]
+                self.ov = regel[4]
+                self.infopopup()
 
-                for item in gegeven:
-                    regel = item.split(';')
-                    self.naam = regel[0]
-                    self.achternaam = regel[1]
-                    self.ww = regel[2]
-                    self.tel = regel[3]
-                    self.ov = regel[4]
-                    if self.naam == voorinfonaam:
-                        self.infopopup()
+    def qrhulppopup(self):
+        self.infotext = (
+                    'Om een QR te scannen moet u een QR of Barcode scanner downloaden op uw smartphone. Na het scannen krijgt u de code te zien, bewaar deze om later je fiets weer op te kunnen halen.')
+        showinfo(title='Hulp QR', message=self.infotext)
 
 if __name__ == "__main__":
     window = Window(None)
