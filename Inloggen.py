@@ -2,15 +2,15 @@ def inloggen():
     while True:
         naam = input('\n'+'Voornaam: ')
         if naam == 'STOP':
-            from Code.NS_Fietsen_Stalling import inlog_menu
+            from NS_Fietsen_Stalling import inlog_menu
             print(inlog_menu())
         ov = input('Laatste 4 cijfers van uw ov: ')
         if ov == 'STOP':
-            from Code.NS_Fietsen_Stalling import inlog_menu
+            from NS_Fietsen_Stalling import inlog_menu
             print(inlog_menu())
         wachtwoord = input('Wachtwoord: ')
         if wachtwoord == 'STOP':
-            from Code.NS_Fietsen_Stalling import inlog_menu
+            from NS_Fietsen_Stalling import inlog_menu
             print(inlog_menu())
         file = open('Gegevens','r')
         lines = file.readlines()

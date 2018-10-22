@@ -79,5 +79,5 @@ def fiets_registreren():
         return 'Uw gegevens zijn geregistreerd'
 
 
-from Code.NS_Fietsen_Stalling import inlog_menu
+from NS_Fietsen_Stalling import inlog_menu
 print(inlog_menu())

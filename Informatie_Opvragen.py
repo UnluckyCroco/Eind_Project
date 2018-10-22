@@ -58,7 +58,7 @@ def informatieIedereen():
 
         elif keuze3 == 4:
             print('')
-            from Code.NS_Fietsen_Stalling import inlog_menu
+            from NS_Fietsen_Stalling import inlog_menu
             inlog_menu()
 
 
