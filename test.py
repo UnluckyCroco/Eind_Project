@@ -311,28 +311,28 @@ class Window(Tk):
             zin1 = infiles1.split(';')
             self.info1 = zin1[1]
 
-        for infiles in infile:
-            zin = infiles.split(';')
-            self.info = zin[4]
+            for infiles in infile:
+                zin = infiles.split(';')
+                self.info = zin[-1]
 
-            if self.info == self.info1:
-                return self.warning()
+                if self.info == self.info1:
+                    return self.warning()
 
-            # if info == naam:
-            for x in range(1):
-                self.rnummer = random.randint(1, 701)
-                infile = open('Stallen.txt', 'r')
-                regels = infile.readlines()
-                for regel in regels:
-                    zin = regel.split(';')
-                    nummer = zin[2]
-                    ov = zin[1]
-                    if nummer == self.rnummer:
-                        self.fiets_stallen()
-                    if ov == self.info:
-                        self.warning()
-                self.stallen = (str(self.times()) + '; ' + self.info + '; ' + str(self.rnummer) + '\n')
-                outfile(self.stallen)
+                # if info == naam:
+                for x in range(1):
+                    self.rnummer = random.randint(1, 701)
+                    infile = open('Stallen.txt', 'r')
+                    regels = infile.readlines()
+                    for regel in regels:
+                        zin = regel.split(';')
+                        nummer = zin[2]
+                        ov = zin[1]
+                        if nummer == self.rnummer:
+                            self.fiets_stallen()
+                        if ov == self.info:
+                            self.warning()
+                    self.stallen = (str(self.times()) + '; ' + self.info + '; ' + str(self.rnummer) + '\n')
+                    outfile(self.stallen)
         return self.toonStallen()
 
     def regel_verwijderen(self):
@@ -453,28 +453,28 @@ class Window(Tk):
             return 'U heeft geen fiets gehuurd'
 
     def infopopup(self):
-        self.infotext = ('Geregistreerde naam: ' + self.naam + self.achternaam + '\n' + 'Geregisteerde wachtwoord: ' + self.ww + '\n' + 'Geregisteerde teleefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV:' + self.ov)
+        self.infotext = (
+                    'Geregistreerde naam: ' + self.naam + self.achternaam + '\n' + 'Geregisteerde wachtwoord: ' + self.ww + '\n' + 'Geregisteerde teleefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV:' + self.ov)
         showinfo(title='Stallen', message=self.infotext)
 
     def InfoEigenaar(self):
-        gegevens = open('Gegevens', 'r')
-        gegeven = gegevens.readlines()
-        inlogen = open('Ingelogd.txt')
-        inlog = inlogen.readlines()
-        for item in inlog:
-            zin = item.split(';')
-            voorinfonaam = zin[0]
+            gegevens = open('Gegevens', 'r')
+            gegeven = gegevens.readlines()
+            inlogen = open('Ingelogd.txt', 'r')
+            inlog = inlogen.readlines()
+            for line in inlog:
+                zin = line.split(';')
+                voorinfonaam = zin[0]
 
-            for item in gegeven:
-                regel = item.split(';')
-                self.naam = regel[0]
-                self.achternaam = regel[1]
-                self.ww = regel[2]
-                self.tel = regel[3]
-                self.ov = regel[4]
-                if self.naam == voorinfonaam:
-                    self.infopopup()
-
+                for item in gegeven:
+                    regel = item.split(';')
+                    self.naam = regel[0]
+                    self.achternaam = regel[1]
+                    self.ww = regel[2]
+                    self.tel = regel[3]
+                    self.ov = regel[4]
+                    if self.naam == voorinfonaam:
+                        self.infopopup()
 
 if __name__ == "__main__":
     window = Window(None)
