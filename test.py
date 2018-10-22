@@ -37,7 +37,15 @@ class Window(Tk):
         self.quitbutton.place(relx=0.5, rely=0.5, anchor=NW)
 
     def regi(self):
-        if self.telfield.get() or self.ovrfield.get() or self.vnaamfield.get() or self.anaamfield.get() or self.wwrfield.get() == '':
+        if self.telfield.get() == '':
+            return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
+        if self.ovrfield.get() == '':
+            return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
+        if self.vnaamfield.get() == '':
+            return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
+        if self.anaamfield.get()  == '':
+            return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
+        if self.wwrfield.get() == '':
             return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
 
         telefoon =self.telfield.get()
