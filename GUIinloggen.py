@@ -17,7 +17,7 @@ def toonLogin1():
     hoofdmenu.pack_forget()
     naamframe.pack()
 
-def toonLoginFrame():
+def toonLoginFrame():, vrij3
     menu2.pack_forget()
     naamframe.pack()
 
