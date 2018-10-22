@@ -1,9 +1,9 @@
-from Registreren import fiets_registreren
-from Inloggen import inloggen
-from Informatie_Opvragen import informatieIedereen, informatieEigenaar
-from Terugbrengen import fiets_terugbrengen
-from Fiets_Ophalen import fiets_ophalen
-from Huren import fiets_huren
+from Code.Registreren import fiets_registreren
+from Code.Inloggen import inloggen
+from Code.Informatie_Opvragen import informatieIedereen, informatieEigenaar
+from Code.Terugbrengen import fiets_terugbrengen
+from Code.Fiets_Ophalen import fiets_ophalen
+from Code.Huren import fiets_huren
 
 print('\033[33m - Welkom bij de NS fietsenstalling!\033[0m')
 print('\033[35m - Registreer u bij de fietsenstalling of log in met een bestaand account.\033[0m')
@@ -41,7 +41,7 @@ def keuze_menu():
         print('6: Uitloggen\033[0m')
         optie = input('Kies een optie: ')
         if optie == str(1):
-            from Fiets_Stallen import fiets_stallen
+            from Code.Fiets_Stallen import fiets_stallen
             print(fiets_stallen())
         elif optie == str(2):
             print(fiets_huren())
