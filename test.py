@@ -279,10 +279,10 @@ class Window(Tk):
                                        width=40)
         self.informatiebutton.place(relx=0.34, rely=0.5, anchor=NW)
 
-        self.hulpqrbutton = Button(master=self.top, text='Hulp QR', command=self.qrhulppopup,
+        self.hulpqrbutton = Button(master=self.top, text='Hulp QR', command=self.QRHulpPopup,
                                        bg='lightgreen', relief=SOLID, font='Calibri',
                                        width=40)
-        self.hulpqrbutton.place(relx=0.34, rely=0.5, anchor=S)
+        self.hulpqrbutton.place(relx=0.47, rely=0.6, anchor=S)
 
         self.uitloggenbutton = Button(self.top, text='Uitloggen', command=self.exit,
                                       bg='red', relief=SOLID, font='Calibri',
@@ -474,7 +474,7 @@ class Window(Tk):
                 self.ov = regel[4]
                 self.infopopup()
 
-    def qrhulppopup(self):
+    def QRHulpPopup(self):
         self.infotext = (
                     'Om een QR te scannen moet u een QR of Barcode scanner downloaden op uw smartphone. Na het scannen krijgt u de code te zien, bewaar deze om later je fiets weer op te kunnen halen.')
         showinfo(title='Hulp QR', message=self.infotext)
