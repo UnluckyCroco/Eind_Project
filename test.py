@@ -160,7 +160,6 @@ class Window(Tk):
         self.quitbutton.grid(row=6, column=22)
 
 
-
     def informatieIedereen(self):
         bezet = 0
         regel = open('Stallen.txt', 'r')
