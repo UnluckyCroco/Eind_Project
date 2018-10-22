@@ -94,7 +94,7 @@ class Window(Tk):
         return self.exit()
 
     def Regi(self):
-        self.destroy()
+        self.withdraw()
         self.top = Toplevel()
         self.top.title("Registreren")
         self.top.geometry("1920x1080")
@@ -205,7 +205,7 @@ class Window(Tk):
 
 
     def inloggen(self):
-        self.destroy()
+        self.withdraw()
         self.top = Toplevel()
         self.top.title("Inloggen")
         self.top.geometry("1920x1080")
