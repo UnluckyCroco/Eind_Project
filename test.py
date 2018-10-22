@@ -274,7 +274,7 @@ class Window(Tk):
                                          width=40)
         self.terugbrengenbutton.place(relx=0.34, rely=0.5, anchor=NE)
 
-        self.informatiebutton = Button(master=self.top, text='Informatie', command=self.login,
+        self.informatiebutton = Button(master=self.top, text='Informatie', command=self.InfoEigenaar,
                                        bg='lightgreen', relief=SOLID, font='Calibri',
                                        width=40)
         self.informatiebutton.place(relx=0.34, rely=0.5, anchor=NW)
@@ -444,6 +444,29 @@ class Window(Tk):
 
         if gelukt != 1:
             return 'U heeft geen fiets gehuurd'
+
+    def infopopup(self):
+        self.infotext = ('Geregistreerde naam: ' + self.naam + self.achternaam + '\n' + 'Geregisteerde wachtwoord: ' + self.ww + '\n' + 'Geregisteerde teleefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV:' + self.ov)
+        showinfo(title='Stallen', message=self.infotext)
+
+    def InfoEigenaar(self):
+        gegevens = open('Gegevens', 'r')
+        gegeven = gegevens.readlines()
+        inlogen = open('Ingelogd.txt')
+        inlog = inlogen.readlines()
+        for item in inlog:
+            zin = item.split(';')
+            voorinfonaam = zin[0]
+
+            for item in gegeven:
+                regel = item.split(';')
+                self.naam = regel[0]
+                self.achternaam = regel[1]
+                self.ww = regel[2]
+                self.tel = regel[3]
+                self.ov = regel[4]
+                if self.naam == voorinfonaam:
+                    self.infopopup()
 
 
 if __name__ == "__main__":
