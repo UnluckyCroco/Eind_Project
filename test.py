@@ -322,7 +322,6 @@ class Window(Tk):
                 if self.info == self.info1:
                     return self.warning()
 
-                # if info == naam:
                 for x in range(1):
                     self.rnummer = random.randint(1, 701)
                     infile = open('Stallen.txt', 'r')
