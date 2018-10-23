@@ -317,7 +317,7 @@ class Window(Tk):
 
             for infiles in infile:
                 zin = infiles.split(';')
-                self.info = zin[-1]
+                self.info = zin[4]
 
                 if self.info == self.info1:
                     return self.warning()
