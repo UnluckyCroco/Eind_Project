@@ -263,7 +263,7 @@ class Window(Tk):
                                     width=40)
         self.ophalenbutton.place(relx=0.34, rely=0.5, anchor=SW)
 
-        self.hurenbutton = Button(master=self.top, text='Fiets Huren', command=self.login,
+        self.hurenbutton = Button(master=self.top, text='Fiets Huren', command=self.fiets_huren,
                                   bg='lightgreen', relief=SOLID, font='Calibri',
                                   width=40)
         self.hurenbutton.place(relx=0.6, rely=0.5, anchor=SW)
@@ -337,6 +337,61 @@ class Window(Tk):
                     self.stallen = (str(self.times()) + '; ' + self.info + '; ' + str(self.rnummer) + '\n')
                     outfile(self.stallen)
         return self.toonStallen()
+
+    def fiets_huren(self):
+
+        self.top.withdraw()
+        self.top = Toplevel()
+        self.top.title("Fiets Huren")
+        self.top.geometry("1920x1080")
+
+        self.huurtext = Label(master=self.top, text='Weet u zeker dat u een fiets wilt huren?\n'
+                                                    'Het tarief is: €1 euro + 20 cent per 15 minuten',
+                                                    relief=SOLID, font='Calibri')
+        self.huurtext.place(relx=0.5, rely=0.4, anchor=S)
+
+        self.accepteerbutton = Button(master=self.top, text='Ja', command=self.Fiets_huren,
+                                    bg='lightgreen', relief=SOLID, font='Calibri',
+                                    width=40)
+        self.accepteerbutton.place(relx=0.26 ,rely=0.422, anchor=W)
+
+        self.accepteernietbutton = Button(master=self.top, text='Nee', command=self.login,
+                                    bg='red', relief=SOLID, font='Calibri   ',
+                                    width=40)
+        self.accepteernietbutton.place(relx=0.5, rely=0.4)
+
+    def Fiets_huren(self):
+        import time
+        infile = open('Ingelogd', 'r')
+        ilines = infile.readlines()
+        for iline in ilines:
+            inlog = iline.split(';')
+
+        file = open('Huurgegevens', 'r')
+        lines = file.readlines()
+        file.close()
+
+        for line in lines:  # checked of dezelfde gegevens in 'Ingelogd' ook staan in 'Huurgegevens', zoja, dan betekend het dat er al een fiets is gehuurd
+            x = line.split(';')
+            if inlog[0] == x[0] and inlog[1] == x[1] and inlog[4].strip('\n') == x[2]:
+                self.huurtext = ('U heeft al een fiets gehuurd')
+                showinfo(title='Error', message=self.huurtext)
+
+                return self.login()
+        self.tijdH = time.strftime('%H')  # uren
+        self.tijdM = time.strftime('%M')  # minuten
+        self.tijdS = time.strftime('%S')  # seconden
+        self.datumd = time.strftime('%d')  # dag
+        self.datumm = time.strftime('%m')  # maand
+        self.datumY = time.strftime('%Y')  # jaar
+
+        huurfile = open('Huurgegevens', 'a')
+        huurfile.write(inlog[0] + ';' + inlog[1] + ';' + inlog[4].strip('\n') + ';' + str(self.tijdH) + ';' + str(self.tijdM) + ';' + str(self.tijdS) + ';' + str(self.datumd) + ';' + str(self.datumm) + ';' + str(self.datumY) + '\n')
+        huurfile.close()
+
+        self.huurtext = ('De fiets is gehuurd vanaf {}:{}:{} {}/{}/{}'.format(self.tijdH, self.tijdM, self.tijdS, self.datumd, self.datumm, self.datumY))
+        showinfo(title='Fiets Gehuurd', message=self.huurtext)
+        return self.login()
 
     def regel_verwijderen(self):
         lijst = []
