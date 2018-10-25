@@ -1,2 +1,4 @@
-Mon Oct 22 12:59:08 2018; 8501; 553
-Tue Oct 23 12:28:11 2018; 8501; 144
+Iwan;van der Wal;189607
+Iwan;van der Wal;374594
+Thu Oct 25 12:34:41 2018;1234;299;Iwan;van der Wal;745458
+Thu Oct 25 12:34:52 2018;1234;73;
