@@ -269,7 +269,7 @@ class Window(Tk):
                                   width=40)
         self.hurenbutton.place(relx=0.6, rely=0.5, anchor=SW)
 
-        self.terugbrengenbutton = Button(master=self.top, text='Huurfiets Terugbrengen', command=self.login,
+        self.terugbrengenbutton = Button(master=self.top, text='Huurfiets Terugbrengen', command=self.fiets_terugbrengen,
                                          bg='lightgreen', relief=SOLID, font='Calibri',
                                          width=40)
         self.terugbrengenbutton.place(relx=0.34, rely=0.5, anchor=NE)
@@ -390,7 +390,11 @@ class Window(Tk):
         self.accepteernietbutton.place(relx=0.5, rely=0.4)
 
     def Fiets_huren(self):
+
         import time
+
+        huurnummer = random.randint(1,50)
+
         infile = open('Ingelogd', 'r')
         ilines = infile.readlines()
         for iline in ilines:
@@ -403,23 +407,26 @@ class Window(Tk):
         for line in lines:  # checked of dezelfde gegevens in 'Ingelogd' ook staan in 'Huurgegevens', zoja, dan betekend het dat er al een fiets is gehuurd
             x = line.split(';')
             if inlog[0] == x[0] and inlog[1] == x[1] and inlog[4].strip('\n') == x[2]:
-                self.huurtext = ('U heeft al een fiets gehuurd')
-                showinfo(title='Error', message=self.huurtext)
-
+                huurtext = ('U heeft al een fiets gehuurd')
+                showinfo(title='Error', message=huurtext)
                 return self.login()
-        self.tijdH = time.strftime('%H')  # uren
-        self.tijdM = time.strftime('%M')  # minuten
-        self.tijdS = time.strftime('%S')  # seconden
-        self.datumd = time.strftime('%d')  # dag
-        self.datumm = time.strftime('%m')  # maand
-        self.datumY = time.strftime('%Y')  # jaar
+
+            if huurnummer == x[3]:
+                self.Fiets_huren()
+
+        tijdH = time.strftime('%H')  # uren
+        tijdM = time.strftime('%M')  # minuten
+        tijdS = time.strftime('%S')  # seconden
+        datumd = time.strftime('%d')  # dag
+        datumm = time.strftime('%m')  # maand
+        datumY = time.strftime('%Y')  # jaar
 
         huurfile = open('Huurgegevens', 'a')
-        huurfile.write(inlog[0] + ';' + inlog[1] + ';' + inlog[4].strip('\n') + ';' + str(self.tijdH) + ';' + str(self.tijdM) + ';' + str(self.tijdS) + ';' + str(self.datumd) + ';' + str(self.datumm) + ';' + str(self.datumY) + '\n')
+        huurfile.write(inlog[0] + ';' + inlog[1] + ';' + inlog[4].strip('\n') + ';' + str(huurnummer) + ';' + str(tijdH) + ';' + str(tijdM) + ';' + str(tijdS) + ';' + str(datumd) + ';' + str(datumm) + ';' + str(datumY) + '\n')
         huurfile.close()
 
-        self.huurtext = ('De fiets is gehuurd vanaf {}:{}:{} {}/{}/{}'.format(self.tijdH, self.tijdM, self.tijdS, self.datumd, self.datumm, self.datumY))
-        showinfo(title='Fiets Gehuurd', message=self.huurtext)
+        huurtext = ('Fietsnummer {} is gehuurd vanaf {}:{}:{} {}/{}/{}.'.format(huurnummer, tijdH, tijdM, tijdS, datumd, datumm, datumY))
+        showinfo(title='Fiets Gehuurd', message=huurtext)
         return self.login()
 
     def regel_verwijderen(self):
@@ -447,6 +454,9 @@ class Window(Tk):
             wfile.write(lijst[gegevens])
 
     def fiets_terugbrengen(self):
+
+        import time
+
         gelukt = 0
         dag = 86400  # in seconden
         jaar = 31536000
@@ -465,12 +475,12 @@ class Window(Tk):
             y = linet.split(';')
 
             if inlog[0] == y[0] and inlog[1] == y[1] and inlog[4].strip('\n') == y[2]:
-                datumstartH = y[3]
-                datumstartM = y[4]
-                datumstartS = y[5]
-                datumstartd = y[6]
-                datumstartm = y[7]
-                datumstartY = y[8].strip('\n')
+                datumstartH = y[4]
+                datumstartM = y[5]
+                datumstartS = y[6]
+                datumstartd = y[7]
+                datumstartm = y[8]
+                datumstartY = y[9].strip('\n')
 
                 tijdHt = time.strftime('%H')  # uren;tijdsbepaling van nu
                 tijdMt = time.strftime('%M')  # minuten
@@ -528,20 +538,22 @@ class Window(Tk):
                     seconden = 'seconden'
 
                 prijs = gehuurdtijdtotal // (60 * 15) * 0.2 + 1  # elke 15 minuten + 20 cent en standaard 1 euro
+                prijsafg = round(prijs,2)
+                self.regel_verwijderen()
 
-                regel_verwijderen()
-
-                # return 'U heeft de fiets voor', int(totalY), jaren, int(totalm), maanden, int(totald), dagen, int(totalH), uren, int(totalM), minuten, int(totalS), seconden, 'gehuurd, dat kost u', str(prijs), 'euro.'
-                return 'U heeft de fiets voor {} {}, {} {}, {} {}, {} {}, {} {} en {} {} gehuurd, dat kost u {} euro'.format(
+                terugbrengentext = ('U heeft de fiets voor {} {}, {} {}, {} {}, {} {}, {} {} en {} {} gehuurd, dat kost u {} euro'.format(
                     int(totalY), jaren, int(totalm), maanden, int(totald), dagen, int(totalH), uren, int(totalM),
-                    minuten, int(totalS), seconden, str(prijs))
+                    minuten, int(totalS), seconden, str(prijsafg)))
+                showinfo(title='Fiets Teruggebracht', message=terugbrengentext)
+                return self.login()
 
         if gelukt != 1:
-            return 'U heeft geen fiets gehuurd'
-
+            terugniettext = ('U kan niet de fiets terugbrengen, omdat u geen fiets heeft gehuurd')
+            showinfo(title='Error', message=terugniettext)
+            return self.login()
     def infopopup(self):
         self.infotext = (
-                    'Geregistreerde naam: ' + self.naam + self.achternaam + '\n' + 'Geregisteerd wachtwoord: ' + self.ww + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV:' + self.ov)
+                    'Geregistreerde naam: ' + self.naam + ' ' + self.achternaam + '\n' + 'Geregisteerd wachtwoord: ' + self.ww + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV: ' + self.ov)
         showinfo(title='Stallen', message=self.infotext)
 
     def InfoEigenaar(self):
