@@ -310,61 +310,42 @@ class Window(Tk):
         read1 = open('Stallen.txt', 'r')
         write = open('Stallen.txt', 'a')
         infile = read.readlines()
-        for rline in infile:
-            y = rline.split(';')
-        # infileqr = qr.readlines()
         infile1 = read1.readlines()
-
-        # for line in infileqr:  # checked of dezelfde gegevens in 'Ingelogd' ook staan in 'Stallen', zoja, dan betekend het dat er al een fiets is gestald
-        #     x = line.split(';')
-        #     if y[0] == x[0] and y[1] == x[1] and y[4].strip('\n') == x[2].strip('\n'):
-        #         staltext = ('U heeft al een fiets gestald')
-        #         showinfo(title='Error', message=staltext)
-        #         return self.inlog()
+        outfile = write.write
 
         for infiles1 in infile1:
             zin1 = infiles1.split(';')
             self.info1 = zin1[1]
 
-            for infiles in infile:
-                zin = infiles.split(';')
-                self.info = zin[4]
+        for infiles in infile:
+            zin = infiles.split(';')
+            self.info = zin[4]
 
-                if self.info == self.info1:
-                    return self.warning()
+            if self.info == self.info1:
+                return self.warning()
 
-                for x in range(1):
-                    self.rnummer = random.randint(1, 701)
-                    infile = open('Stallen.txt', 'r')
-                    regels = infile.readlines()
-                    for regel in regels:
-                        zin = regel.split(';')
-                        nummer = zin[2]
-                        ov = zin[1]
-                        if nummer == self.rnummer:
-                            self.fiets_stallen()
-                        if ov == self.info:
-                            self.warning()
-                    self.stallen = (str(self.times()) + ';' + self.info + ';' + str(self.rnummer) + ';')
-                    write.write(self.stallen)
+            for x in range(1):
+                self.rnummer = random.randint(1, 701)
+                infile = open('Stallen.txt', 'r')
+                regels = infile.readlines()
+                for regel in regels:
+                    zin = regel.split(';')
+                    nummer = zin[2]
+                    ov = zin[1]
+                    if nummer == self.rnummer:
+                        self.fiets_stallen()
+                    if ov == self.info:
+                        self.warning()
+                self.stallen = (str(self.times()) + '; ' + self.info + '; ' + str(self.rnummer) + '\n')
+                outfile(self.stallen)
         return self.toonStallen()
 
     def QRCodePopup(self):
-        infile = open('Ingelogd', 'r')
-        ilines = infile.readlines()
-        for iline in ilines:
-            inlog = iline.split(';')
-
         self.infotext = (
             'Bewaar de volgende QR Code om je fiets weer op te halen.')
         showinfo(title='Hulp QR', message=self.infotext)
         cijfer = random.randint(1001, 999999)
-        qrcode.run_example(cijfer)
-
-        qrfile = open('Stallen.txt', 'a')
-        qrfile.write(inlog[0] + ';' + inlog[1] + ';' + str(cijfer) + '\n')
-        qrfile.close()
-        return
+        return qrcode.run_example(cijfer)
 
 
     def fiets_huren(self):
