@@ -212,7 +212,7 @@ class Window(Tk):
                 if self.ovfield.get() == z[4]:
                     if self.wwfield.get() == z[2]:
                         file.close()
-                        f1 = open('Ingelogd', 'w')
+                        f1 = open('Ingelogd.txt', 'w')
                         f1.write(line)
                         f1.close()
                         return self.menu2()
@@ -296,7 +296,7 @@ class Window(Tk):
                                        width=40)
         self.hulpqrbutton.pack(pady=10)
 
-        self.uitloggenbutton = Button(self.top, text='Uitloggen', command=self.exit,
+        self.uitloggenbutton = Button(self.top, text='Uitloggen', command=self.Uitloggen,
                                       bg='red', relief=SOLID, font='Calibri',
                                       width=40)
         self.uitloggenbutton.pack(pady=10)
@@ -305,7 +305,7 @@ class Window(Tk):
 
         import time
 
-        read = open('Ingelogd', 'r')
+        read = open('Ingelogd.txt', 'r')
         infile = read.readlines()
         for lines in infile:
             gegevens = lines.split(';')
@@ -387,7 +387,7 @@ class Window(Tk):
 
         huurnummer = random.randint(1,50)
 
-        infile = open('Ingelogd', 'r')
+        infile = open('Ingelogd.txt', 'r')
         ilines = infile.readlines()
         for iline in ilines:
             inlog = iline.split(';')
@@ -428,7 +428,7 @@ class Window(Tk):
         regels = file.readlines()
         file.close()
 
-        infile = open('Ingelogd', 'r')
+        infile = open('Ingelogd.txt', 'r')
         ilines = infile.readlines()
         for iline in ilines:
             inlog = iline.split(';')
@@ -458,7 +458,7 @@ class Window(Tk):
         linest = terugfile.readlines()
         terugfile.close()
 
-        infile = open('Ingelogd', 'r')
+        infile = open('Ingelogd.txt', 'r')
         ilines = infile.readlines()
         for iline in ilines:
             inlog = iline.split(';')
@@ -550,7 +550,7 @@ class Window(Tk):
         showinfo(title='Stallen', message=self.infotext)
 
     def InfoEigenaar(self):
-            gegevens = open('Ingelogd', 'r')
+            gegevens = open('Ingelogd.txt', 'r')
             gegeven = gegevens.readlines()
             for item in gegeven:
                 regel = item.split(';')
@@ -568,6 +568,7 @@ class Window(Tk):
 
     def OphalenPopup(self):
 
+
         readfile = open('Stallen.txt', 'r')
         infile2 = readfile.readlines()
         for lines2 in infile2:
@@ -575,13 +576,43 @@ class Window(Tk):
             voornaam = stalgegevens[0]
             stalnummer = stalgegevens[10].strip('\n')
             codegegeven = stalgegevens[2].strip('')
+
         if self.code.get() != codegegeven:
             return showwarning(title='Fout', message='De ingevulde code is onjuist')
         else:
             self.infotext = (
                     voornaam + ' uw fiets is ontgrendeld en staat vrij om opgehaald te worden op stal #' + stalnummer)
-            showinfo(title='Ophaal', message=self.infotext)
+            showinfo(title='Ophaal Plek', message=self.infotext)
             self.top.withdraw()
+            readfile.close()
+
+
+        lijst = []
+        file = open('Stallen.txt', 'r')
+        regels = file.readlines()
+        file.close()
+
+        infile = open('Ingelogd.txt', 'r')
+        ilines = infile.readlines()
+        for iline in ilines:
+            inlog = iline.split(';')
+        infile.close()
+
+        for regel in regels:  # voegt elke regel toe die niet gelijk is aan de teruggebrachde fiets aan een lijst, die hij later terug het bestand in zet
+            x = regel.split(';')
+            counter = 0
+            if inlog[0] == x[0]:
+                counter += 1
+            if counter == 0:
+                lijst.append(regel)
+        file.close()
+
+        wfile = open('Stallen.txt', 'w')
+        for gegevens in range(len(lijst)):
+            wfile.write(lijst[gegevens])
+            print(gegevens)
+
+
 
 
 
@@ -608,10 +639,20 @@ class Window(Tk):
                                           width=40)
         self.Enterbutton.pack(fill=X, padx=600, pady=25)
 
-        self.Closebutton = Button(master=self.top, text='Afsluiten', command=self.exit,
+        self.Closebutton = Button(master=self.top, text='Terug', command=self.menu2,
                                   bg='red', relief=SOLID, font='Calibri',
                                   width=40)
         self.Closebutton.pack(fill=X, padx=600, pady=10)
+
+    def Uitloggen(self):
+
+        readfile = open('Ingelogd.txt','w')   #leegt de ingelogd bestand
+        readfile.seek(0)
+        readfile.write('')
+        readfile.close()
+        self.exit()
+
+
 
 
 if __name__ == "__main__":
