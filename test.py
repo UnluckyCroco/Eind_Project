@@ -24,22 +24,22 @@ class Window(Tk):
         self.regibutton = Button(master=self, text='Registreren', command=self.Regi,
                                  bg='lightgreen', relief=SOLID, font='Calibri',
                                  width=40)
-        self.regibutton.place(relx=0.5, rely=0.5, anchor=SE)
+        self.regibutton.pack(pady=10)
 
         self.logingobutton = Button(master=self, text='Inloggen', command=self.inloggen,
                                bg='lightgreen', relief=SOLID, font='Calibri',
                                width=40)
-        self.logingobutton.place(relx=0.5, rely=0.5, anchor=SW)
+        self.logingobutton.pack(pady=10)
 
         self.infobutton = Button(master=self, text='Informatie', command=self.infoalgemeen,
                             bg='lightgreen', relief=SOLID, font='Calibri',
                             width=40)
-        self.infobutton.place(relx=0.5, rely=0.5, anchor=NE)
+        self.infobutton.pack(pady=10)
 
         self.quitbutton = Button(master=self, text='Afsluiten', command=quit,
                             bg='red', relief=SOLID, font='Calibri',
                             width=40)
-        self.quitbutton.place(relx=0.5, rely=0.5, anchor=NW)
+        self.quitbutton.pack(pady=10)
 
     def regi(self):
         if self.telfield.get() == '':
@@ -256,37 +256,37 @@ class Window(Tk):
         self.stallenbutton = Button(master=self.top, text='Fiets Stallen', command=self.fiets_stallen,
                                     bg='lightgreen', relief=SOLID, font='Calibri',
                                     width=40)
-        self.stallenbutton.place(relx=0.34, rely=0.5, anchor=SE)
+        self.stallenbutton.pack(pady=10)
 
-        self.ophalenbutton = Button(master=self.top, text='Fiets Ophalen', command=self.OphalenPopup,
+        self.ophalenbutton = Button(master=self.top, text='Fiets Ophalen', command=self.Fietsophalen,
                                     bg='lightgreen', relief=SOLID, font='Calibri',
                                     width=40)
-        self.ophalenbutton.place(relx=0.34, rely=0.5, anchor=SW)
+        self.ophalenbutton.pack(pady=10)
 
         self.hurenbutton = Button(master=self.top, text='Fiets Huren', command=self.fiets_huren,
                                   bg='lightgreen', relief=SOLID, font='Calibri',
                                   width=40)
-        self.hurenbutton.place(relx=0.6, rely=0.5, anchor=SW)
+        self.hurenbutton.pack(pady=10)
 
         self.terugbrengenbutton = Button(master=self.top, text='Huurfiets Terugbrengen', command=self.fiets_terugbrengen,
                                          bg='lightgreen', relief=SOLID, font='Calibri',
                                          width=40)
-        self.terugbrengenbutton.place(relx=0.34, rely=0.5, anchor=NE)
+        self.terugbrengenbutton.pack(pady=10)
 
         self.informatiebutton = Button(master=self.top, text='Informatie', command=self.InfoEigenaar,
                                        bg='lightgreen', relief=SOLID, font='Calibri',
                                        width=40)
-        self.informatiebutton.place(relx=0.34, rely=0.5, anchor=NW)
+        self.informatiebutton.pack(pady=10)
 
         self.hulpqrbutton = Button(master=self.top, text='Hulp QR', command=self.QRHulpPopup,
                                        bg='lightgreen', relief=SOLID, font='Calibri',
                                        width=40)
-        self.hulpqrbutton.place(relx=0.47, rely=0.55, anchor=N)
+        self.hulpqrbutton.pack(pady=10)
 
         self.uitloggenbutton = Button(self.top, text='Uitloggen', command=self.exit,
                                       bg='red', relief=SOLID, font='Calibri',
                                       width=40)
-        self.uitloggenbutton.place(relx=0.6, rely=0.5, anchor=NW)
+        self.uitloggenbutton.pack(pady=10)
 
     def fiets_stallen(self):
 
@@ -537,17 +537,51 @@ class Window(Tk):
         showinfo(title='Hulp QR', message=self.infotext)
 
     def OphalenPopup(self):
-        self.infotext = (
-                    'Uw fiets is ontgrendeld en staat vrij om opgehaald te worden op stal #')
-        showinfo(title='Ophaal', message=self.infotext)
+
+        readfile = open('Stallen.txt', 'r')
+        infile2 = readfile.readlines()
+        for lines2 in infile2:
+            stalgegevens = lines2.split(';')
+            voornaam = stalgegevens[0]
+            stalnummer = stalgegevens[10].strip('\n')
+            codegegeven = stalgegevens[2].strip('')
+        if self.code.get() != codegegeven:
+            return showwarning(title='Fout', message='De ingevulde code is onjuist')
+        else:
+            self.infotext = (
+                    voornaam + ' uw fiets is ontgrendeld en staat vrij om opgehaald te worden op stal #' + stalnummer)
+            showinfo(title='Ophaal', message=self.infotext)
+            self.top.withdraw()
+
+
+
 
     def Fietsophalen(self):
-        readfile = open('Stallen.txt', 'r')
-        lines = readfile.readlines()
-        ov = self.ov
 
-        self.OphalenPopup()
+        self.top = Toplevel()
+        self.top.title('Ophalen')
+        self.top.geometry("1920x1080")
 
+
+        self.label = Label(self.top, text='Uw QR Code')
+        self.label.config(font=("Calibri", 16))
+        self.label.pack(fill=X, padx=25, pady=100)
+
+
+
+
+        self.code = Entry(master=self.top)
+        self.code.pack(fill=X, padx=700)
+
+        self.Enterbutton = Button(master=self.top, text='Enter', command=self.OphalenPopup,
+                                          bg='lightgreen', relief=SOLID, font='Calibri',
+                                          width=40)
+        self.Enterbutton.pack(fill=X, padx=600, pady=25)
+
+        self.Closebutton = Button(master=self.top, text='Afsluiten', command=self.exit,
+                                  bg='red', relief=SOLID, font='Calibri',
+                                  width=40)
+        self.Closebutton.pack(fill=X, padx=600, pady=10)
 
 
 if __name__ == "__main__":
