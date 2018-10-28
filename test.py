@@ -613,10 +613,6 @@ class Window(Tk):
             print(gegevens)
 
 
-
-
-
-
     def Fietsophalen(self):
 
         self.top = Toplevel()
@@ -627,8 +623,6 @@ class Window(Tk):
         self.label = Label(self.top, text='Uw QR Code')
         self.label.config(font=("Calibri", 16))
         self.label.pack(fill=X, padx=25, pady=100)
-
-
 
 
         self.code = Entry(master=self.top)
@@ -646,12 +640,9 @@ class Window(Tk):
 
     def Uitloggen(self):
 
-        readfile = open('Ingelogd.txt','w')   #leegt de ingelogd bestand
-        readfile.seek(0)
-        readfile.write('')
+        readfile = open('Ingelogd.txt','w')   #leegt de Ingelogd bestand
         readfile.close()
         self.exit()
-
 
 
 
