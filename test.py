@@ -258,7 +258,7 @@ class Window(Tk):
                                     width=40)
         self.stallenbutton.place(relx=0.34, rely=0.5, anchor=SE)
 
-        self.ophalenbutton = Button(master=self.top, text='Fiets Ophalen', command=self.login,
+        self.ophalenbutton = Button(master=self.top, text='Fiets Ophalen', command=self.OphalenPopup,
                                     bg='lightgreen', relief=SOLID, font='Calibri',
                                     width=40)
         self.ophalenbutton.place(relx=0.34, rely=0.5, anchor=SW)
@@ -535,6 +535,20 @@ class Window(Tk):
         self.infotext = (
                     'Om een QR te scannen moet u een QR of Barcode scanner downloaden op uw smartphone. Na het scannen krijgt u de code te zien, bewaar deze om later je fiets weer op te kunnen halen.')
         showinfo(title='Hulp QR', message=self.infotext)
+
+    def OphalenPopup(self):
+        self.infotext = (
+                    'Uw fiets is ontgrendeld en staat vrij om opgehaald te worden op stal #')
+        showinfo(title='Ophaal', message=self.infotext)
+
+    def Fietsophalen(self):
+        readfile = open('Stallen.txt', 'r')
+        lines = readfile.readlines()
+        ov = self.ov
+
+        self.OphalenPopup()
+
+
 
 if __name__ == "__main__":
     window = Window(None)
