@@ -194,7 +194,7 @@ class Window(Tk):
         return vrij
 
     def infoalgemeen(self):
-        vrij = 'Om OV-fietsenstalling te gebruiken heeft u een geldige OV-chipkaart en telefoonnummer nodig. Er zijn geen stallingskosten, een fiets huren kost €0.80 per uur. Plaatsen vrij: '
+        vrij = 'Om OV-fietsenstalling te gebruiken heeft u een geldige OV-chipkaart en telefoonnummer nodig. Er zijn geen stallingskosten, een fiets huren kost €1 plus €0.20 per kwartier. Plaatsen vrij: '
         vrij2 = self.informatieIedereen()
         vrij3 = str(vrij)+ str(vrij2)
         showinfo(title='Informatie Algemeen', message=vrij3)
@@ -627,15 +627,15 @@ class Window(Tk):
         self.top.geometry("1920x1080")
 
 
-        self.label = Label(self.top, text='Uw QR Code')
-        self.label.config(font=("Calibri", 16))
-        self.label.pack(fill=X, padx=25, pady=100)
+            self.label = Label(self.top, text='Uw QR Code')
+            self.label.config(font=("Calibri", 16))
+            self.label.pack(fill=X, padx=25, pady=100)
 
 
-        self.code = Entry(master=self.top)
-        self.code.pack(fill=X, padx=700)
+            self.code = Entry(master=self.top)
+            self.code.pack(fill=X, padx=700)
 
-        self.Enterbutton = Button(master=self.top, text='Enter', command=self.OphalenPopup,
+            self.Enterbutton = Button(master=self.top, text='Enter', command=self.OphalenPopup,
                                           bg='lightgreen', relief=SOLID, font='Calibri',
                                           width=40)
         self.Enterbutton.pack(fill=X, padx=600, pady=25)
