@@ -301,6 +301,8 @@ class Window(Tk):
             ov = gegevens[4].strip('\n')
         read.close()
 
+        rnummer = random.randint(1, 701)
+
         read1 = open('Stallen.txt','r')
         infile1 = read1.readlines()
         for lines1 in infile1:
@@ -309,14 +311,24 @@ class Window(Tk):
             achternaamstal = stalgegevens[1]
             ovstal = stalgegevens[9]
             stalnummer = stalgegevens[10].strip('\n')
+
             if voornaam == voornaamstal and achternaam == achternaamstal and ov == ovstal:
                 self.stalErrorText = ('U heeft al een fiets gestald op plek: ' + str(stalnummer))
                 showinfo(title='Error', message=self.stalErrorText)
                 return self.login()
+
+            if len(infile1) == 701:
+                self.stalVolText = ('De fietsenstalling zit vol')
+                showinfo(title='Error', message=self.stalVolText)
+                return self.login()
+
+            while stalnummer == rnummer:
+                rnummer = random.randint(1, 701)
+
         read1.close()
 
         self.cijfer = random.randint(1001, 999999)
-        rnummer = random.randint(1, 701)
+
         datum = time.strftime('%H;%M;%S;%d;%m;%Y')
 
         writeStal = open('Stallen.txt','a')
@@ -376,6 +388,11 @@ class Window(Tk):
             if inlog[0] == x[0] and inlog[1] == x[1] and inlog[4].strip('\n') == x[2]:
                 huurtext = ('U heeft al een fiets gehuurd')
                 showinfo(title='Error', message=huurtext)
+                return self.login()
+
+            if len(lines) == 50:
+                geenfietsentext = ('Er zijn helaas geen fietsen meer beschikbaar')
+                showinfo(title='Error', message=geenfietsentext)
                 return self.login()
 
             if huurnummer == x[3]:
