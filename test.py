@@ -93,7 +93,6 @@ class Window(Tk):
             f.write(self.telfield.get())
             f.write(';')
             f.write(self.ovrfield.get())
-            f.write(';')
             f.write('\n')
             f.close()
         return self.exit()
@@ -289,64 +288,51 @@ class Window(Tk):
                                       width=40)
         self.uitloggenbutton.place(relx=0.6, rely=0.5, anchor=NW)
 
-    def times(self):
-        ''
-        localtime(time())
-        ''
-        return (asctime(localtime(time())))
-
-
-    def toonStallen(self):
-        stallenbericht = 'U kunt u fiets veilig stallen op plek: ' + str(self.rnummer)
-        showinfo(title='Stallen', message=stallenbericht)
-        self.QRCodePopup()
-
-    def warning(self):
-        stallenbericht = 'U heeft u fiets al veilig gestald op plek: ' + str(self.rnummer)
-        showinfo(title='Stallen', message=stallenbericht)
-
     def fiets_stallen(self):
+
+        import time
+
         read = open('Ingelogd', 'r')
-        read1 = open('Stallen.txt', 'r')
-        write = open('Stallen.txt', 'a')
         infile = read.readlines()
+        for lines in infile:
+            gegevens = lines.split(';')
+            voornaam = gegevens[0]
+            achternaam = gegevens[1]
+            ov = gegevens[4].strip('\n')
+        read.close()
+
+        read1 = open('Stallen.txt','r')
         infile1 = read1.readlines()
-        outfile = write.write
+        for lines1 in infile1:
+            stalgegevens = lines1.split(';')
+            voornaamstal = stalgegevens[0]
+            achternaamstal = stalgegevens[1]
+            ovstal = stalgegevens[9]
+            stalnummer = stalgegevens[10].strip('\n')
+            if voornaam == voornaamstal and achternaam == achternaamstal and ov == ovstal:
+                self.stalErrorText = ('U heeft al een fiets gestald op plek: ' + str(stalnummer))
+                showinfo(title='Error', message=self.stalErrorText)
+                return self.login()
+        read1.close()
 
-        for infiles1 in infile1:
-            zin1 = infiles1.split(';')
-            self.info1 = zin1[1]
+        self.cijfer = random.randint(1001, 999999)
+        rnummer = random.randint(1, 701)
+        datum = time.strftime('%H;%M;%S;%d;%m;%Y')
 
-        for infiles in infile:
-            zin = infiles.split(';')
-            self.info = zin[4]
+        writeStal = open('Stallen.txt','a')
+        writeStal.write(voornaam + ';' + achternaam + ';' + str(self.cijfer) + ';' + datum + ';' + str(ov) + ';' + str(rnummer) + '\n')
+        writeStal.close()
 
-            if self.info == self.info1:
-                return self.warning()
+        stallenbericht = 'U kunt u fiets veilig stallen op plek: ' + str(rnummer)
+        showinfo(title='Stallen', message=stallenbericht)
+        return self.qrCodePopup()
 
-            for x in range(1):
-                self.rnummer = random.randint(1, 701)
-                infile = open('Stallen.txt', 'r')
-                regels = infile.readlines()
-                for regel in regels:
-                    zin = regel.split(';')
-                    nummer = zin[2]
-                    ov = zin[1]
-                    if nummer == self.rnummer:
-                        self.fiets_stallen()
-                    if ov == self.info:
-                        self.warning()
-                self.stallen = (str(self.times()) + '; ' + self.info + '; ' + str(self.rnummer) + '\n')
-                outfile(self.stallen)
-        return self.toonStallen()
-
-    def QRCodePopup(self):
-        self.infotext = (
+    def qrCodePopup(self):    # cijfer nog global maken ofzo en qr code toevoegen ofzo
+        self.bewaartext = (
             'Bewaar de volgende QR Code om je fiets weer op te halen.')
-        showinfo(title='Hulp QR', message=self.infotext)
-        cijfer = random.randint(1001, 999999)
-        return qrcode.run_example(cijfer)
+        showinfo(title='Hulp QR', message=self.bewaartext)
 
+        return qrcode.run_example(self.cijfer)
 
     def fiets_huren(self):
 
@@ -395,18 +381,14 @@ class Window(Tk):
             if huurnummer == x[3]:
                 self.Fiets_huren()
 
-        tijdH = time.strftime('%H')  # uren
-        tijdM = time.strftime('%M')  # minuten
-        tijdS = time.strftime('%S')  # seconden
-        datumd = time.strftime('%d')  # dag
-        datumm = time.strftime('%m')  # maand
-        datumY = time.strftime('%Y')  # jaar
+        datum = time.strftime('%H;%M;%S;%d;%m;%Y')
+        datum1 = time.strftime('%H:%M:%S %d/%m/%Y')
 
         huurfile = open('Huurgegevens', 'a')
-        huurfile.write(inlog[0] + ';' + inlog[1] + ';' + inlog[4].strip('\n') + ';' + str(huurnummer) + ';' + str(tijdH) + ';' + str(tijdM) + ';' + str(tijdS) + ';' + str(datumd) + ';' + str(datumm) + ';' + str(datumY) + '\n')
+        huurfile.write(inlog[0] + ';' + inlog[1] + ';' + inlog[4].strip('\n') + ';' + str(huurnummer) + ';' + datum + '\n')
         huurfile.close()
 
-        huurtext = ('Fietsnummer {} is gehuurd vanaf {}:{}:{} {}/{}/{}.'.format(huurnummer, tijdH, tijdM, tijdS, datumd, datumm, datumY))
+        huurtext = ('Fietsnummer {} is gehuurd vanaf {}.'.format(huurnummer, datum1))
         showinfo(title='Fiets Gehuurd', message=huurtext)
         return self.login()
 
