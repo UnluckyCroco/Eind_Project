@@ -53,7 +53,13 @@ class Window(Tk):
         if self.wwrfield.get() == '':
             return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
 
-        telefoon =self.telfield.get()
+        telefoon = self.telfield.get()
+        vnaam = self.vnaamfield.get()
+        anaam = self.anaamfield.get()
+        ov = self.ovrfield.get()
+        ww = self.wwrfield.get()
+        ww2 = self.wwr2field.get()
+
         if telefoon.isdigit():  # TELEFOON
             digit = telefoon
         else:
@@ -64,7 +70,14 @@ class Window(Tk):
         if len(telefoon) is not 8:
             return showwarning(title='Telefoon', message='Telefoonnummer moet 8 nummers bevatten')
 
-        ov = self.ovrfield.get()
+        gegevens = open('Gegevens','r')
+        line = gegevens.readlines()
+        for lines in line:
+            x = lines.split(';')
+            if vnaam == x[0] and anaam == x[1] and ov == x[4].strip('\n'):
+                return showwarning(title='Error', message='Er is al geregistreerd met deze gegevens')
+            if telefoon == x[3]:
+                return showwarning(title='Error', message='Er is al iemand met deze telefoonnummer')
         if ov.isdigit():  # OV
             nummer = ov
         else:
@@ -75,12 +88,11 @@ class Window(Tk):
         if len(ov) is not 4:
             return showwarning(title='OV', message='Telefoonnummer moet 4 nummers bevatten')
 
-        ww = self.wwrfield.get()
         if len(ww) < 6:
             return showwarning(title='Wachtwoord', message='Het wachtwoord moet minstens 6 karakters bevatten')
 
-        if self.wwrfield.get() != self.wwr2field.get():
-            return showwarning(title='Wachtwoord', message='De wachtwoorden zijn niet gelijk ')
+        if ww != ww2:
+            return showwarning(title='Wachtwoord', message='De wachtwoorden zijn niet gelijk')
 
         with open('Gegevens', 'a') as f:
 
@@ -95,6 +107,7 @@ class Window(Tk):
             f.write(self.ovrfield.get())
             f.write('\n')
             f.close()
+        showwarning(title='Geregistreerd', message='Succesvol geregistreerd')
         return self.exit()
 
     def Regi(self):
