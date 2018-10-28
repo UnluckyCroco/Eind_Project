@@ -21,6 +21,11 @@ class Window(Tk):
             window.mainloop()
 
     def initialize(self):
+        self.welcometext = Label(master=self, text='Welcome bij dit NS fietsenstalling\n'
+                                                    'Kies een van de volgende opties:',
+                              fg='blue', bg='yellow', relief=SOLID, font='Calibri')
+        self.welcometext.pack(pady = 150)
+
         self.regibutton = Button(master=self, text='Registreren', command=self.Regi,
                                  bg='lightgreen', relief=SOLID, font='Calibri',
                                  width=40)
@@ -40,6 +45,8 @@ class Window(Tk):
                             bg='red', relief=SOLID, font='Calibri',
                             width=40)
         self.quitbutton.pack(pady=10)
+
+
 
     def regi(self):
         if self.telfield.get() == '':
@@ -369,17 +376,17 @@ class Window(Tk):
         self.huurtext = Label(master=self.top, text='Weet u zeker dat u een fiets wilt huren?\n'
                                                     'Het tarief is: €1 euro + 20 cent per 15 minuten',
                                                     relief=SOLID, font='Calibri')
-        self.huurtext.place(relx=0.5, rely=0.4, anchor=S)
+        self.huurtext.pack(pady=150)
 
         self.accepteerbutton = Button(master=self.top, text='Ja', command=self.Fiets_huren,
                                     bg='lightgreen', relief=SOLID, font='Calibri',
                                     width=40)
-        self.accepteerbutton.place(relx=0.26 ,rely=0.422, anchor=W)
+        self.accepteerbutton.pack(pady=10)
 
         self.accepteernietbutton = Button(master=self.top, text='Nee', command=self.login,
                                     bg='red', relief=SOLID, font='Calibri   ',
                                     width=40)
-        self.accepteernietbutton.place(relx=0.5, rely=0.4)
+        self.accepteernietbutton.pack(pady=10)
 
     def Fiets_huren(self):
 
