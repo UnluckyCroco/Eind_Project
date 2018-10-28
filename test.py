@@ -627,17 +627,17 @@ class Window(Tk):
         self.top.geometry("1920x1080")
 
 
-            self.label = Label(self.top, text='Uw QR Code')
-            self.label.config(font=("Calibri", 16))
-            self.label.pack(fill=X, padx=25, pady=100)
+        self.label = Label(self.top, text='Uw QR Code')
+        self.label.config(font=("Calibri", 16))
+        self.label.pack(fill=X, padx=25, pady=100)
 
 
-            self.code = Entry(master=self.top)
-            self.code.pack(fill=X, padx=700)
+        self.code = Entry(master=self.top)
+        self.code.pack(fill=X, padx=700)
 
-            self.Enterbutton = Button(master=self.top, text='Enter', command=self.OphalenPopup,
-                                          bg='lightgreen', relief=SOLID, font='Calibri',
-                                          width=40)
+        self.Enterbutton = Button(master=self.top, text='Enter', command=self.OphalenPopup,
+                                      bg='lightgreen', relief=SOLID, font='Calibri',
+                                      width=40)
         self.Enterbutton.pack(fill=X, padx=600, pady=25)
 
         self.Closebutton = Button(master=self.top, text='Terug', command=self.menu2,
