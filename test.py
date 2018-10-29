@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter.messagebox import showwarning, showinfo
-from PIL import Image, ImageDraw, ImageTk, ImageFont
 import time
 import random
 import qrcode
@@ -46,6 +45,8 @@ class Window(Tk):
                             bg='red', relief=SOLID, font='Calibri',
                             width=40)
         self.quitbutton.pack(pady=10)
+
+
 
     def regi(self):
         if self.telfield.get() == '':
@@ -243,10 +244,10 @@ class Window(Tk):
         self.label.config(font=("Calibri", 16))
 
         self.naamfield = Entry(master=self.top)
-        self.naamfield.grid(row=0, column=21, pady=50)
+        self.naamfield.grid(row=0, column=21, pady=20)
 
         self.wwfield = Entry(master=self.top, show='*')
-        self.wwfield.grid(row=1, column=21, pady=50)
+        self.wwfield.grid(row=1, column=21, pady=20)
 
         self.ovfield = Entry(master=self.top)
         self.ovfield.grid(row=2, column=21, pady=20)
@@ -574,11 +575,6 @@ class Window(Tk):
 
     def OphalenPopup(self):
 
-        infile = open('Ingelogd.txt', 'r')
-        ilines = infile.readlines()
-        for iline in ilines:
-            inlog = iline.split(';')
-        infile.close()
 
         readfile = open('Stallen.txt', 'r')
         infile2 = readfile.readlines()
@@ -603,7 +599,11 @@ class Window(Tk):
         regels = file.readlines()
         file.close()
 
-
+        infile = open('Ingelogd.txt', 'r')
+        ilines = infile.readlines()
+        for iline in ilines:
+            inlog = iline.split(';')
+        infile.close()
 
         for regel in regels:  # voegt elke regel toe die niet gelijk is aan de teruggebrachde fiets aan een lijst, die hij later terug het bestand in zet
             x = regel.split(';')
@@ -617,34 +617,11 @@ class Window(Tk):
         wfile = open('Stallen.txt', 'w')
         for gegevens in range(len(lijst)):
             wfile.write(lijst[gegevens])
-
-        return self.login()
+            print(gegevens)
 
 
     def Fietsophalen(self):
 
-        infile = open('Ingelogd.txt', 'r')
-        ilines = infile.readlines()
-        for iline in ilines:
-            inlog = iline.split(';')
-            inlogvn = inlog[0]
-            inlogan = inlog[1]
-            inlogov = inlog[4].strip('\n')
-        infile.close()
-
-        readfile = open('Stallen.txt', 'r')
-        infile2 = readfile.readlines()
-        for lines2 in infile2:
-            stalgegevens = lines2.split(';')
-            voornaam = stalgegevens[0]
-            achternaam = stalgegevens[1]
-            ov = stalgegevens[9]
-
-        if inlogvn not in voornaam and inlogan not in achternaam and inlogov not in ov:
-            showwarning(title='Fout', message='Je hebt geen fiets in de stalling')
-            return self.login()
-
-        self.top.withdraw()
         self.top = Toplevel()
         self.top.title('Ophalen')
         self.top.geometry("1920x1080")
@@ -656,7 +633,7 @@ class Window(Tk):
 
 
         self.code = Entry(master=self.top)
-        self.code.pack(fill=X, padx=600)
+        self.code.pack(fill=X, padx=700)
 
         self.Enterbutton = Button(master=self.top, text='Enter', command=self.OphalenPopup,
                                       bg='lightgreen', relief=SOLID, font='Calibri',
