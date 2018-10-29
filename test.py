@@ -622,6 +622,27 @@ class Window(Tk):
 
     def Fietsophalen(self):
 
+        gegevens = open('Ingelogd.txt', 'r')
+        gegeven = gegevens.readlines()
+        for item in gegeven:
+            regel = item.split(';')
+            loginnaam = regel[0]
+            loginachternaam = regel[1]
+            loginov = regel[4]
+
+        readfile = open('Stallen.txt', 'r')
+        infile2 = readfile.readlines()
+        for lines2 in infile2:
+            stalgegevens = lines2.split(';')
+            voornaam = stalgegevens[0]
+            achternaam = stalgegevens[1]
+            ov = stalgegevens[9]
+
+        if loginnaam not in voornaam and loginachternaam not in achternaam and loginov not in ov:
+            showwarning(title='Fout', message='Uw heeft geen fiets in de stalling\n'
+                                              'Stal eerst uw fiets als dat van toepassing is.')
+            return self.login()
+
         self.top = Toplevel()
         self.top.title('Ophalen')
         self.top.geometry("1920x1080")
