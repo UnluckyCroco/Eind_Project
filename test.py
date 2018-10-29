@@ -303,6 +303,11 @@ class Window(Tk):
                                        width=40)
         self.hulpqrbutton.pack(pady=10)
 
+        self.wwveranderen = Button(master=self.top, text='Wachtwoord Veranderen', command=self.QRHulpPopup,
+                                   bg='yellow', relief=SOLID, font='Calibri',
+                                   width=40)
+        self.wwveranderen.pack(pady=10)
+
         self.uitloggenbutton = Button(self.top, text='Uitloggen', command=self.Uitloggen,
                                       bg='red', relief=SOLID, font='Calibri',
                                       width=40)
