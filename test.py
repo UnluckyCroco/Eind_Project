@@ -1,9 +1,7 @@
 from tkinter import *
 from tkinter.messagebox import showwarning, showinfo
-import time
 import random
 import qrcode
-from time import *
 
 
 class Window(Tk):
@@ -93,7 +91,7 @@ class Window(Tk):
             return showwarning(title='OV', message='OV mag alleen nummers bevatten')
 
         if len(ov) is not 4:
-            return showwarning(title='OV', message='Telefoonnummer moet 4 nummers bevatten')
+            return showwarning(title='OV', message='Het OV moet 4 nummers bevatten')
 
         if len(ww) < 6:
             return showwarning(title='Wachtwoord', message='Het wachtwoord moet minstens 6 karakters bevatten')
@@ -170,7 +168,7 @@ class Window(Tk):
         self.registrerenbutton.grid(row=6, column=20, sticky=E)
 
         self.terugbutton = Button(self.top, text='Terug', command=self.exit,
-                                   bg='lightgreen', relief=SOLID, font='Calibri',
+                                   bg='orange', relief=SOLID, font='Calibri',
                                    width=40)
         self.terugbutton.grid(row=6, column=21, sticky=E)
 
@@ -258,7 +256,7 @@ class Window(Tk):
         self.loginbutton.grid(row=6, column=20, sticky=E)
 
         self.terugbutton = Button(self.top, text='Terug', command=self.exit,
-                                  bg='lightgreen', relief=SOLID, font='Calibri',
+                                  bg='orange', relief=SOLID, font='Calibri',
                                   width=40)
         self.terugbutton.grid(row=6, column=21, sticky=E)
 
@@ -303,12 +301,12 @@ class Window(Tk):
                                        width=40)
         self.hulpqrbutton.pack(pady=10)
 
-        self.wwveranderen = Button(master=self.top, text='Wachtwoord Veranderen', command=self.QRHulpPopup,
+        self.wwveranderen = Button(master=self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVergetenWindow,
                                    bg='yellow', relief=SOLID, font='Calibri',
                                    width=40)
         self.wwveranderen.pack(pady=10)
 
-        self.uitloggenbutton = Button(self.top, text='Uitloggen', command=self.Uitloggen,
+        self.uitloggenbutton = Button(master=self.top, text='Uitloggen', command=self.Uitloggen,
                                       bg='red', relief=SOLID, font='Calibri',
                                       width=40)
         self.uitloggenbutton.pack(pady=10)
@@ -656,6 +654,77 @@ class Window(Tk):
         readfile.close()
         self.exit()
 
+    def WachtwoordVergeten(self):
+        if self.ovfield.get() == '':
+            return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
+        if self.oudwwfield.get() == '':
+            return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
+        if self.nieuwwwfield.get() == '':
+            return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
+        ov = self.ovfield.get()
+        ww = self.oudwwfield.get()
+        ww2 = self.nieuwwwfield.get()
+
+        ingelogd = open('Ingelogd.txt','r')
+        line = ingelogd.readlines()
+        for lines in line:
+            x = lines.split(';')
+            if not ov == x[4].strip('\n'):
+                return showwarning(title='Error', message='Het ingevulde OV is niet correct.')
+            if not ww == x[2]:
+                return showwarning(title='Wachtwoord', message='Het ingevoerde oude wachtwoord is niet correct.')
+            if len(ww2) < 6:
+                return showwarning(title='Wachtwoord', message='Het nieuwe wachtwoord moet minstens 6 karakters bevatten.')
+
+        if ov.isdigit():
+            nummer = ov
+        else:
+            nummer = ' '
+        if ov is not nummer:
+            return showwarning(title='OV', message='OV mag alleen nummers bevatten')
+
+        if len(ov) is not 4:
+            return showwarning(title='OV', message='Het OV moet 4 nummers bevatten')
+
+        # Verander het wachtwoord in Gegevens.txt
+
+        showwarning(title='Wachtwoord veranderd', message='Wachtwoord Succesvol veranderd!')
+        return self.menu2()
+
+    def WachtwoordVergetenWindow(self):
+        self.top.withdraw()
+        self.top = Toplevel()
+        self.top.title("Wachtwoord Vergeten")
+        self.top.geometry("1920x1080")
+
+        self.label = Label(self.top, text='Laatste 4 cijfers van uw OV')
+        self.label.grid(row=1, column=20, ipadx=170, sticky=W)
+        self.label.config(font=("Calibri", 16))
+        self.label = Label(self.top, text='Oud Wachtwoord')
+        self.label.grid(row=2, column=20, ipadx=170, sticky=W)
+        self.label.config(font=("Calibri", 16))
+        self.label = Label(self.top, text='Nieuw Wachtwoord')
+        self.label.grid(row=3, column=20, ipadx=170, sticky=W)
+        self.label.config(font=("Calibri", 16))
+
+        self.ovfield = Entry(master=self.top)
+        self.ovfield.grid(row=1, column=21, pady=20)
+
+        self.oudwwfield = Entry(master=self.top, show='*')
+        self.oudwwfield.grid(row=2, column=21, pady=20)
+
+        self.nieuwwwfield = Entry(master=self.top, show='*')
+        self.nieuwwwfield.grid(row=3, column=21, pady=20)
+
+        self.okbutton = Button(self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVergeten,
+                                   bg='lightgreen', relief=SOLID, font='Calibri',
+                                   width=40)
+        self.okbutton.grid(row=6, column=20, sticky=E)
+
+        self.terugbutton = Button(self.top, text='Terug', command=self.menu2,
+                                   bg='orange', relief=SOLID, font='Calibri',
+                                   width=40)
+        self.terugbutton.grid(row=6, column=21, sticky=E)
 
 
 if __name__ == "__main__":
