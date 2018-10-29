@@ -44,6 +44,8 @@ class Window(Tk):
                             width=40)
         self.quitbutton.pack(pady=10)
 
+
+
     def regi(self):
         if self.telfield.get() == '':
             return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
@@ -175,6 +177,7 @@ class Window(Tk):
                                  width=40)
         self.quitbutton.grid(row=6, column=22)
 
+
     def informatieIedereen(self):
         bezet = 0
         regel = open('Stallen.txt', 'r')
@@ -265,7 +268,7 @@ class Window(Tk):
     def menu2(self):
         self.top.withdraw()
         self.top = Toplevel()
-        self.top.title("Stalling Menu")
+        self.top.title("Inloggen")
         self.top.geometry("1920x1080")
 
         self.stallenbutton = Button(master=self.top, text='Fiets Stallen', command=self.fiets_stallen,
@@ -298,7 +301,7 @@ class Window(Tk):
                                        width=40)
         self.hulpqrbutton.pack(pady=10)
 
-        self.wwveranderen = Button(master=self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVeranderenWindow,
+        self.wwveranderen = Button(master=self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVergetenWindow,
                                    bg='yellow', relief=SOLID, font='Calibri',
                                    width=40)
         self.wwveranderen.pack(pady=10)
@@ -551,7 +554,6 @@ class Window(Tk):
             terugniettext = ('U kan niet de fiets terugbrengen, omdat u geen fiets heeft gehuurd')
             showinfo(title='Error', message=terugniettext)
             return self.login()
-
     def infopopup(self):
         self.infotext = (
                     'Geregistreerde naam: ' + self.naam + ' ' + self.achternaam + '\n' + 'Geregisteerd wachtwoord: ' + self.ww + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV: ' + self.ov)
@@ -620,6 +622,7 @@ class Window(Tk):
             wfile.write(lijst[gegevens])
             print(gegevens)
 
+
     def Fietsophalen(self):
 
         self.top = Toplevel()
@@ -651,7 +654,7 @@ class Window(Tk):
         readfile.close()
         self.exit()
 
-    def WachtwoordVeranderen(self):
+    def WachtwoordVergeten(self):
         if self.ovfield.get() == '':
             return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
         if self.oudwwfield.get() == '':
@@ -661,16 +664,11 @@ class Window(Tk):
         ov = self.ovfield.get()
         ww = self.oudwwfield.get()
         ww2 = self.nieuwwwfield.get()
-        lijst = []
 
         ingelogd = open('Ingelogd.txt','r')
         line = ingelogd.readlines()
-        ingelogd.close()
-
         for lines in line:
             x = lines.split(';')
-            vnaam = x[0]
-            anaam = x[1]
             if not ov == x[4].strip('\n'):
                 return showwarning(title='Error', message='Het ingevulde OV is niet correct.')
             if not ww == x[2]:
@@ -688,26 +686,12 @@ class Window(Tk):
         if len(ov) is not 4:
             return showwarning(title='OV', message='Het OV moet 4 nummers bevatten')
 
-        read = open('Gegevens','r')
-        lees = read.readlines()
-        for lezen in lees:
-            y = lezen.split(';')
-            count = 0
-            if y[0] == vnaam and y[1] == anaam and y[4].strip('\n') == ov:
-                count += 1
-            if count == 0:
-                lijst.append(lezen)
-            if count == 1:
-                y[2] = ww2
-                lijst.append(lezen)
-                lijstinlog = [lezen]
+        # Verander het wachtwoord in Gegevens.txt
 
-        # write in bestanden
-
-        showinfo(title='Wachtwoord veranderd', message='Wachtwoord Succesvol veranderd!')
+        showwarning(title='Wachtwoord veranderd', message='Wachtwoord Succesvol veranderd!')
         return self.menu2()
 
-    def WachtwoordVeranderenWindow(self):
+    def WachtwoordVergetenWindow(self):
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title("Wachtwoord Vergeten")
@@ -732,7 +716,7 @@ class Window(Tk):
         self.nieuwwwfield = Entry(master=self.top, show='*')
         self.nieuwwwfield.grid(row=3, column=21, pady=20)
 
-        self.okbutton = Button(self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVeranderen,
+        self.okbutton = Button(self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVergeten,
                                    bg='lightgreen', relief=SOLID, font='Calibri',
                                    width=40)
         self.okbutton.grid(row=6, column=20, sticky=E)
@@ -741,6 +725,7 @@ class Window(Tk):
                                    bg='orange', relief=SOLID, font='Calibri',
                                    width=40)
         self.terugbutton.grid(row=6, column=21, sticky=E)
+
 
 if __name__ == "__main__":
     window = Window(None)
