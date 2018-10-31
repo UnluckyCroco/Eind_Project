@@ -19,7 +19,7 @@ class Window(Tk):
             window.mainloop()
 
     def initialize(self):
-        self.welcometext = Label(master=self, text='Welcome bij dit NS fietsenstalling\n'
+        self.welcometext = Label(master=self, text='Welkom bij deze NS fietsenstalling\n'
                                                     'Kies een van de volgende opties:',
                               fg='blue', bg='yellow', relief=SOLID, font='Calibri')
         self.welcometext.pack(pady = 150)
