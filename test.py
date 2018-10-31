@@ -686,7 +686,16 @@ class Window(Tk):
         if len(ov) is not 4:
             return showwarning(title='OV', message='Het OV moet 4 nummers bevatten')
 
-        # Verander het wachtwoord in Gegevens.txt
+        infile = open('Gegevens.txt', 'a')
+        zin = infile.readlines()
+        lijst = []
+        for zinnen in zin:
+            s = zinnen.split(';')
+            if s[0] == x[0] and s[1] == x[1] and s[4] == x[4]:
+                lijst.append(zinnen)
+
+
+
 
         showwarning(title='Wachtwoord veranderd', message='Wachtwoord Succesvol veranderd!')
         return self.menu2()
