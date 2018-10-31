@@ -21,7 +21,7 @@ class Window(Tk):
     def initialize(self):
         self.welcometext = Label(master=self, text='Welkom bij deze NS fietsenstalling\n'
                                                     'Kies een van de volgende opties:',
-                              fg='blue', bg='yellow', relief=SOLID, font='Calibri')
+                              bg='yellow', relief=SOLID, font='Calibri')
         self.welcometext.pack(pady = 150)
 
         self.regibutton = Button(master=self, text='Registreren', command=self.Regi,
@@ -73,7 +73,7 @@ class Window(Tk):
         if len(telefoon) is not 8:
             return showwarning(title='Telefoon', message='Telefoonnummer moet 8 nummers bevatten')
 
-        gegevens = open('Gegevens','r')
+        gegevens = open('Gegevens.txt','r')
         line = gegevens.readlines()
         for lines in line:
             x = lines.split(';')
@@ -97,7 +97,7 @@ class Window(Tk):
         if ww != ww2:
             return showwarning(title='Wachtwoord', message='De wachtwoorden zijn niet gelijk')
 
-        with open('Gegevens', 'a') as f:
+        with open('Gegevens.txt', 'a') as f:
 
             f.write(self.vnaamfield.get())
             f.write(';')
@@ -163,17 +163,17 @@ class Window(Tk):
         self.registrerenbutton = Button(self.top, text='Registreren', command=self.regi,
                                    bg='lightgreen', relief=SOLID, font='Calibri',
                                    width=40)
-        self.registrerenbutton.grid(row=6, column=20, sticky=E)
+        self.registrerenbutton.grid(row=6, column=21, sticky=E, pady=10)
 
         self.terugbutton = Button(self.top, text='Terug', command=self.exit,
                                    bg='orange', relief=SOLID, font='Calibri',
                                    width=40)
-        self.terugbutton.grid(row=6, column=21, sticky=E)
+        self.terugbutton.grid(row=7, column=21, sticky=E, pady=10)
 
         self.quitbutton = Button(master=self.top, text='Afsluiten', command=quit,
                                  bg='red', relief=SOLID, font='Calibri',
                                  width=40)
-        self.quitbutton.grid(row=6, column=22)
+        self.quitbutton.grid(row=8, column=21, pady=10)
 
     def informatieIedereen(self):
         bezet = 0
@@ -204,7 +204,7 @@ class Window(Tk):
            return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
         if self.wwfield.get() == '':
            return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
-        file = open('Gegevens', 'r')
+        file = open('Gegevens.txt', 'r')
         lines = file.readlines()
         for line in lines:
             y = line.strip('\n')
@@ -264,7 +264,7 @@ class Window(Tk):
     def menu2(self):
         self.top.withdraw()
         self.top = Toplevel()
-        self.top.title("Inloggen")
+        self.top.title("Fietsen Stalling")
         self.top.geometry("1920x1080")
 
         self.stallenbutton = Button(master=self.top, text='Fiets Stallen', command=self.fiets_stallen,
@@ -398,11 +398,11 @@ class Window(Tk):
         for iline in ilines:
             inlog = iline.split(';')
 
-        file = open('Huurgegevens', 'r')
+        file = open('Huurgegevens.txt', 'r')
         lines = file.readlines()
         file.close()
 
-        for line in lines:  # checked of dezelfde gegevens in 'Ingelogd' ook staan in 'Huurgegevens', zoja, dan betekend het dat er al een fiets is gehuurd
+        for line in lines:  # checked of dezelfde gegevens in 'Ingelogd' ook staan in 'Huurgegevens.txt', zoja, dan betekend het dat er al een fiets is gehuurd
             x = line.split(';')
             if inlog[0] == x[0] and inlog[1] == x[1] and inlog[4].strip('\n') == x[2]:
                 huurtext = ('U heeft al een fiets gehuurd')
@@ -420,7 +420,7 @@ class Window(Tk):
         datum = time.strftime('%H;%M;%S;%d;%m;%Y')
         datum1 = time.strftime('%H:%M:%S %d/%m/%Y')
 
-        huurfile = open('Huurgegevens', 'a')
+        huurfile = open('Huurgegevens.txt', 'a')
         huurfile.write(inlog[0] + ';' + inlog[1] + ';' + inlog[4].strip('\n') + ';' + str(huurnummer) + ';' + datum + '\n')
         huurfile.close()
 
@@ -430,7 +430,7 @@ class Window(Tk):
 
     def regel_verwijderen(self):
         lijst = []
-        file = open('Huurgegevens', 'r')
+        file = open('Huurgegevens.txt', 'r')
         regels = file.readlines()
         file.close()
 
@@ -448,7 +448,7 @@ class Window(Tk):
             if counter == 0:
                 lijst.append(regel)
         file.close()
-        wfile = open('Huurgegevens', 'w')
+        wfile = open('Huurgegevens.txt', 'w')
         for gegevens in range(len(lijst)):
             wfile.write(lijst[gegevens])
 
@@ -460,7 +460,7 @@ class Window(Tk):
         dag = 86400  # in seconden
         jaar = 31536000
 
-        terugfile = open('Huurgegevens', 'r')
+        terugfile = open('Huurgegevens.txt', 'r')
         linest = terugfile.readlines()
         terugfile.close()
 
@@ -552,10 +552,16 @@ class Window(Tk):
             return self.login()
 
     def infopopup(self):
+        ingelogd = open('Ingelogd.txt', 'r')
+        line = ingelogd.readlines()
+        for lines in line:
+            x = lines.split(';')
+
         if self.cijfer > 0:
             self.stal = self.cijfer
         else:
-            self.stal = \
+            self.stal = '\\'
+
         self.infotext = (
                     'Geregistreerde naam: ' + self.naam + ' ' + self.achternaam + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV: ' + self.ov + '\n' + 'Stallingsplek:' + self.stal)
         showinfo(title='Stallen', message=self.infotext)
@@ -686,16 +692,27 @@ class Window(Tk):
         if len(ov) is not 4:
             return showwarning(title='OV', message='Het OV moet 4 nummers bevatten')
 
-        infile = open('Gegevens.txt', 'a')
-        zin = infile.readlines()
+        infile = open('Gegevens.txt', 'r')
+        regel = infile.readlines()
         lijst = []
-        for zinnen in zin:
+        for zinnen in regel:
+            counter = 0
             s = zinnen.split(';')
             if s[0] == x[0] and s[1] == x[1] and s[4] == x[4]:
+                counter += 1
+            if counter == 0:
                 lijst.append(zinnen)
 
+            else:
+                zinnen2 = s[0] + ';' + s[1] + ';' + ww2 + ';' + s[3] + ';' + s[4]
+                lijst.append(zinnen2)
 
+        infile.close()
 
+        write = open('Gegevens.txt','w')
+        for regels in range(len(lijst)):
+            write.write(lijst[regels])
+        write.close()
 
         showwarning(title='Wachtwoord veranderd', message='Wachtwoord Succesvol veranderd!')
         return self.menu2()
@@ -740,8 +757,6 @@ if __name__ == "__main__":
     window = Window(None)
     window.geometry('1920x1080')
     window.title('Home')
-    # background_image = tk.PhotoImage('BackGround.png')
-    # background_label = tk.Label(image=background_image)
-    # background_label.place(background_label)
+    window.configure(bg='gray')
     window.mainloop()
 

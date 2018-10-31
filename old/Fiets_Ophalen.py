@@ -14,5 +14,5 @@ def fiets_ophalen():
             print(' ')
 
 
-    from NS_Fietsen_Stalling import inlog_menu
+    from old.NS_Fietsen_Stalling import inlog_menu
     inlog_menu()
