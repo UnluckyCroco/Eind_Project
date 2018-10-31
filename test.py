@@ -1,8 +1,8 @@
 from tkinter import *
+# import tkinter as tk
 from tkinter.messagebox import showwarning, showinfo
 import random
 import qrcode
-
 
 class Window(Tk):
     def __init__(self, parent):
@@ -44,8 +44,6 @@ class Window(Tk):
                             width=40)
         self.quitbutton.pack(pady=10)
 
-
-
     def regi(self):
         if self.telfield.get() == '':
             return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
@@ -82,7 +80,7 @@ class Window(Tk):
             if vnaam == x[0] and anaam == x[1] and ov == x[4].strip('\n'):
                 return showwarning(title='Error', message='Er is al geregistreerd met deze gegevens')
             if telefoon == x[3]:
-                return showwarning(title='Error', message='Er is al iemand met deze telefoonnummer')
+                return showwarning(title='Error', message='Er is al iemand met dit telefoonnummer')
         if ov.isdigit():  # OV
             nummer = ov
         else:
@@ -177,7 +175,6 @@ class Window(Tk):
                                  width=40)
         self.quitbutton.grid(row=6, column=22)
 
-
     def informatieIedereen(self):
         bezet = 0
         regel = open('Stallen.txt', 'r')
@@ -186,7 +183,6 @@ class Window(Tk):
         regel.close()
         if bezet < 701:
             vrij = 701 - bezet
-
         else:
             vrij = 0
         return vrij
@@ -230,7 +226,7 @@ class Window(Tk):
         self.top.geometry("1920x1080")
 
         self.label = Label(self.top, text='Voornaam')
-        self.label.grid(row=0, column=20, ipadx=170, sticky=W)
+        self.label.grid(row=0, column=20, ipadx=170, sticky=W, pady=10)
         self.label.config(font=("Calibri", 16))
 
         self.label = Label(self.top, text='Wachtwoord')
@@ -253,17 +249,17 @@ class Window(Tk):
         self.loginbutton = Button(master=self.top, text='Inloggen', command=self.login,
                                   bg='lightgreen', relief=SOLID, font='Calibri',
                                   width=40)
-        self.loginbutton.grid(row=6, column=20, sticky=E)
+        self.loginbutton.grid(row=6, column=21, sticky=E, pady=10)
 
         self.terugbutton = Button(self.top, text='Terug', command=self.exit,
                                   bg='orange', relief=SOLID, font='Calibri',
                                   width=40)
-        self.terugbutton.grid(row=6, column=21, sticky=E)
+        self.terugbutton.grid(row=7, column=21, sticky=E, pady=10)
 
         self.quitbutton = Button(master=self.top, text='Afsluiten', command=quit,
                                  bg='red', relief=SOLID, font='Calibri',
-                                 width=30)
-        self.quitbutton.grid(row=6, column=22, sticky=E)
+                                 width=40)
+        self.quitbutton.grid(row=9, column=21, sticky=E, pady=10)
 
     def menu2(self):
         self.top.withdraw()
@@ -301,7 +297,7 @@ class Window(Tk):
                                        width=40)
         self.hulpqrbutton.pack(pady=10)
 
-        self.wwveranderen = Button(master=self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVergetenWindow,
+        self.wwveranderen = Button(master=self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVeranderenWindow,
                                    bg='yellow', relief=SOLID, font='Calibri',
                                    width=40)
         self.wwveranderen.pack(pady=10)
@@ -554,9 +550,14 @@ class Window(Tk):
             terugniettext = ('U kan niet de fiets terugbrengen, omdat u geen fiets heeft gehuurd')
             showinfo(title='Error', message=terugniettext)
             return self.login()
+
     def infopopup(self):
+        if self.cijfer > 0:
+            self.stal = self.cijfer
+        else:
+            self.stal = \
         self.infotext = (
-                    'Geregistreerde naam: ' + self.naam + ' ' + self.achternaam + '\n' + 'Geregisteerd wachtwoord: ' + self.ww + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV: ' + self.ov)
+                    'Geregistreerde naam: ' + self.naam + ' ' + self.achternaam + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV: ' + self.ov + '\n' + 'Stallingsplek:' + self.stal)
         showinfo(title='Stallen', message=self.infotext)
 
     def InfoEigenaar(self):
@@ -622,7 +623,6 @@ class Window(Tk):
             wfile.write(lijst[gegevens])
             print(gegevens)
 
-
     def Fietsophalen(self):
 
         self.top = Toplevel()
@@ -654,7 +654,7 @@ class Window(Tk):
         readfile.close()
         self.exit()
 
-    def WachtwoordVergeten(self):
+    def WachtwoordVeranderen(self):
         if self.ovfield.get() == '':
             return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
         if self.oudwwfield.get() == '':
@@ -691,7 +691,7 @@ class Window(Tk):
         showwarning(title='Wachtwoord veranderd', message='Wachtwoord Succesvol veranderd!')
         return self.menu2()
 
-    def WachtwoordVergetenWindow(self):
+    def WachtwoordVeranderenWindow(self):
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title("Wachtwoord Vergeten")
@@ -716,7 +716,7 @@ class Window(Tk):
         self.nieuwwwfield = Entry(master=self.top, show='*')
         self.nieuwwwfield.grid(row=3, column=21, pady=20)
 
-        self.okbutton = Button(self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVergeten,
+        self.okbutton = Button(self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVeranderen,
                                    bg='lightgreen', relief=SOLID, font='Calibri',
                                    width=40)
         self.okbutton.grid(row=6, column=20, sticky=E)
@@ -731,5 +731,8 @@ if __name__ == "__main__":
     window = Window(None)
     window.geometry('1920x1080')
     window.title('Home')
+    # background_image = tk.PhotoImage('BackGround.png')
+    # background_label = tk.Label(image=background_image)
+    # background_label.place(background_label)
     window.mainloop()
 
