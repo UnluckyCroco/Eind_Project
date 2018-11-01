@@ -1,0 +1,80 @@
+from tkinter import *
+
+class Window(Tk):
+    def __init__(self, parent):
+        Tk.__init__(self, parent)
+        self.parent = parent
+        self.initialize()
+
+    def initialize(self):
+        self.geometry("1920x1080")
+        self.wButton = Button(self, text='text', command = self.OnButtonClick)
+        self.wButton.pack()
+
+    def OnButtonClick(self):
+        self.top = Toplevel()
+        self.top.title("Registreren")
+        self.top.geometry("1920x1080")
+        self.top.transient(self)
+        self.wButton.config(state='disabled')
+
+        self.topButton = Button(self.top, text="CLOSE", command = self.OnChildClose)
+        self.topButton.pack()
+
+    def OnChildClose(self):
+        self.wButton.config(state='normal')
+        self.top.destroy()
+
+if __name__ == "__main__":
+    window = Window(None)
+
+    window.title("Home")
+
+    window.mainloop()
+
+
+
+
+
+
+
+    self.label = Label(self, text='Voornaam')
+        self.label.grid(row=0, column=20, ipadx=170, sticky=W)
+        self.label.config(font=("Calibri", 16))
+
+        self.label = Label(self, text='Achternaam')
+        self.label.grid(row=1, column=20, ipadx=170, sticky=W)
+        self.label.config(font=("Calibri", 16))
+
+        label = Label(self, text='Telefoonnummer(06-)')
+        label.grid(row=2, column=20, ipadx=170, sticky=W)
+        label.config(font=("Calibri", 16))
+
+        label = Label(self, text='Laatste 4 cijfers van uw OV')
+        label.grid(row=3, column=20, ipadx=170, sticky=W)
+        label.config(font=("Calibri", 16))
+
+        label = Label(self, text='Wachtwoord (minimaal 6 karakters)')
+        label.grid(row=4, column=20, ipadx=170, sticky=W)
+        label.config(font=("Calibri", 16))
+        label = Label(self, text='Wachtwoord opnieuw')
+        label.grid(row=5, column=20, ipadx=170, sticky=W)
+        label.config(font=("Calibri", 16))
+
+        vnaamfield = Entry(master=self)
+        vnaamfield.grid(row=0, column=21, pady=20)
+
+        anaamfield = Entry(master=self)
+        anaamfield.grid(row=1, column=21, pady=20)
+
+        telfield = Entry(master=self)
+        telfield.grid(row=2, column=21, pady=20)
+
+        ovrfield = Entry(master=self)
+        ovrfield.grid(row=3, column=21, pady=20)
+
+        wwrfield = Entry(master=self)
+        wwrfield.grid(row=4, column=21, pady=20)
+
+        wwr2field = Entry(master=self)
+        wwr2field.grid(row=5, column=21, pady=20)
