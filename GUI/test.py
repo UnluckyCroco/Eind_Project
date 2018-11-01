@@ -19,6 +19,7 @@ class Window(Tk):
             window.mainloop()
 
     def initialize(self):
+        self.rnummer = -1
         self.welcometext = Label(master=self, text='Welkom bij deze NS fietsenstalling\n'
                                                     'Kies een van de volgende opties:',
                               bg='yellow', relief=SOLID, font='Calibri')
@@ -97,13 +98,18 @@ class Window(Tk):
         if ww != ww2:
             return showwarning(title='Wachtwoord', message='De wachtwoorden zijn niet gelijk')
 
+        result = ''
+
+        for i in range(0, len(ww)):
+            result = result + chr(ord(ww[i]) - 4)
+
         with open('Gegevens.txt', 'a') as f:
 
             f.write(self.vnaamfield.get())
             f.write(';')
             f.write(self.anaamfield.get())
             f.write(';')
-            f.write(self.wwrfield.get())
+            f.write(result)
             f.write(';')
             f.write(self.telfield.get())
             f.write(';')
@@ -204,6 +210,13 @@ class Window(Tk):
            return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
         if self.wwfield.get() == '':
            return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
+        ww = self.wwfield.get()
+
+        result = ''
+
+        for i in range(0, len(ww)):
+            result = result + chr(ord(ww[i]) - 4)
+
         file = open('Gegevens.txt', 'r')
         lines = file.readlines()
         for line in lines:
@@ -211,7 +224,7 @@ class Window(Tk):
             z = y.split(';')
             if self.naamfield.get() == z[0]:
                 if self.ovfield.get() == z[4]:
-                    if self.wwfield.get() == z[2]:
+                    if result == z[2]:
                         file.close()
                         f1 = open('Ingelogd.txt', 'w')
                         f1.write(line)
@@ -320,43 +333,45 @@ class Window(Tk):
             ov = gegevens[4].strip('\n')
         read.close()
 
-        rnummer = random.randint(1, 701)
+        self.rnummer = random.randint(1, 701)
+        try:
+            read1 = open('Stallen.txt','r')
+            infile1 = read1.readlines()
+            for lines1 in infile1:
+                stalgegevens = lines1.split(';')
+                voornaamstal = stalgegevens[0]
+                achternaamstal = stalgegevens[1]
+                ovstal = stalgegevens[9]
+                stalnummer = stalgegevens[10].strip('\n')
 
-        read1 = open('Stallen.txt','r')
-        infile1 = read1.readlines()
-        for lines1 in infile1:
-            stalgegevens = lines1.split(';')
-            voornaamstal = stalgegevens[0]
-            achternaamstal = stalgegevens[1]
-            ovstal = stalgegevens[9]
-            stalnummer = stalgegevens[10].strip('\n')
+                if voornaam == voornaamstal and achternaam == achternaamstal and ov == ovstal:
+                    self.stalErrorText = ('U heeft al een fiets gestald op plek: ' + str(stalnummer))
+                    showinfo(title='Error', message=self.stalErrorText)
+                    return self.menu2
 
-            if voornaam == voornaamstal and achternaam == achternaamstal and ov == ovstal:
-                self.stalErrorText = ('U heeft al een fiets gestald op plek: ' + str(stalnummer))
-                showinfo(title='Error', message=self.stalErrorText)
-                return self.login()
+                if len(infile1) == 701:
+                    self.stalVolText = ('De fietsenstalling zit vol')
+                    showinfo(title='Error', message=self.stalVolText)
+                    return self.login()
 
-            if len(infile1) == 701:
-                self.stalVolText = ('De fietsenstalling zit vol')
-                showinfo(title='Error', message=self.stalVolText)
-                return self.login()
+                while stalnummer == self.rnummer:
+                    self.rnummer = random.randint(1, 701)
 
-            while stalnummer == rnummer:
-                rnummer = random.randint(1, 701)
+            read1.close()
+            raise Exception
 
-        read1.close()
+        except:
+            self.cijfer = random.randint(1001, 999999)
 
-        self.cijfer = random.randint(1001, 999999)
+            datum = time.strftime('%H;%M;%S;%d;%m;%Y')
 
-        datum = time.strftime('%H;%M;%S;%d;%m;%Y')
+            writeStal = open('Stallen.txt','a')
+            writeStal.write(voornaam + ';' + achternaam + ';' + str(self.cijfer) + ';' + datum + ';' + str(ov) + ';' + str(self.rnummer) + '\n')
+            writeStal.close()
 
-        writeStal = open('Stallen.txt','a')
-        writeStal.write(voornaam + ';' + achternaam + ';' + str(self.cijfer) + ';' + datum + ';' + str(ov) + ';' + str(rnummer) + '\n')
-        writeStal.close()
-
-        stallenbericht = 'U kunt u fiets veilig stallen op plek: ' + str(rnummer)
-        showinfo(title='Stallen', message=stallenbericht)
-        return self.qrCodePopup()
+            stallenbericht = 'U kunt u fiets veilig stallen op plek: ' + str(self.rnummer)
+            showinfo(title='Stallen', message=stallenbericht)
+            return self.qrCodePopup()
 
     def qrCodePopup(self):    # cijfer nog global maken ofzo en qr code toevoegen ofzo
         self.bewaartext = (
@@ -556,14 +571,29 @@ class Window(Tk):
         line = ingelogd.readlines()
         for lines in line:
             x = lines.split(';')
+            self.naami = x[0]
+            self.anaami = x[1]
+            self.ovi = x[4]
 
-        if self.cijfer > 0:
-            self.stal = self.cijfer
-        else:
+        try:
+            stalling = open('Stallen.txt', 'r')
+            zin = stalling.readlines()
+            for zinnen in zin:
+                k = zinnen.split(';')
+                self.naams = k[0]
+                self.anaams = k[1]
+                self.ovs = k[9]
+                self.nummerst = k[10]
+            if self.naams == self.naami and self.anaams == self.anaami and self.ovs == self.ovi:
+                self.stal = self.nummerst
+            else:
+                raise Exception
+
+        except:
             self.stal = '\\'
 
         self.infotext = (
-                    'Geregistreerde naam: ' + self.naam + ' ' + self.achternaam + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV: ' + self.ov + '\n' + 'Stallingsplek:' + self.stal)
+                    'Geregistreerde naam: ' + self.naam + ' ' + self.achternaam + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV: ' + self.ov + '\n' + 'Stallingsplek:' + self.stal + '\n' + 'Om wachtwoord te veranderen, druk in het menu op *wachtwoord veranden*')
         showinfo(title='Stallen', message=self.infotext)
 
     def InfoEigenaar(self):
@@ -573,7 +603,6 @@ class Window(Tk):
                 regel = item.split(';')
                 self.naam = regel[0]
                 self.achternaam = regel[1]
-                self.ww = regel[2]
                 self.tel = regel[3]
                 self.ov = regel[4]
                 self.infopopup()
@@ -630,7 +659,7 @@ class Window(Tk):
             print(gegevens)
 
     def Fietsophalen(self):
-
+        self.top.withdraw()
         self.top = Toplevel()
         self.top.title('Ophalen')
         self.top.geometry("1920x1080")
@@ -671,13 +700,18 @@ class Window(Tk):
         ww = self.oudwwfield.get()
         ww2 = self.nieuwwwfield.get()
 
+        result = ''
+
+        for i in range(0, len(ww)):
+            result = result + chr(ord(ww[i]) - 4)
+
         ingelogd = open('Ingelogd.txt','r')
         line = ingelogd.readlines()
         for lines in line:
             x = lines.split(';')
             if not ov == x[4].strip('\n'):
                 return showwarning(title='Error', message='Het ingevulde OV is niet correct.')
-            if not ww == x[2]:
+            if not result == x[2]:
                 return showwarning(title='Wachtwoord', message='Het ingevoerde oude wachtwoord is niet correct.')
             if len(ww2) < 6:
                 return showwarning(title='Wachtwoord', message='Het nieuwe wachtwoord moet minstens 6 karakters bevatten.')
@@ -692,6 +726,11 @@ class Window(Tk):
         if len(ov) is not 4:
             return showwarning(title='OV', message='Het OV moet 4 nummers bevatten')
 
+        result2 = ''
+
+        for i in range(0, len(ww2)):
+            result2 = result2 + chr(ord(ww2[i]) - 4)
+
         infile = open('Gegevens.txt', 'r')
         regel = infile.readlines()
         lijst = []
@@ -704,7 +743,7 @@ class Window(Tk):
                 lijst.append(zinnen)
 
             else:
-                zinnen2 = s[0] + ';' + s[1] + ';' + ww2 + ';' + s[3] + ';' + s[4]
+                zinnen2 = s[0] + ';' + s[1] + ';' + result2 + ';' + s[3] + ';' + s[4]
                 lijst.append(zinnen2)
 
         infile.close()
