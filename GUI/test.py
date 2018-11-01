@@ -573,7 +573,6 @@ class Window(Tk):
             x = lines.split(';')
             self.naami = x[0]
             self.anaami = x[1]
-            self.ovi = x[4]
 
         try:
             stalling = open('Stallen.txt', 'r')
@@ -582,9 +581,8 @@ class Window(Tk):
                 k = zinnen.split(';')
                 self.naams = k[0]
                 self.anaams = k[1]
-                self.ovs = k[9]
                 self.nummerst = k[10]
-            if self.naams == self.naami and self.anaams == self.anaami and self.ovs == self.ovi:
+            if self.naams == self.naami and self.anaams == self.anaami:
                 self.stal = self.nummerst
             else:
                 raise Exception
@@ -592,8 +590,24 @@ class Window(Tk):
         except:
             self.stal = '\\'
 
+
+        try:
+            stalling = open('Huurgegevens.txt', 'r')
+            regel = stalling.readlines()
+            for regels in regel:
+                r = regels.split(';')
+                self.naamh = r[0]
+                self.anaamh = r[1]
+            if self.naamh == self.naamh and self.anaamh == self.anaami:
+                self.huur = 'Ja'
+            else:
+                raise Exception
+
+        except:
+            self.huur = 'Nee'
+
         self.infotext = (
-                    'Geregistreerde naam: ' + self.naam + ' ' + self.achternaam + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV: ' + self.ov + '\n' + 'Stallingsplek:' + self.stal + '\n' + 'Om wachtwoord te veranderen, druk in het menu op *wachtwoord veranden*')
+                    'Geregistreerde naam: ' + self.naam + ' ' + self.achternaam + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV: ' + self.ov + '\n' + 'Stallingsplek: ' + str(self.stal) + '\n' + 'Fiets Gehuurd: '+ self.huur + '\n' + 'Om wachtwoord te veranderen, druk in het menu op *wachtwoord veranden*')
         showinfo(title='Stallen', message=self.infotext)
 
     def InfoEigenaar(self):
@@ -656,7 +670,7 @@ class Window(Tk):
         wfile = open('Stallen.txt', 'w')
         for gegevens in range(len(lijst)):
             wfile.write(lijst[gegevens])
-            print(gegevens)
+            #print(gegevens)
 
     def Fietsophalen(self):
         self.top.withdraw()
