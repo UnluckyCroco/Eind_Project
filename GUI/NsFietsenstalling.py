@@ -1,8 +1,8 @@
 from tkinter import *
-# import tkinter as tk
 from tkinter.messagebox import showwarning, showinfo
 import random
 import qrcode
+import time
 
 class Window(Tk):
     def __init__(self, parent):
@@ -46,8 +46,6 @@ class Window(Tk):
                             bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
                             width=40)
         self.quitbutton.pack(pady=10)
-
-
 
     def regi(self):
         if self.telfield.get() == '':
@@ -284,8 +282,6 @@ class Window(Tk):
                                  width=40)
         self.quitbutton.grid(row=9, column=21, sticky=E, pady=10)
 
-
-
     def menu2(self):
         self.top.withdraw()
         self.top = Toplevel()
@@ -337,8 +333,6 @@ class Window(Tk):
         self.uitloggenbutton.pack(pady=10)
 
     def fiets_stallen(self):
-
-        import time
 
         read = open('Ingelogd.txt', 'r')
         infile = read.readlines()
@@ -421,8 +415,6 @@ class Window(Tk):
 
     def Fiets_huren(self):
 
-        import time
-
         huurnummer = random.randint(1,50)
 
         infile = open('Ingelogd.txt', 'r')
@@ -434,17 +426,17 @@ class Window(Tk):
         lines = file.readlines()
         file.close()
 
-        for line in lines:  # checked of dezelfde gegevens in 'Ingelogd' ook staan in 'Huurgegevens.txt', zoja, dan betekend het dat er al een fiets is gehuurd
+        for line in lines:
             x = line.split(';')
             if inlog[0] == x[0] and inlog[1] == x[1] and inlog[4].strip('\n') == x[2]:
                 huurtext = ('U heeft al een fiets gehuurd')
                 showinfo(title='Error', message=huurtext)
-                return self.login()
+                return self.menu2()
 
             if len(lines) == 50:
                 geenfietsentext = ('Er zijn helaas geen fietsen meer beschikbaar')
                 showinfo(title='Error', message=geenfietsentext)
-                return self.login()
+                return self.menu2()
 
             if huurnummer == x[3]:
                 self.Fiets_huren()
@@ -458,7 +450,7 @@ class Window(Tk):
 
         huurtext = ('Fietsnummer {} is gehuurd vanaf {}.'.format(huurnummer, datum1))
         showinfo(title='Fiets Gehuurd', message=huurtext)
-        return self.login()
+        return self.menu2()
 
     def regel_verwijderen(self):
         lijst = []
@@ -472,7 +464,7 @@ class Window(Tk):
             inlog = iline.split(';')
         infile.close()
 
-        for regel in regels:  # voegt elke regel toe die niet gelijk is aan de teruggebrachde fiets aan een lijst, die hij later terug het bestand in zet
+        for regel in regels:
             x = regel.split(';')
             counter = 0
             if inlog[0] == x[0] and inlog[1] == x[1] and inlog[4].strip('\n') == x[2]:
@@ -483,6 +475,7 @@ class Window(Tk):
         wfile = open('Huurgegevens.txt', 'w')
         for gegevens in range(len(lijst)):
             wfile.write(lijst[gegevens])
+        wfile.close()
 
     def fiets_terugbrengen(self):
 
@@ -576,12 +569,12 @@ class Window(Tk):
                     int(totalY), jaren, int(totalm), maanden, int(totald), dagen, int(totalH), uren, int(totalM),
                     minuten, int(totalS), seconden, str(prijsafg)))
                 showinfo(title='Fiets Teruggebracht', message=terugbrengentext)
-                return self.login()
+                return self.menu2()
 
         if gelukt != 1:
             terugniettext = ('U kan niet de fiets terugbrengen, omdat u geen fiets heeft gehuurd')
             showinfo(title='Error', message=terugniettext)
-            return self.login()
+            return self.menu2()
 
     def infopopup(self):
         ingelogd = open('Ingelogd.txt', 'r')
@@ -606,7 +599,6 @@ class Window(Tk):
 
         except:
             self.stal = '\\'
-
 
         try:
             stalling = open('Huurgegevens.txt', 'r')
@@ -645,12 +637,10 @@ class Window(Tk):
 
     def OphalenPopup(self):
 
-
         readfile = open('Stallen.txt', 'r')
         infile2 = readfile.readlines()
         for lines2 in infile2:
             stalgegevens = lines2.split(';')
-            voornaam = stalgegevens[0]
             stalnummer = stalgegevens[10].strip('\n')
             codegegeven = stalgegevens[2].strip('')
 
@@ -658,9 +648,8 @@ class Window(Tk):
             return showwarning(title='Fout', message='De ingevulde code is onjuist')
         else:
             self.infotext = (
-                    voornaam + ' uw fiets is ontgrendeld en staat vrij om opgehaald te worden op stal #' + stalnummer)
+                    'Uw fiets staat op plek ' + stalnummer + '. U kunt uw fiets meenemen.')
             showinfo(title='Ophaal Plek', message=self.infotext)
-            self.top.withdraw()
             readfile.close()
 
 
@@ -675,7 +664,7 @@ class Window(Tk):
             inlog = iline.split(';')
         infile.close()
 
-        for regel in regels:  # voegt elke regel toe die niet gelijk is aan de teruggebrachde fiets aan een lijst, die hij later terug het bestand in zet
+        for regel in regels:
             x = regel.split(';')
             counter = 0
             if inlog[0] == x[0]:
@@ -687,7 +676,7 @@ class Window(Tk):
         wfile = open('Stallen.txt', 'w')
         for gegevens in range(len(lijst)):
             wfile.write(lijst[gegevens])
-            #print(gegevens)
+        return self.menu2()
 
     def Fietsophalen(self):
         self.top.withdraw()
@@ -797,13 +786,13 @@ class Window(Tk):
 
         self.label = Label(self.top, text='Laatste 4 cijfers van uw OV')
         self.label.grid(row=1, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16))
+        self.label.config(bg= 'gold',font=("Calibri", 16))
         self.label = Label(self.top, text='Oud Wachtwoord')
         self.label.grid(row=2, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16))
+        self.label.config(bg= 'gold',font=("Calibri", 16))
         self.label = Label(self.top, text='Nieuw Wachtwoord')
         self.label.grid(row=3, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16))
+        self.label.config(bg= 'gold',font=("Calibri", 16))
 
         self.ovfield = Entry(master=self.top)
         self.ovfield.grid(row=1, column=21, pady=20)
@@ -815,7 +804,7 @@ class Window(Tk):
         self.nieuwwwfield.grid(row=3, column=21, pady=20)
 
         self.okbutton = Button(self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVeranderen,
-                                   bg='DodgeBlue2', relief=FLAT, font='Calibri',
+                                   bg='DodgerBlue2', relief=FLAT, font='Calibri',
                                    width=40)
         self.okbutton.grid(row=6, column=20, sticky=E)
 
@@ -824,11 +813,9 @@ class Window(Tk):
                                    width=40)
         self.terugbutton.grid(row=6, column=21, sticky=E)
 
-
 if __name__ == "__main__":
     window = Window(None)
     window.geometry('1920x1080')
     window.title('Home')
     window.configure(bg='gold')
     window.mainloop()
-
