@@ -16,34 +16,45 @@ class Window(Tk):
             window = Window(None)
             window.geometry('1920x1080')
             window.title('Home')
+            window.configure(bg= 'gold')
             window.mainloop()
 
     def initialize(self):
+
+
+
         self.rnummer = -1
         self.welcometext = Label(master=self, text='Welkom bij deze NS fietsenstalling\n'
                                                     'Kies een van de volgende opties:',
-                              bg='yellow', relief=SOLID, font='Calibri')
-        self.welcometext.pack(pady = 150)
+                              bg = 'gold', relief=FLAT, font='Sans', fg= 'blue4')
+        self.welcometext.pack(pady = 100)
 
         self.regibutton = Button(master=self, text='Registreren', command=self.Regi,
-                                 bg='lightgreen', relief=SOLID, font='Calibri',
+                                 bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                  width=40)
         self.regibutton.pack(pady=10)
 
         self.logingobutton = Button(master=self, text='Inloggen', command=self.inloggen,
-                               bg='lightgreen', relief=SOLID, font='Calibri',
+                               bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                width=40)
         self.logingobutton.pack(pady=10)
 
         self.infobutton = Button(master=self, text='Informatie', command=self.infoalgemeen,
-                            bg='lightgreen', relief=SOLID, font='Calibri',
+                            bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                             width=40)
         self.infobutton.pack(pady=10)
 
         self.quitbutton = Button(master=self, text='Afsluiten', command=quit,
-                            bg='red', relief=SOLID, font='Calibri',
+                            bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
                             width=40)
         self.quitbutton.pack(pady=10)
+
+        photo = PhotoImage(file="Fietsen.gif")
+        w = Label(self, image=photo)
+        w.photo = photo
+        w.pack()
+
+
 
     def regi(self):
         if self.telfield.get() == '':
@@ -124,30 +135,30 @@ class Window(Tk):
         self.top = Toplevel()
         self.top.title("Registreren")
         self.top.geometry("1920x1080")
+        self.top.configure(bg='gold')
 
         self.label = Label(self.top, text='Voornaam')
         self.label.grid(row=0, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16))
+        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
 
         self.label = Label(self.top, text='Achternaam')
         self.label.grid(row=1, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16))
+        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
 
         self.label = Label(self.top, text='Telefoonnummer(06-)')
         self.label.grid(row=2, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16))
+        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
 
         self.label = Label(self.top, text='Laatste 4 cijfers van uw OV')
         self.label.grid(row=3, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16))
+        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
 
         self.label = Label(self.top, text='Wachtwoord (minimaal 6 karakters)')
         self.label.grid(row=4, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16))
+        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
         self.label = Label(self.top, text='Wachtwoord opnieuw')
         self.label.grid(row=5, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16))
-
+        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
         self.vnaamfield = Entry(master=self.top)
         self.vnaamfield.grid(row=0, column=21, pady=20)
 
@@ -237,18 +248,19 @@ class Window(Tk):
         self.top = Toplevel()
         self.top.title("Inloggen")
         self.top.geometry("1920x1080")
+        self.top.configure(bg='gold')
 
         self.label = Label(self.top, text='Voornaam')
         self.label.grid(row=0, column=20, ipadx=170, sticky=W, pady=10)
-        self.label.config(font=("Calibri", 16))
+        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
 
         self.label = Label(self.top, text='Wachtwoord')
         self.label.grid(row=1, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16))
+        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
 
         self.label = Label(self.top, text='Laatste 4 nummers van uw OV')
         self.label.grid(row=2, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16))
+        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
 
         self.naamfield = Entry(master=self.top)
         self.naamfield.grid(row=0, column=21, pady=20)
@@ -279,6 +291,7 @@ class Window(Tk):
         self.top = Toplevel()
         self.top.title("Fietsen Stalling")
         self.top.geometry("1920x1080")
+        self.top.configure(bg='gold')
 
         self.stallenbutton = Button(master=self.top, text='Fiets Stallen', command=self.fiets_stallen,
                                     bg='lightgreen', relief=SOLID, font='Calibri',
@@ -386,6 +399,7 @@ class Window(Tk):
         self.top = Toplevel()
         self.top.title("Fiets Huren")
         self.top.geometry("1920x1080")
+        self.top.configure(bg='gold')
 
         self.huurtext = Label(master=self.top, text='Weet u zeker dat u een fiets wilt huren?\n'
                                                     'Het tarief is: €1 euro + 20 cent per 15 minuten',
@@ -677,6 +691,7 @@ class Window(Tk):
         self.top = Toplevel()
         self.top.title('Ophalen')
         self.top.geometry("1920x1080")
+        self.top.configure(bg='gold')
 
 
         self.label = Label(self.top, text='Uw QR Code')
@@ -775,6 +790,7 @@ class Window(Tk):
         self.top = Toplevel()
         self.top.title("Wachtwoord Vergeten")
         self.top.geometry("1920x1080")
+        self.top.configure(bg='yellow')
 
         self.label = Label(self.top, text='Laatste 4 cijfers van uw OV')
         self.label.grid(row=1, column=20, ipadx=170, sticky=W)
@@ -810,6 +826,6 @@ if __name__ == "__main__":
     window = Window(None)
     window.geometry('1920x1080')
     window.title('Home')
-    window.configure(bg='picture.png')
+    window.configure(bg='gold')
     window.mainloop()
 
