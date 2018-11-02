@@ -49,10 +49,10 @@ class Window(Tk):
                             width=40)
         self.quitbutton.pack(pady=10)
 
-        photo = PhotoImage(file="Fietsen.gif")
-        w = Label(self, image=photo)
-        w.photo = photo
-        w.pack()
+        # photo = PhotoImage(file="Fietsen.gif")
+        # w = Label(self, image=photo)
+        # w.photo = photo
+        # w.pack()
 
 
 
@@ -299,6 +299,9 @@ class Window(Tk):
         self.top.title("Fietsen Stalling")
         self.top.geometry("1920x1080")
         self.top.configure(bg='gold')
+
+        self.invisiblebutton = Label(master=self.top, bg='gold')
+        self.invisiblebutton.pack(pady=50)
 
         self.stallenbutton = Button(master=self.top, text='Fiets Stallen', command=self.fiets_stallen,
                                     bg='DodgerBlue2', relief=FLAT, font='Calibri',
