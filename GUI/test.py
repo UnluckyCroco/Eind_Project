@@ -810,6 +810,6 @@ if __name__ == "__main__":
     window = Window(None)
     window.geometry('1920x1080')
     window.title('Home')
-    window.configure(bg='gray')
+    window.configure(bg='picture.png')
     window.mainloop()
 
