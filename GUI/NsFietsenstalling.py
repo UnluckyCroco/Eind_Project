@@ -506,11 +506,6 @@ class Window(Tk):
                 datummt = time.strftime('%m')  # maand
                 datumYt = time.strftime('%Y')  # jaar
 
-                tijddatum = tijdHt + ':' + tijdMt + ':' + tijdSt + ' ' + datumdt + '/' + datummt + '/' + datumYt
-
-                print('U heeft de fiets gehuurd sinds',
-                      '{}:{}:{} {}/{}/{}'.format(datumstartH, datumstartM, datumstartS, datumstartd, datumstartm,
-                                                 datumstartY), 'en de fiets terug gebracht op', tijddatum)
                 total = int(datumstartH) * 3600 + int(datumstartM) * 60 + int(datumstartS) + int(
                     datumstartd) * dag + int(datumstartm) / 12 * jaar + int(datumstartY) * jaar
                 totalt = int(tijdHt) * 3600 + int(tijdMt) * 60 + int(tijdSt) + int(datumdt) * dag + int(
@@ -588,7 +583,7 @@ class Window(Tk):
             if self.naams == self.naami and self.anaams == self.anaami:
                 self.stal = self.nummerst
             else:
-                raise Exception
+                self.stal = '\\'
 
         except:
             self.stal = '\\'
@@ -600,7 +595,7 @@ class Window(Tk):
                 r = regels.split(';')
                 self.naamh = r[0]
                 self.anaamh = r[1]
-            if self.naamh == self.naamh and self.anaamh == self.anaami:
+            if self.naamh == self.naami and self.anaamh == self.anaami:
                 self.huur = 'Ja'
             else:
                 raise Exception
@@ -766,6 +761,17 @@ class Window(Tk):
         for regels in range(len(lijst)):
             write.write(lijst[regels])
         write.close()
+
+        fopen = open('Ingelogd.txt','r')
+        lees = fopen.readlines()
+        for lezen in lees:
+            h = lezen.split(';')
+        fopen.close()
+
+        ww3 = open('Ingelogd.txt','w')
+        gegevens = h[0] + ';' + h[1] + ';' + result2 + ';' + h[3] + ';' + h[4]
+        ww3.write(gegevens)
+        ww3.close()
 
         showwarning(title='Wachtwoord veranderd', message='Wachtwoord Succesvol veranderd!')
         return self.menu2()
