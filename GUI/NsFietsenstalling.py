@@ -21,8 +21,6 @@ class Window(Tk):
 
     def initialize(self):
 
-
-
         self.rnummer = -1
         self.welcometext = Label(master=self, text='Welkom bij deze NS fietsenstalling\n'
                                                     'Kies een van de volgende opties:',
@@ -48,11 +46,6 @@ class Window(Tk):
                             bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
                             width=40)
         self.quitbutton.pack(pady=10)
-
-        # photo = PhotoImage(file="Fietsen.gif")
-        # w = Label(self, image=photo)
-        # w.photo = photo
-        # w.pack()
 
 
 
