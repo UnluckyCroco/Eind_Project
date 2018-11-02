@@ -189,13 +189,11 @@ class Window(Tk):
         w.pack()
 
     def informatieIedereen(self):
-        bezet = 0
         regel = open('Stallen.txt', 'r')
-        for line in regel.readlines():
-            bezet += 1
+        line = regel.readlines()
         regel.close()
-        if bezet < 701:
-            vrij = 701 - bezet
+        if len(line) < 701:
+            vrij = 701 - len(line)
         else:
             vrij = 0
         return vrij
