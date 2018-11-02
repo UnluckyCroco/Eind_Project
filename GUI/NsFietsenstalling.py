@@ -183,11 +183,6 @@ class Window(Tk):
                                  width=40)
         self.quitbutton.grid(row=8, column=21, pady=10)
 
-        photo = PhotoImage(file="Fietsen.gif")
-        w = Label(self, image=photo)
-        w.photo = photo
-        w.pack()
-
     def informatieIedereen(self):
         regel = open('Stallen.txt', 'r')
         line = regel.readlines()
