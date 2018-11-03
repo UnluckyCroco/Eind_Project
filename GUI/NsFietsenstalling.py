@@ -569,43 +569,46 @@ class Window(Tk):
         line = ingelogd.readlines()
         for lines in line:
             x = lines.split(';')
-            self.naami = x[0]
-            self.anaami = x[1]
 
-        try:
-            stalling = open('Stallen.txt', 'r')
-            zin = stalling.readlines()
-            for zinnen in zin:
-                k = zinnen.split(';')
-                self.naams = k[0]
-                self.anaams = k[1]
-                self.nummerst = k[10]
-            if self.naams == self.naami and self.anaams == self.anaami:
-                self.stal = self.nummerst
+        stalling = open('Stallen.txt', 'r')
+        zin = stalling.readlines()
+
+        for zinnen in zin:
+            k = zinnen.split(';')
+            if k[0] == x[0] and k[1] == x[1]:
+                self.stal = k[10]
             else:
                 self.stal = '\\'
 
-        except:
-            self.stal = '\\'
+        stalling = open('Huurgegevens.txt', 'r')
+        regel = stalling.readlines()
 
-        try:
-            stalling = open('Huurgegevens.txt', 'r')
-            regel = stalling.readlines()
-            for regels in regel:
-                r = regels.split(';')
-                self.naamh = r[0]
-                self.anaamh = r[1]
-            if self.naamh == self.naami and self.anaamh == self.anaami:
+        for regels in regel:
+            r = regels.split(';')
+            if r[0] == x[0] and r[1] == x[1]:
                 self.huur = 'Ja'
             else:
-                raise Exception
+                self.huur = 'Nee'
 
-        except:
+        try:
+            if self.huur == 'Ja':
+                pass
+        except AttributeError:
             self.huur = 'Nee'
 
+        try:
+            if self.stal == '\\':
+                pass
+        except AttributeError:
+            self.stal = '\\'
+
         self.infotext = (
-                    'Geregistreerde naam: ' + self.naam + ' ' + self.achternaam + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV: ' + self.ov + '\n' + 'Stallingsplek: ' + str(self.stal) + '\n' + 'Fiets Gehuurd: '+ self.huur + '\n' + 'Om wachtwoord te veranderen, druk in het menu op *wachtwoord veranden*')
+                'Geregistreerde naam: ' + self.naam + ' ' + self.achternaam + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV: ' + self.ov + '\n' + 'Stallingsplek: ' + str(
+            self.stal) + '\n' + 'Fiets Gehuurd: ' + self.huur + '\n' + 'Om wachtwoord te veranderen, druk in het menu op wachtwoord veranden')
         showinfo(title='Stallen', message=self.infotext)
+
+        self.stal = '\\'
+        self.huur = 'Nee'
 
     def InfoEigenaar(self):
             gegevens = open('Ingelogd.txt', 'r')
