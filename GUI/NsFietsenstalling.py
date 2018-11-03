@@ -169,17 +169,17 @@ class Window(Tk):
         self.wwr2field.grid(row=5, column=21, pady=20)
 
         self.registrerenbutton = Button(self.top, text='Registreren', command=self.regi,
-                                   bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                   bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                    width=40)
         self.registrerenbutton.grid(row=6, column=21, sticky=E, pady=10)
 
         self.terugbutton = Button(self.top, text='Terug', command=self.exit,
-                                   bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                   bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                    width=40)
         self.terugbutton.grid(row=7, column=21, sticky=E, pady=10)
 
         self.quitbutton = Button(master=self.top, text='Afsluiten', command=quit,
-                                 bg='goldenrod', relief=FLAT, font='Calibri',
+                                 bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
                                  width=40)
         self.quitbutton.grid(row=8, column=21, pady=10)
 
@@ -261,17 +261,17 @@ class Window(Tk):
         self.ovfield.grid(row=2, column=21, pady=20)
 
         self.loginbutton = Button(master=self.top, text='Inloggen', command=self.login,
-                                  bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                  bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                   width=40)
         self.loginbutton.grid(row=6, column=21, sticky=E, pady=10)
 
         self.terugbutton = Button(self.top, text='Terug', command=self.exit,
-                                  bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                  bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                   width=40)
         self.terugbutton.grid(row=7, column=21, sticky=E, pady=10)
 
         self.quitbutton = Button(master=self.top, text='Afsluiten', command=quit,
-                                 bg='goldenrod', relief=FLAT, font='Calibri',
+                                 bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
                                  width=40)
         self.quitbutton.grid(row=9, column=21, sticky=E, pady=10)
 
@@ -286,42 +286,42 @@ class Window(Tk):
         self.invisiblebutton.pack(pady=50)
 
         self.stallenbutton = Button(master=self.top, text='Fiets Stallen', command=self.fiets_stallen,
-                                    bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                    bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                     width=40)
         self.stallenbutton.pack(pady=10)
 
         self.ophalenbutton = Button(master=self.top, text='Fiets Ophalen', command=self.Fietsophalen,
-                                    bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                    bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                     width=40)
         self.ophalenbutton.pack(pady=10)
 
         self.hurenbutton = Button(master=self.top, text='Fiets Huren', command=self.fiets_huren,
-                                  bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                  bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                   width=40)
         self.hurenbutton.pack(pady=10)
 
         self.terugbrengenbutton = Button(master=self.top, text='Huurfiets Terugbrengen', command=self.fiets_terugbrengen,
-                                         bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                         bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                          width=40)
         self.terugbrengenbutton.pack(pady=10)
 
         self.informatiebutton = Button(master=self.top, text='Informatie', command=self.InfoEigenaar,
-                                       bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                       bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                        width=40)
         self.informatiebutton.pack(pady=10)
 
         self.hulpqrbutton = Button(master=self.top, text='Hulp QR', command=self.QRHulpPopup,
-                                       bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                       bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                        width=40)
         self.hulpqrbutton.pack(pady=10)
 
         self.wwveranderen = Button(master=self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVeranderenWindow,
-                                   bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                   bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                    width=40)
         self.wwveranderen.pack(pady=10)
 
         self.uitloggenbutton = Button(master=self.top, text='Uitloggen', command=self.Uitloggen,
-                                      bg='goldenrod', relief=FLAT, font='Calibri',
+                                      bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
                                       width=40)
         self.uitloggenbutton.pack(pady=10)
 
