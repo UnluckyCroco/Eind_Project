@@ -9,4 +9,7 @@
   -Stephen Nedd
   
 ---Introductie---
-Dit is onze code voor een NS Fietsenstalling
+Dit is onze code voor een NS Fietsenstalling. je kunt hierop een plek reserveren in de stalling en een ov fiets huren.
+
+---Handleiding---
+
