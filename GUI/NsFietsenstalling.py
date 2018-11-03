@@ -71,10 +71,10 @@ class Window(Tk):
         else:
             digit = ' '
         if telefoon is not digit:
-            return showwarning(title='Telefoon', message='Telefoonnummer mag alleen nummers bevatten')
+            return showwarning(title='Telefoon', message='Telefoonnummer mag alleen cijfers bevatten')
 
         if len(telefoon) is not 8:
-            return showwarning(title='Telefoon', message='Telefoonnummer moet 8 nummers bevatten')
+            return showwarning(title='Telefoon', message='Telefoonnummer moet 8 cijfers bevatten')
 
         gegevens = open('Gegevens.txt','r')
         line = gegevens.readlines()
@@ -604,7 +604,7 @@ class Window(Tk):
 
         self.infotext = (
                 'Geregistreerde naam: ' + self.naam + ' ' + self.achternaam + '\n' + 'Geregisteerd telefoon nummer: ' + self.tel + '\n' + 'Geregisteerde OV: ' + self.ov + '\n' + 'Stallingsplek: ' + str(
-            self.stal) + '\n' + 'Fiets Gehuurd: ' + self.huur + '\n' + 'Om wachtwoord te veranderen, druk in het menu op wachtwoord veranden')
+            self.stal) + '\n' + 'Fiets Gehuurd: ' + self.huur + '\n' + 'Om wachtwoord te veranderen, druk in het menu op wachtwoord veranderen')
         showinfo(title='Stallen', message=self.infotext)
 
         self.stal = '\\'
@@ -708,9 +708,11 @@ class Window(Tk):
             return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
         if self.nieuwwwfield.get() == '':
             return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
+
         ov = self.ovfield.get()
         ww = self.oudwwfield.get()
         ww2 = self.nieuwwwfield.get()
+
 
         result = ''
 
@@ -727,6 +729,8 @@ class Window(Tk):
                 return showwarning(title='Wachtwoord', message='Het ingevoerde oude wachtwoord is niet correct.')
             if len(ww2) < 6:
                 return showwarning(title='Wachtwoord', message='Het nieuwe wachtwoord moet minstens 6 karakters bevatten.')
+            if self.nieuwwwfield.get() != self.nieuwwwopnieuwfield.get():
+                return showwarning(title='Ongelijk', message='De wachtwoorden zijn ongelijk')
 
         if ov.isdigit():
             nummer = ov
@@ -795,6 +799,9 @@ class Window(Tk):
         self.label = Label(self.top, text='Nieuw Wachtwoord')
         self.label.grid(row=3, column=20, ipadx=170, sticky=W)
         self.label.config(bg= 'gold',font=("Calibri", 16))
+        self.label = Label(self.top, text='Nieuw Wachtwoord Opnieuw')
+        self.label.grid(row=4, column=20, ipadx=170, sticky=W)
+        self.label.config(bg='gold', font=("Calibri", 16))
 
         self.ovfield = Entry(master=self.top)
         self.ovfield.grid(row=1, column=21, pady=20)
@@ -804,6 +811,9 @@ class Window(Tk):
 
         self.nieuwwwfield = Entry(master=self.top, show='*')
         self.nieuwwwfield.grid(row=3, column=21, pady=20)
+
+        self.nieuwwwopnieuwfield = Entry(master=self.top, show='*')
+        self.nieuwwwopnieuwfield.grid(row=4, column=21, pady=20)
 
         self.okbutton = Button(self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVeranderen,
                                    bg='DodgerBlue2', relief=FLAT, font='Calibri',
