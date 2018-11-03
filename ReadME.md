@@ -16,7 +16,7 @@ Eind_Project
 
 ---Introductie---
 
-	Dit is onze code voor een NS Fietsenstalling. je kunt hierop een plek reserveren in de stalling en een ov fiets huren.
+	Dit is onze code voor een NS Fietsenstalling. Je kunt in dit programma een plek reserveren in de stalling en een ov fiets huren.
 
 ---Handleiding---
 
