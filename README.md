@@ -2,13 +2,15 @@
   -NS Fietsenstalling
 
 ---Leden---
-  -Iwan van der Wal
+ 
+ -Iwan van der Wal
   -Daniel Phoeng
   -Koen Schreur
   -Olaf Westra
   -Stephen Nedd
   
 ---Introductie---
+
 Dit is onze code voor een NS Fietsenstalling. je kunt hierop een plek reserveren in de stalling en een ov fiets huren.
 
 ---Handleiding---
