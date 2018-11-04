@@ -133,60 +133,64 @@ class Window(Tk):
         self.top.geometry("1920x1080")
         self.top.configure(bg='gold')
 
-        self.label = Label(self.top, text='Voornaam')
-        self.label.grid(row=0, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
+        self.label = Label(self.top, text='')
+        self.label.grid(row=0, column=20, ipadx=170, sticky=W, pady=125)
+        self.label.config(bg='gold')
 
-        self.label = Label(self.top, text='Achternaam')
+        self.label = Label(self.top, text='Voornaam')
         self.label.grid(row=1, column=20, ipadx=170, sticky=W)
         self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
 
-        self.label = Label(self.top, text='Telefoonnummer(06-)')
+        self.label = Label(self.top, text='Achternaam')
         self.label.grid(row=2, column=20, ipadx=170, sticky=W)
         self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
 
-        self.label = Label(self.top, text='Laatste 4 cijfers van uw OV')
+        self.label = Label(self.top, text='Telefoonnummer(06-)')
         self.label.grid(row=3, column=20, ipadx=170, sticky=W)
         self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
 
-        self.label = Label(self.top, text='Wachtwoord (minimaal 6 karakters)')
+        self.label = Label(self.top, text='Laatste 4 cijfers van uw OV')
         self.label.grid(row=4, column=20, ipadx=170, sticky=W)
         self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
-        self.label = Label(self.top, text='Wachtwoord opnieuw')
+
+        self.label = Label(self.top, text='Wachtwoord (minimaal 6 karakters)')
         self.label.grid(row=5, column=20, ipadx=170, sticky=W)
         self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
+        self.label = Label(self.top, text='Wachtwoord opnieuw')
+        self.label.grid(row=6, column=20, ipadx=170, sticky=W)
+        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
         self.vnaamfield = Entry(master=self.top)
-        self.vnaamfield.grid(row=0, column=21, pady=20)
+        self.vnaamfield.grid(row=1, column=21, pady=20)
 
         self.anaamfield = Entry(master=self.top)
-        self.anaamfield.grid(row=1, column=21, pady=20)
+        self.anaamfield.grid(row=2, column=21, pady=20)
 
         self.telfield = Entry(master=self.top)
-        self.telfield.grid(row=2, column=21, pady=20)
+        self.telfield.grid(row=3, column=21, pady=20)
 
         self.ovrfield = Entry(master=self.top)
-        self.ovrfield.grid(row=3, column=21, pady=20)
+        self.ovrfield.grid(row=4, column=21, pady=20)
 
         self.wwrfield = Entry(master=self.top, show='*')
-        self.wwrfield.grid(row=4, column=21, pady=20)
+        self.wwrfield.grid(row=5, column=21, pady=20)
 
         self.wwr2field = Entry(master=self.top, show='*')
-        self.wwr2field.grid(row=5, column=21, pady=20)
+        self.wwr2field.grid(row=6, column=21, pady=20)
 
         self.registrerenbutton = Button(self.top, text='Registreren', command=self.regi,
                                    bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                    width=40)
-        self.registrerenbutton.grid(row=6, column=21, sticky=E, pady=10)
+        self.registrerenbutton.grid(row=7, column=21, sticky=E, pady=10)
 
         self.terugbutton = Button(self.top, text='Terug', command=self.exit,
                                    bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                    width=40)
-        self.terugbutton.grid(row=7, column=21, sticky=E, pady=10)
+        self.terugbutton.grid(row=8, column=21, sticky=E, pady=10)
 
         self.quitbutton = Button(master=self.top, text='Afsluiten', command=quit,
                                  bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
                                  width=40)
-        self.quitbutton.grid(row=8, column=21, pady=10)
+        self.quitbutton.grid(row=9, column=21, pady=10)
 
     def informatieIedereen(self):
         regel = open('Stallen.txt', 'r')
@@ -244,36 +248,40 @@ class Window(Tk):
         self.top.geometry("1920x1080")
         self.top.configure(bg='gold')
 
+        self.label = Label(self.top, text='')
+        self.label.grid(row=0, column=20, ipadx=170, sticky=W, pady=125)
+        self.label.config(bg='gold')
+
         self.label = Label(self.top, text='Voornaam')
-        self.label.grid(row=0, column=20, ipadx=170, sticky=W, pady=10)
-        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
+        self.label.grid(row=1, column=20, ipadx=170, sticky=W, pady=10)
+        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4',padx=200)
 
         self.label = Label(self.top, text='Wachtwoord')
-        self.label.grid(row=1, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
+        self.label.grid(row=2, column=20, ipadx=170, sticky=W)
+        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4',padx=200)
 
         self.label = Label(self.top, text='Laatste 4 nummers van uw OV')
-        self.label.grid(row=2, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
+        self.label.grid(row=3, column=20, ipadx=170, sticky=W)
+        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4',padx=200)
 
         self.naamfield = Entry(master=self.top)
-        self.naamfield.grid(row=0, column=21, pady=20)
+        self.naamfield.grid(row=1, column=21, pady=20)
 
         self.wwfield = Entry(master=self.top, show='*')
-        self.wwfield.grid(row=1, column=21, pady=20)
+        self.wwfield.grid(row=2, column=21, pady=20)
 
         self.ovfield = Entry(master=self.top)
-        self.ovfield.grid(row=2, column=21, pady=20)
+        self.ovfield.grid(row=3, column=21, pady=20)
 
         self.loginbutton = Button(master=self.top, text='Inloggen', command=self.login,
                                   bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                   width=40)
-        self.loginbutton.grid(row=6, column=21, sticky=E, pady=10)
+        self.loginbutton.grid(row=7, column=21, sticky=E, pady=10)
 
         self.terugbutton = Button(self.top, text='Terug', command=self.exit,
                                   bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                   width=40)
-        self.terugbutton.grid(row=7, column=21, sticky=E, pady=10)
+        self.terugbutton.grid(row=8, column=21, sticky=E, pady=10)
 
         self.quitbutton = Button(master=self.top, text='Afsluiten', command=quit,
                                  bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
@@ -287,10 +295,10 @@ class Window(Tk):
         self.top.geometry("1920x1080")
         self.top.configure(bg='gold')
 
-        photo = PhotoImage(file="ns.png")
+        photo = PhotoImage(master=self, file="ns.png")
         w = Label(self.top, image=photo, bg='gold')
         w.photo = photo
-        w.pack(pady=50)
+        w.pack(pady=25)
 
 
         self.stallenbutton = Button(master=self.top, text='Fiets Stallen', command=self.fiets_stallen,
@@ -399,15 +407,15 @@ class Window(Tk):
         self.top.geometry("1920x1080")
         self.top.configure(bg='gold')
 
-        photo = PhotoImage(file="ns.png")
+        photo = PhotoImage(master=self, file="ns.png")
         w = Label(self, image=photo, bg='gold')
         w.photo = photo
-        w.pack(pady=10)
+        w.pack(pady=25)
 
         self.huurtext = Label(master=self.top, text='Weet u zeker dat u een fiets wilt huren?\n'
                                                     'Het tarief is: €1 euro + 20 cent per 15 minuten',
                                                     relief=FLAT, font='Calibri',fg='blue4', bg='gold')
-        self.huurtext.pack(pady=150)
+        self.huurtext.pack(pady=50)
 
         self.accepteerbutton = Button(master=self.top, text='Ja', command=self.Fiets_huren,
                                     bg='DodgerBlue2', relief=FLAT, font='Calibri', fg= 'white',
