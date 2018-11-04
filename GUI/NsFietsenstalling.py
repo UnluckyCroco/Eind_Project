@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter as tk
 from tkinter.messagebox import showwarning, showinfo
 import random
 import qrcode
@@ -14,7 +15,7 @@ class Window(Tk):
         self.top.withdraw()
         if __name__ == "__main__":
             window = Window(None)
-            window.geometry('1920x1080')
+            window.geometry('1280x720')
             window.title('Home')
             window.configure(bg='gold')
             window.mainloop()
@@ -33,22 +34,22 @@ class Window(Tk):
         self.welcometext.pack(pady = 50)
 
         self.regibutton = Button(master=self, text='Registreren', command=self.Regi,
-                                 bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                                 bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                  width=40)
         self.regibutton.pack(pady=10)
 
         self.logingobutton = Button(master=self, text='Inloggen', command=self.inloggen,
-                               bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                               bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                width=40)
         self.logingobutton.pack(pady=10)
 
         self.infobutton = Button(master=self, text='Informatie', command=self.infoalgemeen,
-                            bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                            bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                             width=40)
         self.infobutton.pack(pady=10)
 
         self.quitbutton = Button(master=self, text='Afsluiten', command=quit,
-                            bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
+                            bg='goldenrod', relief=FLAT, font='Arial', fg='blue4',
                             width=40)
         self.quitbutton.pack(pady=10)
 
@@ -71,7 +72,7 @@ class Window(Tk):
         ww = self.wwrfield.get()
         ww2 = self.wwr2field.get()
 
-        if telefoon.isdigit():  # TELEFOON
+        if telefoon.isdigit():
             digit = telefoon
         else:
             digit = ' '
@@ -130,35 +131,35 @@ class Window(Tk):
         self.withdraw()
         self.top = Toplevel()
         self.top.title("Registreren")
-        self.top.geometry("1920x1080")
+        self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
         self.label = Label(self.top, text='')
-        self.label.grid(row=0, column=20, ipadx=170, sticky=W, pady=125)
+        self.label.grid(row=0, column=20, ipadx=170, sticky=W, pady=50)
         self.label.config(bg='gold')
 
         self.label = Label(self.top, text='Voornaam')
         self.label.grid(row=1, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
+        self.label.config(font=("Arial", 16),bg = 'gold',fg= 'blue4')
 
         self.label = Label(self.top, text='Achternaam')
         self.label.grid(row=2, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
+        self.label.config(font=("Arial", 16),bg = 'gold',fg= 'blue4')
 
         self.label = Label(self.top, text='Telefoonnummer(06-)')
         self.label.grid(row=3, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
+        self.label.config(font=("Arial", 16),bg = 'gold',fg= 'blue4')
 
         self.label = Label(self.top, text='Laatste 4 cijfers van uw OV')
         self.label.grid(row=4, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
+        self.label.config(font=("Arial", 16),bg = 'gold',fg= 'blue4')
 
         self.label = Label(self.top, text='Wachtwoord (minimaal 6 karakters)')
         self.label.grid(row=5, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
+        self.label.config(font=("Arial", 16),bg = 'gold',fg= 'blue4')
         self.label = Label(self.top, text='Wachtwoord opnieuw')
         self.label.grid(row=6, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4')
+        self.label.config(font=("Arial", 16),bg = 'gold',fg= 'blue4')
         self.vnaamfield = Entry(master=self.top)
         self.vnaamfield.grid(row=1, column=21, pady=20)
 
@@ -178,17 +179,17 @@ class Window(Tk):
         self.wwr2field.grid(row=6, column=21, pady=20)
 
         self.registrerenbutton = Button(self.top, text='Registreren', command=self.regi,
-                                   bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                                   bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                    width=40)
         self.registrerenbutton.grid(row=7, column=21, sticky=E, pady=10)
 
         self.terugbutton = Button(self.top, text='Terug', command=self.exit,
-                                   bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                                   bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                    width=40)
         self.terugbutton.grid(row=8, column=21, sticky=E, pady=10)
 
         self.quitbutton = Button(master=self.top, text='Afsluiten', command=quit,
-                                 bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
+                                 bg='goldenrod', relief=FLAT, font='Arial', fg='blue4',
                                  width=40)
         self.quitbutton.grid(row=9, column=21, pady=10)
 
@@ -245,24 +246,24 @@ class Window(Tk):
         self.withdraw()
         self.top = Toplevel()
         self.top.title("Inloggen")
-        self.top.geometry("1920x1080")
+        self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
         self.label = Label(self.top, text='')
-        self.label.grid(row=0, column=20, ipadx=170, sticky=W, pady=125)
+        self.label.grid(row=0, column=20, ipadx=170, sticky=W, pady=50)
         self.label.config(bg='gold')
 
         self.label = Label(self.top, text='Voornaam')
         self.label.grid(row=1, column=20, ipadx=170, sticky=W, pady=10)
-        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4',padx=200)
+        self.label.config(font=("Arial", 16),bg = 'gold',fg= 'blue4')
 
         self.label = Label(self.top, text='Wachtwoord')
         self.label.grid(row=2, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4',padx=200)
+        self.label.config(font=("Arial", 16),bg = 'gold',fg= 'blue4')
 
         self.label = Label(self.top, text='Laatste 4 nummers van uw OV')
         self.label.grid(row=3, column=20, ipadx=170, sticky=W)
-        self.label.config(font=("Calibri", 16),bg = 'gold',fg= 'blue4',padx=200)
+        self.label.config(font=("Arial", 16),bg = 'gold',fg= 'blue4')
 
         self.naamfield = Entry(master=self.top)
         self.naamfield.grid(row=1, column=21, pady=20)
@@ -274,17 +275,17 @@ class Window(Tk):
         self.ovfield.grid(row=3, column=21, pady=20)
 
         self.loginbutton = Button(master=self.top, text='Inloggen', command=self.login,
-                                  bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                                  bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                   width=40)
         self.loginbutton.grid(row=7, column=21, sticky=E, pady=10)
 
         self.terugbutton = Button(self.top, text='Terug', command=self.exit,
-                                  bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                                  bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                   width=40)
         self.terugbutton.grid(row=8, column=21, sticky=E, pady=10)
 
         self.quitbutton = Button(master=self.top, text='Afsluiten', command=quit,
-                                 bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
+                                 bg='goldenrod', relief=FLAT, font='Arial', fg='blue4',
                                  width=40)
         self.quitbutton.grid(row=9, column=21, sticky=E, pady=10)
 
@@ -292,52 +293,51 @@ class Window(Tk):
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title("Fietsen Stalling")
-        self.top.geometry("1920x1080")
+        self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
-        photo = PhotoImage(master=self, file="ns.png")
+        photo = PhotoImage(master=self.top, file="ns.png")
         w = Label(self.top, image=photo, bg='gold')
         w.photo = photo
         w.pack(pady=25)
 
-
         self.stallenbutton = Button(master=self.top, text='Fiets Stallen', command=self.fiets_stallen,
-                                    bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                                    bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                     width=40)
         self.stallenbutton.pack(pady=10)
 
         self.ophalenbutton = Button(master=self.top, text='Fiets Ophalen', command=self.Fietsophalen,
-                                    bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                                    bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                     width=40)
         self.ophalenbutton.pack(pady=10)
 
         self.hurenbutton = Button(master=self.top, text='Fiets Huren', command=self.fiets_huren,
-                                  bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                                  bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                   width=40)
         self.hurenbutton.pack(pady=10)
 
         self.terugbrengenbutton = Button(master=self.top, text='Huurfiets Terugbrengen', command=self.fiets_terugbrengen,
-                                         bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                                         bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                          width=40)
         self.terugbrengenbutton.pack(pady=10)
 
         self.informatiebutton = Button(master=self.top, text='Informatie', command=self.InfoEigenaar,
-                                       bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                                       bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                        width=40)
         self.informatiebutton.pack(pady=10)
 
         self.hulpqrbutton = Button(master=self.top, text='Hulp QR', command=self.QRHulpPopup,
-                                       bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                                       bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                        width=40)
         self.hulpqrbutton.pack(pady=10)
 
         self.wwveranderen = Button(master=self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVeranderenWindow,
-                                   bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                                   bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                    width=40)
         self.wwveranderen.pack(pady=10)
 
         self.uitlogbutton = Button(master=self.top, text='Uitloggen', command=self.Uitloggen,
-                                      bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
+                                      bg='goldenrod', relief=FLAT, font='Arial', fg='blue4',
                                       width=40)
         self.uitlogbutton.pack(pady=10)
 
@@ -392,7 +392,7 @@ class Window(Tk):
             showinfo(title='Stallen', message=stallenbericht)
             return self.qrCodePopup()
 
-    def qrCodePopup(self):    # cijfer nog global maken ofzo en qr code toevoegen ofzo
+    def qrCodePopup(self):
         self.bewaartext = (
             'Bewaar de volgende QR Code om je fiets weer op te halen.')
         showinfo(title='Hulp QR', message=self.bewaartext)
@@ -404,26 +404,26 @@ class Window(Tk):
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title("Fiets Huren")
-        self.top.geometry("1920x1080")
+        self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
-        photo = PhotoImage(master=self, file="ns.png")
-        w = Label(self, image=photo, bg='gold')
+        photo = PhotoImage(master=self.top, file="ns.png")
+        w = Label(self.top, image=photo, bg='gold')
         w.photo = photo
         w.pack(pady=25)
 
         self.huurtext = Label(master=self.top, text='Weet u zeker dat u een fiets wilt huren?\n'
                                                     'Het tarief is: €1 euro + 20 cent per 15 minuten',
-                                                    relief=FLAT, font='Calibri',fg='blue4', bg='gold')
+                                                    relief=FLAT, font='Arial',fg='blue4', bg='gold')
         self.huurtext.pack(pady=50)
 
         self.accepteerbutton = Button(master=self.top, text='Ja', command=self.Fiets_huren,
-                                    bg='DodgerBlue2', relief=FLAT, font='Calibri', fg= 'white',
+                                    bg='DodgerBlue2', relief=FLAT, font='Arial', fg= 'white',
                                     width=40)
         self.accepteerbutton.pack(pady=10)
 
-        self.accepteernietbutton = Button(master=self.top, text='Nee', command=self.login,
-                                    bg='goldenrod', relief=FLAT, font='Calibri   ', fg='blue4',
+        self.accepteernietbutton = Button(master=self.top, text='Nee', command=self.menu2,
+                                    bg='goldenrod', relief=FLAT, font='Arial   ', fg='blue4',
                                     width=40)
         self.accepteernietbutton.pack(pady=10)
 
@@ -581,9 +581,9 @@ class Window(Tk):
                 return self.menu2()
 
         if gelukt != 1:
-            terugniettext = ('U kan niet de fiets terugbrengen, omdat u geen fiets heeft gehuurd')
-            showinfo(title='Error', message=terugniettext)
-            return self.menu2()
+            self.infotext = (
+                'U kan niet de fiets terugbrengen, omdat u geen fiets heeft gehuurd')
+            showinfo(title='Hulp QR', message=self.infotext)
 
     def infopopup(self):
         ingelogd = open('Ingelogd.txt', 'r')
@@ -694,31 +694,30 @@ class Window(Tk):
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title('Ophalen')
-        self.top.geometry("1920x1080")
+        self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
-        photo = PhotoImage(file="ns.png")
+        photo = PhotoImage(master=self.top, file="ns.png")
         w = Label(self.top, image=photo, bg='gold')
         w.photo = photo
         w.pack(pady=25)
 
         self.label = Label(self.top, text='Uw QR Code')
-        self.label.config(font=("Calibri", 16),bg='gold', fg='blue4' )
-        self.label.pack(fill=X, padx=25, pady=100)
-
+        self.label.config(font=("Arial", 16),bg='gold', fg='blue4' )
+        self.label.pack(fill=X, padx=25, pady=50)
 
         self.code = Entry(master=self.top)
-        self.code.pack(fill=X, padx=700)
+        self.code.pack(fill=X, padx=300)
 
         self.Enterbutton = Button(master=self.top, text='Enter', command=self.OphalenPopup,
-                                      bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
+                                      bg='DodgerBlue2', relief=FLAT, font='Arial', fg='white',
                                       width=40)
         self.Enterbutton.pack(fill=X, padx=600, pady=25)
 
         self.Closebutton = Button(master=self.top, text='Terug', command=self.menu2,
-                                  bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
+                                  bg='goldenrod', relief=FLAT, font='Arial', fg='blue4',
                                   width=40)
-        self.Closebutton.pack(fill=X, padx=600, pady=10)
+        self.Closebutton.pack(fill=X, padx=600)
 
     def Uitloggen(self):
 
@@ -737,7 +736,6 @@ class Window(Tk):
         ov = self.ovfield.get()
         ww = self.oudwwfield.get()
         ww2 = self.nieuwwwfield.get()
-
 
         result = ''
 
@@ -812,21 +810,24 @@ class Window(Tk):
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title("Wachtwoord Vergeten")
-        self.top.geometry("1920x1080")
+        self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
         self.label = Label(self.top, text='Laatste 4 cijfers van uw OV')
         self.label.grid(row=1, column=20, ipadx=170, sticky=W)
-        self.label.config(bg= 'gold',font=("Calibri", 16))
+        self.label.config(bg= 'gold',font=("Arial", 16))
+
         self.label = Label(self.top, text='Oud Wachtwoord')
         self.label.grid(row=2, column=20, ipadx=170, sticky=W)
-        self.label.config(bg= 'gold',font=("Calibri", 16))
+        self.label.config(bg= 'gold',font=("Arial", 16))
+
         self.label = Label(self.top, text='Nieuw Wachtwoord')
         self.label.grid(row=3, column=20, ipadx=170, sticky=W)
-        self.label.config(bg= 'gold',font=("Calibri", 16))
+        self.label.config(bg= 'gold',font=("Arial", 16))
+
         self.label = Label(self.top, text='Nieuw Wachtwoord Opnieuw')
         self.label.grid(row=4, column=20, ipadx=170, sticky=W)
-        self.label.config(bg='gold', font=("Calibri", 16))
+        self.label.config(bg='gold', font=("Arial", 16))
 
         self.ovfield = Entry(master=self.top)
         self.ovfield.grid(row=1, column=21, pady=20)
@@ -841,18 +842,18 @@ class Window(Tk):
         self.nieuwwwopnieuwfield.grid(row=4, column=21, pady=20)
 
         self.okbutton = Button(self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVeranderen,
-                                   bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                   bg='DodgerBlue2', relief=FLAT, font='Arial',fg='white',
                                    width=40)
-        self.okbutton.grid(row=6, column=20, sticky=E)
+        self.okbutton.grid(row=6, column=20, sticky=E, pady=10)
 
         self.terugbutton = Button(self.top, text='Terug', command=self.menu2,
-                                   bg='goldenrod', relief=FLAT, font='Calibri',
+                                   bg='goldenrod', relief=FLAT, font='Arial',
                                    width=40)
-        self.terugbutton.grid(row=6, column=21, sticky=E)
+        self.terugbutton.grid(row=7, column=20, sticky=E)
 
 if __name__ == "__main__":
     window = Window(None)
-    window.geometry('1920x1080')
+    window.geometry('1280x720')
     window.title('Home')
     window.configure(bg='gold')
     window.mainloop()
