@@ -1,5 +1,4 @@
 from tkinter import *
-import tkinter as tk
 from tkinter.messagebox import showwarning, showinfo
 import random
 import qrcode
@@ -921,3 +920,5 @@ if __name__ == "__main__":
     window.geometry("+{}+{}".format(positionRight, positionDown))
 
     window.mainloop()
+
+    input('Enter:')
