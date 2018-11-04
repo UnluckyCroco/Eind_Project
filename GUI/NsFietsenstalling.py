@@ -17,6 +17,7 @@ class Window(Tk):
             window = Window(None)
             window.geometry('1280x720')
             window.title('Home')
+            window.wm_iconbitmap('ns.ico')
             window.configure(bg='gold')
             window.mainloop()
 
@@ -131,6 +132,7 @@ class Window(Tk):
         self.withdraw()
         self.top = Toplevel()
         self.top.title("Registreren")
+        self.top.wm_iconbitmap('ns.ico')
         self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
@@ -246,6 +248,7 @@ class Window(Tk):
         self.withdraw()
         self.top = Toplevel()
         self.top.title("Inloggen")
+        self.top.wm_iconbitmap('ns.ico')
         self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
@@ -293,6 +296,7 @@ class Window(Tk):
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title("Fietsen Stalling")
+        self.top.wm_iconbitmap('ns.ico')
         self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
@@ -404,6 +408,7 @@ class Window(Tk):
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title("Fiets Huren")
+        self.top.wm_iconbitmap('ns.ico')
         self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
@@ -694,6 +699,7 @@ class Window(Tk):
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title('Ophalen')
+        self.top.wm_iconbitmap('ns.ico')
         self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
@@ -810,6 +816,7 @@ class Window(Tk):
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title("Wachtwoord Vergeten")
+        self.top.wm_iconbitmap('ns.ico')
         self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
@@ -855,5 +862,6 @@ if __name__ == "__main__":
     window = Window(None)
     window.geometry('1280x720')
     window.title('Home')
+    window.wm_iconbitmap('ns.ico')
     window.configure(bg='gold')
     window.mainloop()
