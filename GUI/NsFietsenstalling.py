@@ -765,7 +765,7 @@ class Window(Tk):
 
     def Uitloggen(self):
 
-        readfile = open('Ingelogd.txt','w')   #leegt de Ingelogd bestand
+        readfile = open('Ingelogd.txt','w')
         readfile.close()
         self.exit()
 
@@ -920,5 +920,3 @@ if __name__ == "__main__":
     window.geometry("+{}+{}".format(positionRight, positionDown))
 
     window.mainloop()
-
-    input('Enter:')
