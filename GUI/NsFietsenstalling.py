@@ -328,10 +328,10 @@ class Window(Tk):
                                    width=40)
         self.wwveranderen.pack(pady=10)
 
-        self.uitloggenbutton = Button(master=self.top, text='Uitloggen', command=self.Uitloggen,
+        self.afsluitbutton = Button(master=self.top, text='Afsluiten', command=self.Uitloggen,
                                       bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
                                       width=40)
-        self.uitloggenbutton.pack(pady=10)
+        self.afsluitbutton.pack(pady=10)
 
     def fiets_stallen(self):
 
