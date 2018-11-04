@@ -21,7 +21,7 @@ class Window(Tk):
 
     def initialize(self):
 
-        photo = PhotoImage(file="ns.png")
+        photo = PhotoImage(master=self, file="ns.png")
         w = Label(self, image=photo, bg='gold')
         w.photo = photo
         w.pack(pady=25)
