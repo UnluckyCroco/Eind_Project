@@ -328,10 +328,10 @@ class Window(Tk):
                                    width=40)
         self.wwveranderen.pack(pady=10)
 
-        self.afsluitbutton = Button(master=self.top, text='Afsluiten', command=self.Uitloggen,
+        self.uitlogbutton = Button(master=self.top, text='Uitloggen', command=self.Uitloggen,
                                       bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
                                       width=40)
-        self.afsluitbutton.pack(pady=10)
+        self.uitlogbutton.pack(pady=10)
 
     def fiets_stallen(self):
 
@@ -716,7 +716,7 @@ class Window(Tk):
 
         readfile = open('Ingelogd.txt','w')   #leegt de Ingelogd bestand
         readfile.close()
-        self.quit()
+        self.exit()
 
     def WachtwoordVeranderen(self):
         if self.ovfield.get() == '':
