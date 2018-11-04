@@ -172,9 +172,11 @@ class Window(Tk):
         self.label = Label(self.top, text='Wachtwoord (minimaal 6 karakters)')
         self.label.grid(row=5, column=20, ipadx=170, sticky=W)
         self.label.config(font=("Arial", 16),bg = 'gold',fg= 'blue4')
+
         self.label = Label(self.top, text='Wachtwoord opnieuw')
         self.label.grid(row=6, column=20, ipadx=170, sticky=W)
         self.label.config(font=("Arial", 16),bg = 'gold',fg= 'blue4')
+
         self.vnaamfield = Entry(master=self.top)
         self.vnaamfield.grid(row=1, column=21, pady=20)
 
@@ -852,7 +854,7 @@ class Window(Tk):
     def WachtwoordVeranderenWindow(self):
         self.top.withdraw()
         self.top = Toplevel()
-        self.top.title("Wachtwoord Vergeten")
+        self.top.title("Wachtwoord Veranderen")
         self.top.wm_iconbitmap('ns.ico')
         self.top.geometry("1280x720")
         self.top.configure(bg='gold')
@@ -862,6 +864,10 @@ class Window(Tk):
         positionRight = int(self.top.winfo_screenwidth() / 4 - windowWidth / 1.5)
         positionDown = int(self.top.winfo_screenheight() / 4 - windowHeight / 1.5)
         self.top.geometry("+{}+{}".format(positionRight, positionDown))
+
+        self.label = Label(self.top, text='')
+        self.label.grid(row=0, column=20, ipadx=170, sticky=W, pady=50)
+        self.label.config(bg='gold')
 
         self.label = Label(self.top, text='Laatste 4 cijfers van uw OV')
         self.label.grid(row=1, column=20, ipadx=170, sticky=W)
@@ -894,12 +900,12 @@ class Window(Tk):
         self.okbutton = Button(self.top, text='Wachtwoord Veranderen', command=self.WachtwoordVeranderen,
                                    bg='DodgerBlue2', relief=FLAT, font='Arial',fg='white',
                                    width=40)
-        self.okbutton.grid(row=6, column=20, sticky=E, pady=10)
+        self.okbutton.grid(row=6, column=21, sticky=E, pady=10)
 
         self.terugbutton = Button(self.top, text='Terug', command=self.menu2,
                                    bg='goldenrod', relief=FLAT, font='Arial',
                                    width=40)
-        self.terugbutton.grid(row=7, column=20, sticky=E)
+        self.terugbutton.grid(row=7, column=21, sticky=E)
 
 if __name__ == "__main__":
     window = Window(None)
