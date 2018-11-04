@@ -30,7 +30,7 @@ class Window(Tk):
         self.welcometext = Label(master=self, text='Welkom bij deze NS fietsenstalling\n'
                                                     'Kies een van de volgende opties:',
                               bg = 'gold', relief=FLAT, font='Sans', fg= 'blue4')
-        self.welcometext.pack(pady = 100)
+        self.welcometext.pack(pady = 50)
 
         self.regibutton = Button(master=self, text='Registreren', command=self.Regi,
                                  bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
