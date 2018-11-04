@@ -19,6 +19,13 @@ class Window(Tk):
             window.title('Home')
             window.wm_iconbitmap('ns.ico')
             window.configure(bg='gold')
+
+            windowWidth = window.winfo_reqwidth()
+            windowHeight = window.winfo_reqheight()
+            positionRight = int(window.winfo_screenwidth() / 4 - windowWidth / 1.5)
+            positionDown = int(window.winfo_screenheight() / 4 - windowHeight / 1.5)
+            window.geometry("+{}+{}".format(positionRight, positionDown))
+
             window.mainloop()
 
     def initialize(self):
@@ -136,6 +143,12 @@ class Window(Tk):
         self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
+        windowWidth = self.top.winfo_reqwidth()
+        windowHeight = self.top.winfo_reqheight()
+        positionRight = int(self.top.winfo_screenwidth() / 4 - windowWidth / 1.5)
+        positionDown = int(self.top.winfo_screenheight() / 4 - windowHeight / 1.5)
+        self.top.geometry("+{}+{}".format(positionRight, positionDown))
+
         self.label = Label(self.top, text='')
         self.label.grid(row=0, column=20, ipadx=170, sticky=W, pady=50)
         self.label.config(bg='gold')
@@ -252,6 +265,12 @@ class Window(Tk):
         self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
+        windowWidth = self.top.winfo_reqwidth()
+        windowHeight = self.top.winfo_reqheight()
+        positionRight = int(self.top.winfo_screenwidth() / 4 - windowWidth / 1.5)
+        positionDown = int(self.top.winfo_screenheight() / 4 - windowHeight / 1.5)
+        self.top.geometry("+{}+{}".format(positionRight, positionDown))
+
         self.label = Label(self.top, text='')
         self.label.grid(row=0, column=20, ipadx=170, sticky=W, pady=50)
         self.label.config(bg='gold')
@@ -299,6 +318,12 @@ class Window(Tk):
         self.top.wm_iconbitmap('ns.ico')
         self.top.geometry("1280x720")
         self.top.configure(bg='gold')
+
+        windowWidth = self.top.winfo_reqwidth()
+        windowHeight = self.top.winfo_reqheight()
+        positionRight = int(self.top.winfo_screenwidth() / 4 - windowWidth / 1.5)
+        positionDown = int(self.top.winfo_screenheight() / 4 - windowHeight / 1.5)
+        self.top.geometry("+{}+{}".format(positionRight, positionDown))
 
         photo = PhotoImage(master=self.top, file="ns.png")
         w = Label(self.top, image=photo, bg='gold')
@@ -411,6 +436,12 @@ class Window(Tk):
         self.top.wm_iconbitmap('ns.ico')
         self.top.geometry("1280x720")
         self.top.configure(bg='gold')
+
+        windowWidth = self.top.winfo_reqwidth()
+        windowHeight = self.top.winfo_reqheight()
+        positionRight = int(self.top.winfo_screenwidth() / 4 - windowWidth / 1.5)
+        positionDown = int(self.top.winfo_screenheight() / 4 - windowHeight / 1.5)
+        self.top.geometry("+{}+{}".format(positionRight, positionDown))
 
         photo = PhotoImage(master=self.top, file="ns.png")
         w = Label(self.top, image=photo, bg='gold')
@@ -703,6 +734,12 @@ class Window(Tk):
         self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
+        windowWidth = self.top.winfo_reqwidth()
+        windowHeight = self.top.winfo_reqheight()
+        positionRight = int(self.top.winfo_screenwidth() / 4 - windowWidth / 1.5)
+        positionDown = int(self.top.winfo_screenheight() / 4 - windowHeight / 1.5)
+        self.top.geometry("+{}+{}".format(positionRight, positionDown))
+
         photo = PhotoImage(master=self.top, file="ns.png")
         w = Label(self.top, image=photo, bg='gold')
         w.photo = photo
@@ -820,6 +857,12 @@ class Window(Tk):
         self.top.geometry("1280x720")
         self.top.configure(bg='gold')
 
+        windowWidth = self.top.winfo_reqwidth()
+        windowHeight = self.top.winfo_reqheight()
+        positionRight = int(self.top.winfo_screenwidth() / 4 - windowWidth / 1.5)
+        positionDown = int(self.top.winfo_screenheight() / 4 - windowHeight / 1.5)
+        self.top.geometry("+{}+{}".format(positionRight, positionDown))
+
         self.label = Label(self.top, text='Laatste 4 cijfers van uw OV')
         self.label.grid(row=1, column=20, ipadx=170, sticky=W)
         self.label.config(bg= 'gold',font=("Arial", 16))
@@ -864,4 +907,11 @@ if __name__ == "__main__":
     window.title('Home')
     window.wm_iconbitmap('ns.ico')
     window.configure(bg='gold')
+
+    windowWidth = window.winfo_reqwidth()
+    windowHeight = window.winfo_reqheight()
+    positionRight = int(window.winfo_screenwidth() / 4 - windowWidth / 1.5)
+    positionDown = int(window.winfo_screenheight() / 4 - windowHeight / 1.5)
+    window.geometry("+{}+{}".format(positionRight, positionDown))
+
     window.mainloop()
