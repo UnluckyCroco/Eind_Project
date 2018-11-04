@@ -11,6 +11,10 @@ class Window(Tk):
         self.initialize()
 
     def exit(self):
+        """
+        Hier gaan de codes op het Hoofdmenu op terug als je op Terug drukt. Ook als je succesvol hebt geregistreerd.
+        Het bouwed ook de GUI.
+        """
         self.top.withdraw()
         if __name__ == "__main__":
             window = Window(None)
@@ -28,12 +32,14 @@ class Window(Tk):
             window.mainloop()
 
     def initialize(self):
-
+        """
+        Het Hoofdmenu van de Fietsen stalling, hier registreer je of Log je in. Je kunt ook informatie opvragen
+        van de fietsenstalling.
+        """
         photo = PhotoImage(master=self, file="ns.png")
         w = Label(self, image=photo, bg='gold')
         w.photo = photo
         w.pack(pady=25)
-
         self.rnummer = -1
         self.welcometext = Label(master=self, text='Welkom bij deze NS fietsenstalling\n'
                                                     'Kies een van de volgende opties:',
@@ -61,6 +67,11 @@ class Window(Tk):
         self.quitbutton.pack(pady=10)
 
     def regi(self):
+        """
+        De code voor het registeren, testen of alle velden zijn ingevult, of het ingevulde telefoon en ovnummer uit
+        cijfers bestaat, of er al iemand met de opgegeven voornaam, achternaam en ov bestaat, of het wachtwoord meer
+        dan 6 karakters bevat en velvolgens write hij dit in Gegevens.txt.
+        """
         if self.telfield.get() == '':
             return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
         if self.ovrfield.get() == '':
@@ -97,7 +108,7 @@ class Window(Tk):
                 return showwarning(title='Error', message='Er is al geregistreerd met deze gegevens')
             if telefoon == x[3]:
                 return showwarning(title='Error', message='Er is al iemand met dit telefoonnummer')
-        if ov.isdigit():  # OV
+        if ov.isdigit():
             nummer = ov
         else:
             nummer = ' '
@@ -135,6 +146,9 @@ class Window(Tk):
         return self.exit()
 
     def Regi(self):
+        """
+        De GUI van het registreren scherm.
+        """
         self.withdraw()
         self.top = Toplevel()
         self.top.title("Registreren")
@@ -210,6 +224,9 @@ class Window(Tk):
         self.quitbutton.grid(row=9, column=21, pady=10)
 
     def informatieIedereen(self):
+        """
+        Om bij de popup van informatie het aantal vrije stallingen te laten zien.
+        """
         regel = open('Stallen.txt', 'r')
         line = regel.readlines()
         regel.close()
@@ -220,16 +237,26 @@ class Window(Tk):
         return vrij
 
     def infoalgemeen(self):
+        """
+        De popup die komt als je op Informatie drukt.
+        """
         vrij = 'Om OV-fietsenstalling te gebruiken heeft u een geldige OV-chipkaart en telefoonnummer nodig. Er zijn geen stallingskosten, een fiets huren kost €1 plus €0.20 per kwartier. Plaatsen vrij: '
         vrij2 = self.informatieIedereen()
         vrij3 = str(vrij)+ str(vrij2)
         showinfo(title='Informatie Algemeen', message=vrij3)
 
     def clicked(self):
+        """
+        Als bij het inlog scherm de gegevens niet kloppen.
+        """
         bericht = 'De ingevulde gegevens kloppen niet'
         showwarning(title='popup', message=bericht)
 
     def login(self):
+        """
+        De code voor het inloggen. Hij checked of alle velden zijn ingevuld, vervolgens write hij alles in
+        Ingelogd.txt.
+        """
         if self.naamfield.get() == '':
            return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
         if self.ovfield.get() == '':
@@ -259,6 +286,9 @@ class Window(Tk):
         self.clicked()
 
     def inloggen(self):
+        """
+        De GUI voor het inlog scherm.
+        """
         self.withdraw()
         self.top = Toplevel()
         self.top.title("Inloggen")
@@ -313,6 +343,9 @@ class Window(Tk):
         self.quitbutton.grid(row=9, column=21, sticky=E, pady=10)
 
     def menu2(self):
+        """
+        De GUI van de fietsenstalling. Met knoppen voor alle opties binnen de fietsen stalling.
+        """
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title("Fietsen Stalling")
@@ -372,7 +405,11 @@ class Window(Tk):
         self.uitlogbutton.pack(pady=10)
 
     def fiets_stallen(self):
-
+        """
+        De code voor het stallen van je fiets, hij neemt gegevens uit Ingelogd.txt en maakt een random nummer aan voor
+        de fiets stal plek. Hij checked of je al een fiets hebt gestald en of de fietsen stalling vol zit. Vervolgens
+        haalt hij de tijd en datum op en write hij alle gegevens in de file Stallen.txt.
+        """
         read = open('Ingelogd.txt', 'r')
         infile = read.readlines()
         for lines in infile:
@@ -423,6 +460,9 @@ class Window(Tk):
             return self.qrCodePopup()
 
     def qrCodePopup(self):
+        """
+        Popup voor de QR hulp.
+        """
         self.bewaartext = (
             'Bewaar de volgende QR Code om je fiets weer op te halen.')
         showinfo(title='Hulp QR', message=self.bewaartext)
@@ -430,7 +470,9 @@ class Window(Tk):
         return qrcode.run_example(self.cijfer)
 
     def fiets_huren(self):
-
+        """
+        De GUI voor bij het huren van een ov fiets.
+        """
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title("Fiets Huren")
@@ -465,7 +507,10 @@ class Window(Tk):
         self.accepteernietbutton.pack(pady=10)
 
     def Fiets_huren(self):
-
+        """
+        De code voor het huren van een ov fiets, hij checked of je al een fiets hebt gehuurd en of er nog ov fietsen
+        over zijn. Hij haalt de tijd op en write alle gegevens in de file Huurgegevens.txt.
+        """
         huurnummer = random.randint(1,50)
 
         infile = open('Ingelogd.txt', 'r')
@@ -504,6 +549,9 @@ class Window(Tk):
         return self.menu2()
 
     def regel_verwijderen(self):
+        """
+        De code voor het verwijderen van de line uit Huurgegevens.txt.
+        """
         lijst = []
         file = open('Huurgegevens.txt', 'r')
         regels = file.readlines()
@@ -529,11 +577,14 @@ class Window(Tk):
         wfile.close()
 
     def fiets_terugbrengen(self):
-
-        import time
-
+        """
+        De code voor als je je huur fiets terug brengt. Hij neemt de datum van nu als een lang cijfer en neemt de datum
+        van huren en trekt deze van elkaar af. zo krijg je de tijd dat de fiets is gestald. We hebben gekozen voor de
+        schaal van elke 15 is 'een dag'. om te voorkomen dat je letterlijk een dag moet wachten. Dan geeft hij een popup
+        dat je fiets is teruggebracht.
+        """
         gelukt = 0
-        dag = 86400  # in seconden
+        dag = 86400
         jaar = 31536000
 
         terugfile = open('Huurgegevens.txt', 'r')
@@ -571,7 +622,7 @@ class Window(Tk):
 
                 gehuurdtijdtotal = totalt - total
                 gehuurdtijd = gehuurdtijdtotal
-                totalY = gehuurdtijd // (jaar)  # hier en onder berekent hij per tijd hoelang de fiets gehuurd is
+                totalY = gehuurdtijd // (jaar)
                 if totalY == 1:
                     jaren = 'jaar'
                 else:
@@ -607,7 +658,7 @@ class Window(Tk):
                 else:
                     seconden = 'seconden'
 
-                prijs = gehuurdtijdtotal // (60 * 15) * 0.2 + 1  # elke 15 minuten + 20 cent en standaard 1 euro
+                prijs = gehuurdtijdtotal // (60 * 15) * 0.2 + 1
                 prijsafg = round(prijs,2)
                 self.regel_verwijderen()
 
@@ -623,6 +674,10 @@ class Window(Tk):
             showinfo(title='Hulp QR', message=self.infotext)
 
     def infopopup(self):
+        """
+        De popup voor persoonlijke informatie. Hij print je naam, achternaam, ov en telefoornummer. Ook checkt hij of je
+        een fiets hebt gehuurd en/of gestald. Dit zet hij er ook in.
+        """
         ingelogd = open('Ingelogd.txt', 'r')
         line = ingelogd.readlines()
         for lines in line:
@@ -669,15 +724,18 @@ class Window(Tk):
         self.huur = 'Nee'
 
     def InfoEigenaar(self):
-            gegevens = open('Ingelogd.txt', 'r')
-            gegeven = gegevens.readlines()
-            for item in gegeven:
-                regel = item.split(';')
-                self.naam = regel[0]
-                self.achternaam = regel[1]
-                self.tel = regel[3]
-                self.ov = regel[4]
-                self.infopopup()
+        """
+        De informatie van de ingelogde persoon, wordt gebruikt in de informatie popup.
+        """
+        gegevens = open('Ingelogd.txt', 'r')
+        gegeven = gegevens.readlines()
+        for item in gegeven:
+            regel = item.split(';')
+            self.naam = regel[0]
+            self.achternaam = regel[1]
+            self.tel = regel[3]
+            self.ov = regel[4]
+            self.infopopup()
 
     def QRHulpPopup(self):
         self.infotext = (
