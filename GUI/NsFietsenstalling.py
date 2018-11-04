@@ -290,10 +290,8 @@ class Window(Tk):
         photo = PhotoImage(file="ns.png")
         w = Label(self.top, image=photo, bg='gold')
         w.photo = photo
-        w.pack(pady=25)
+        w.pack(pady=50)
 
-        self.invisiblebutton = Label(master=self.top, bg='gold')
-        self.invisiblebutton.pack(pady=50)
 
         self.stallenbutton = Button(master=self.top, text='Fiets Stallen', command=self.fiets_stallen,
                                     bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
