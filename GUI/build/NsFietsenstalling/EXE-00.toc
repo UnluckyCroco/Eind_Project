@@ -1,6 +1,6 @@
 ('C:\\Users\\Stephen '
  'MSI\\PycharmProjects\\Eind_Project\\GUI\\build\\NsFietsenstalling\\NsFietsenstalling.exe',
- False,
+ True,
  False,
  True,
  None,
@@ -49,8 +49,8 @@
  [],
  False,
  False,
- 1541352743,
- [('runw.exe',
+ 1541353478,
+ [('run.exe',
    'c:\\program '
-   'files\\python37\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\runw.exe',
+   'files\\python37\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\run.exe',
    'EXECUTABLE')])
