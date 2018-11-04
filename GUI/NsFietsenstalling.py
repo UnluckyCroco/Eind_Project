@@ -21,6 +21,11 @@ class Window(Tk):
 
     def initialize(self):
 
+        photo = PhotoImage(file="ns.png")
+        w = Label(self, image=photo, bg='gold')
+        w.photo = photo
+        w.pack(pady=25)
+
         self.rnummer = -1
         self.welcometext = Label(master=self, text='Welkom bij deze NS fietsenstalling\n'
                                                     'Kies een van de volgende opties:',
@@ -282,6 +287,11 @@ class Window(Tk):
         self.top.geometry("1920x1080")
         self.top.configure(bg='gold')
 
+        photo = PhotoImage(file="ns.png")
+        w = Label(self.top, image=photo, bg='gold')
+        w.photo = photo
+        w.pack(pady=25)
+
         self.invisiblebutton = Label(master=self.top, bg='gold')
         self.invisiblebutton.pack(pady=50)
 
@@ -391,18 +401,23 @@ class Window(Tk):
         self.top.geometry("1920x1080")
         self.top.configure(bg='gold')
 
+        photo = PhotoImage(file="ns.png")
+        w = Label(self, image=photo, bg='gold')
+        w.photo = photo
+        w.pack(pady=10)
+
         self.huurtext = Label(master=self.top, text='Weet u zeker dat u een fiets wilt huren?\n'
                                                     'Het tarief is: €1 euro + 20 cent per 15 minuten',
-                                                    relief=FLAT, font='Calibri', bg='gold')
+                                                    relief=FLAT, font='Calibri',fg='blue4', bg='gold')
         self.huurtext.pack(pady=150)
 
         self.accepteerbutton = Button(master=self.top, text='Ja', command=self.Fiets_huren,
-                                    bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                    bg='DodgerBlue2', relief=FLAT, font='Calibri', fg= 'white',
                                     width=40)
         self.accepteerbutton.pack(pady=10)
 
         self.accepteernietbutton = Button(master=self.top, text='Nee', command=self.login,
-                                    bg='goldenrod', relief=FLAT, font='Calibri   ',
+                                    bg='goldenrod', relief=FLAT, font='Calibri   ', fg='blue4',
                                     width=40)
         self.accepteernietbutton.pack(pady=10)
 
@@ -676,9 +691,13 @@ class Window(Tk):
         self.top.geometry("1920x1080")
         self.top.configure(bg='gold')
 
+        photo = PhotoImage(file="ns.png")
+        w = Label(self.top, image=photo, bg='gold')
+        w.photo = photo
+        w.pack(pady=25)
 
         self.label = Label(self.top, text='Uw QR Code')
-        self.label.config(font=("Calibri", 16),bg='gold')
+        self.label.config(font=("Calibri", 16),bg='gold', fg='blue4' )
         self.label.pack(fill=X, padx=25, pady=100)
 
 
@@ -686,12 +705,12 @@ class Window(Tk):
         self.code.pack(fill=X, padx=700)
 
         self.Enterbutton = Button(master=self.top, text='Enter', command=self.OphalenPopup,
-                                      bg='DodgerBlue2', relief=FLAT, font='Calibri',
+                                      bg='DodgerBlue2', relief=FLAT, font='Calibri', fg='white',
                                       width=40)
         self.Enterbutton.pack(fill=X, padx=600, pady=25)
 
         self.Closebutton = Button(master=self.top, text='Terug', command=self.menu2,
-                                  bg='goldenrod', relief=FLAT, font='Calibri',
+                                  bg='goldenrod', relief=FLAT, font='Calibri', fg='blue4',
                                   width=40)
         self.Closebutton.pack(fill=X, padx=600, pady=10)
 
