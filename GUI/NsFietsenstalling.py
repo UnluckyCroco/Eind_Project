@@ -716,7 +716,7 @@ class Window(Tk):
 
         readfile = open('Ingelogd.txt','w')   #leegt de Ingelogd bestand
         readfile.close()
-        self.exit()
+        self.quit()
 
     def WachtwoordVeranderen(self):
         if self.ovfield.get() == '':
