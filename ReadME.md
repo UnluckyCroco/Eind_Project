@@ -14,6 +14,13 @@ Eind_Project
 
     -Stephen Nedd
 
+---Opstarten Programma---
+
+    Je runned het programma via python (PyCharm). Run de file genaamd NsFietsenstalling.py located in de folder GUI.
+    
+    Het was onze bedoeling om het te kunnen runnen via een .exe bestand maar dit is ons na vele pogingen en uren werk hellaas
+    niet gelukt.
+    
 ---Introductie---
 
     Dit is onze code voor een NS Fietsenstalling. Je kunt in dit programma een plek reserveren in de stalling en een ov fiets huren.
