@@ -738,54 +738,65 @@ class Window(Tk):
             self.infopopup()
 
     def QRHulpPopup(self):
+        """
+        De popup met hulp voor gebruik van de QR.
+        """
         self.infotext = (
-                    'Om een QR te scannen moet u een QR of Barcode scanner downloaden op uw smartphone. Na het scannen krijgt u de code te zien, bewaar deze om later je fiets weer op te kunnen halen.')
+                    'Om een QR te scannen moet u een QR of Barcode scanner downloaden op uw smartphone. '
+                    'Na het scannen krijgt u de code te zien, bewaar deze om later je fiets weer op te kunnen halen.')
         showinfo(title='Hulp QR', message=self.infotext)
 
     def OphalenPopup(self):
-
-        readfile = open('Stallen.txt', 'r')
-        infile2 = readfile.readlines()
-        for lines2 in infile2:
-            stalgegevens = lines2.split(';')
-            stalnummer = stalgegevens[10].strip('\n')
-            codegegeven = stalgegevens[2].strip('')
-
-        if self.code.get() != codegegeven:
-            return showwarning(title='Fout', message='De ingevulde code is onjuist')
-        else:
-            self.infotext = (
-                    'Uw fiets staat op plek ' + stalnummer + '. U kunt uw fiets meenemen.')
-            showinfo(title='Ophaal Plek', message=self.infotext)
-            readfile.close()
-
-
-        lijst = []
-        file = open('Stallen.txt', 'r')
-        regels = file.readlines()
-        file.close()
-
+        """
+        Hier wordt gechecked of de ingevoerde QR-Code gelijkstaat aan de QR-Code die bij het stallen gegeven was.
+        Daarna haalt hij de fiets uit Stallen.txt.
+        """
+        counter = 0
         infile = open('Ingelogd.txt', 'r')
         ilines = infile.readlines()
         for iline in ilines:
             inlog = iline.split(';')
         infile.close()
 
-        for regel in regels:
-            x = regel.split(';')
-            counter = 0
-            if inlog[0] == x[0]:
-                counter += 1
-            if counter == 0:
-                lijst.append(regel)
-        file.close()
+        readfile = open('Stallen.txt', 'r')
+        infile2 = readfile.readlines()
+        for lines2 in infile2:
+            stalgegevens = lines2.split(';')
+            if inlog[0] == stalgegevens[0] and inlog[1] == stalgegevens[1] and inlog[4].strip('\n') == stalgegevens[9]:
+                counter = 1
+                stalnummer = stalgegevens[10].strip('\n')
+                codegegeven = stalgegevens[2]
 
-        wfile = open('Stallen.txt', 'w')
-        for gegevens in range(len(lijst)):
-            wfile.write(lijst[gegevens])
-        return self.menu2()
+        if counter == 1:
+            if self.code.get() != codegegeven:
+                return showwarning(title='Fout', message='De ingevulde code is onjuist')
+            else:
+                self.infotext = (
+                        'Uw fiets staat op plek ' + stalnummer + '. U kunt uw fiets meenemen.')
+                showinfo(title='Ophaal Plek', message=self.infotext)
+                readfile.close()
+
+            lijst = []
+
+            for regel in infile2:
+                x = regel.split(';')
+                counter2 = 0
+                if inlog[0] == x[0] and inlog[1] == x[1] and inlog[4].strip('\n') == x[9]:
+                    counter2 += 1
+                if counter2 == 0:
+                    lijst.append(regel)
+
+            wfile = open('Stallen.txt', 'w')
+            for gegevens in range(len(lijst)):
+                wfile.write(lijst[gegevens])
+            return self.menu2()
+        else:
+            return showwarning(title='Fout', message='U heeft geen fiets gestald.')
 
     def Fietsophalen(self):
+        """
+        Creëert de GUI voor fietsophalen.
+        """
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title('Ophalen')
@@ -822,12 +833,20 @@ class Window(Tk):
         self.Closebutton.pack(fill=X, padx=600)
 
     def Uitloggen(self):
-
+        """
+        Leegt Ingelogd.txt voor de volgende gebruiker.
+        """
         readfile = open('Ingelogd.txt','w')
         readfile.close()
         self.exit()
 
     def WachtwoordVeranderen(self):
+        """
+        Checked of oude wachtwoord overeenkomt met wat is ingevoerd,
+        of de ov overeenkomt met de gegevens,
+        of het nieuwe wachtwoord 2 keer hetzelfde is ingevoerd en
+        write het nieuwe wachtwoord in Gegevens.txt en Ingelogd.txt
+        """
         if self.ovfield.get() == '':
             return showwarning(title='Leeg', message='Vul alle velden in alstublieft')
         if self.oudwwfield.get() == '':
@@ -909,6 +928,9 @@ class Window(Tk):
         return self.menu2()
 
     def WachtwoordVeranderenWindow(self):
+        """
+        Creëert de GUI voor het wachtwoord veranderen.
+        """
         self.top.withdraw()
         self.top = Toplevel()
         self.top.title("Wachtwoord Veranderen")
